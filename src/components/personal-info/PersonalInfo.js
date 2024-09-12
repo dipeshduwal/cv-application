@@ -6,7 +6,17 @@ function Personalinfo({personalInfo,setPersonalInfo}){
         {name: 'address', type:'text', label: 'Address', placeholder: 'Enter your Address'},
         {name: 'birthDate', type:'date', label: 'Date of Birth', placeholder: 'Select your date of birth'},
         {name: 'linkedIn', type:'url', label: 'LinkedIn Profile', placeholder: 'Enter your LinkedIn profile URL'}
-    ]
-
-    ]
+    ];
+    
+    return (
+        <div className="personal-info">
+            <FormTemplate
+                title="Personal Information"
+                fields={fields}
+                data={personalInfo}
+                setData={setPersonalInfo}
+                onSubmit={handleSubmit}
+            />
+        </div>
+    );
 }
