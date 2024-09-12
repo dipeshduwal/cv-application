@@ -21,6 +21,18 @@ function Education({educations, setEducations}){
         {name: 'endDate', type:'date-month', label:'End Date', placeholder:'Select end date'},
         {name: 'description', type:'textarea', label:'Description', placeholder:'Describe your education'}
     ];
+
+    const handleSubmit = (data) => {
+        if (editingIndex !== null){
+            const newEducations = [...educations];
+            newEducations[editingIndex] = data;
+            setEducations(newEducations);
+            setEditingIndex(null);
+        } else {
+            setEducations([...educations, data]);
+        }
+        resetForm();
+    };
     
     return(
         <div className="education-section">

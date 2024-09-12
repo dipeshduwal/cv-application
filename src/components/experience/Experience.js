@@ -11,6 +11,18 @@ function Experience({experiences,setExperiences}) {
         responsibilities: ''
     });
 
+    const handleSubmit = (data) => {
+        if (editingIndex !== null){
+            const newExperiences = [...experiences];
+            newExperiences[editingIndex] = data;
+            setExperiences(newExperiences);
+            setEditingIndex(null);
+        } else{
+            setExperiences([...experiences, data]);
+        }
+        resetForm();
+    };
+
     const fields = [
         {name:'company', type:'text', label:'Company Name', placeholder:'Enter Company Name', required: true},
         {name:'position', type:'text', label:'Position Name', placeholder:'Enter Job Title', required: true},
