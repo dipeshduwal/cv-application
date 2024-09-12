@@ -23,15 +23,15 @@ function Education({educations, setEducations}){
     ];
     
     return(
-        <div className="educationSection">
-            <div className="educationList">
+        <div className="education-section">
+            <div className="education-list">
                 {educations.map((edu, index) => (
                     <ItemTemplate
                         key={index}
                         title={`${edu.degree} in ${edu.fieldOfStudy}`}
                         subtitle={`${edu.school} (${edu.startDate} - ${edu.endDate || 'Present'})`}
                         description={edu.description}
-                        
+
                     />
                 ))
 

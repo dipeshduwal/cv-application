@@ -19,7 +19,23 @@ function Experience({experiences,setExperiences}) {
         {name:'responsibilities', type:'textarea', label:'Responsibilities', placeholder:'Describe your key responsibilities'}
     ];
 
-    
+    return(
+        <div className="experience-section">
+            <div className="experience-list">
+                {experiences.map((exp, index) => (
+                    <ItemTemplate
+                        key={index}
+                        title={`${exp.position} at ${exp.company}`}
+                        subtitle={`${exp.startDate} - ${exp.endDate || 'Present'}`}
+                        description={exp.responsibilities}
+                    />
+                ))}
+
+            </div>
+
+        </div>
+
+    )
 
 }
 
