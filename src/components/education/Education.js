@@ -22,6 +22,25 @@ function Education({educations, setEducations}){
         {name: 'description', type:'textarea', label:'Description', placeholder:'Describe your education'}
     ];
     
+    return(
+        <div className="educationSection">
+            <div className="educationList">
+                {educations.map((edu, index) => (
+                    <ItemTemplate
+                        key={index}
+                        title={`${edu.degree} in ${edu.fieldOfStudy}`}
+                        subtitle={`${edu.school} (${edu.startDate} - ${edu.endDate || 'Present'})`}
+                        description={edu.description}
+                        
+                    />
+                ))
+
+                }
+            </div>
+
+        </div>
+    )
+
 };
 
 
