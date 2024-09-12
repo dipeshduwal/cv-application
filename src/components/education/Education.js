@@ -12,4 +12,18 @@ function Education({educations, setEducations}){
             description: ''
         }
     );
-}
+
+    const fields = [
+        {name: 'school', type:'text', label:'School', placeholder:'Enter School Name', required: true},
+        {name: 'degree', type:'text', label:'Degree', placeholder:'Enter Degree Name', required: true},
+        {name: 'fieldOfStudy', type:'text', label:'Field Of Study', placeholder:'Enter field of study', required: true},
+        {name: 'startDate', type:'date-month', label:'Start Date', placeholder:'Select start date', required: true},
+        {name: 'endDate', type:'date-month', label:'End Date', placeholder:'Select end date'},
+        {name: 'description', type:'textarea', label:'Description', placeholder:'Describe your education'}
+    ];
+    
+};
+
+
+
+
