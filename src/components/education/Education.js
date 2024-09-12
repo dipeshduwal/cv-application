@@ -33,7 +33,13 @@ function Education({educations, setEducations}){
         }
         resetForm();
     };
-    
+
+    const handleEdit = (index) => {
+        setEducation(education[index]);
+        setEditingIndex(index);
+        setShowForm(true);
+    };
+
     return(
         <div className="education-section">
             <div className="education-list">

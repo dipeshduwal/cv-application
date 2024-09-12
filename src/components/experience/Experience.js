@@ -23,6 +23,12 @@ function Experience({experiences,setExperiences}) {
         resetForm();
     };
 
+    const handleEdit = (index) => {
+        setExperience(experiences[index]);
+        setEditingIndex(index);
+        setShowForm(true);
+    };
+
     const fields = [
         {name:'company', type:'text', label:'Company Name', placeholder:'Enter Company Name', required: true},
         {name:'position', type:'text', label:'Position Name', placeholder:'Enter Job Title', required: true},
