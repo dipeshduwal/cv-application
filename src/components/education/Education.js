@@ -1,4 +1,6 @@
 import React, {useState} from "react";
+import FormTemplate from "../FormTemplate/FormTemplate";
+import ItemTemplate
 
 function Education({educations, setEducations}){
     const [showForm, setShowForm] = useState(false);
