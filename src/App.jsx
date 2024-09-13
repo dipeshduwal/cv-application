@@ -4,6 +4,7 @@ import PersonalInfo from './components/personal-info/PersonalInfo';
 import Education from './components/education/Education';
 import Experience from './components/experience/Experience';
 import Skill from './components/Skills/Skill';
+import CollapsibleSection from './components/CollapsibleSection';
 
 
 function App() {
