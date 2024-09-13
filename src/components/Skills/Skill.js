@@ -1,4 +1,7 @@
 import React, {useState} from "react";
+import FormTemplate from "../FormTemplate/FormTemplate";
+import ItemTemplate from "../FormTemplate/ItemTemplate";
+import '../../styles/Buttons.css'
 
 function Skill({skills, setSkills}){
     const [showForm, setShowForm] = useState(false);
@@ -29,17 +32,54 @@ function Skill({skills, setSkills}){
         setShowForm(true);
     }
 
+    const handleDelete = (index) => {
+        const newExperiences = skills.filter((_, i) => i !== index);
+        setSkills(newExperiences);
+    };
+
+    const resetForm = () => {
+        setSkill({
+            skillName: '',
+        });
+        setShowForm(false);
+        setEditingIndex(null);
+    };
+
+    const handleCancel = () => {
+        resetForm();
+    };
+
     return (
         <div className="skill-section">
             <div className="skill-list">
-                {Skills.map((skl, index) => (
+                {skills.map((skl, index) => (
                     <ItemTemplate 
                         key={index}
                         title={skl.skillName}
+                        onEdit={() => handleEdit(index)}
+                        onDelete={() => handleDelete(index)}
                     />
                 
                 ))}
             </div>
+            {showForm ? (
+                <div>
+                    <FormTemplate
+                        title={editingIndex !== null ? "Edit Skill" : "Add Skill"}
+                        fields={fields}
+                        data={skill}
+                        setData={setSkill}
+                        onSubmit={handleSubmit}
+                    />
+                    <button className="cancel-button" onClick={handleCancel}>
+                        Cancel
+                    </button>
+                </div>
+            ) : (
+                <button className="new-entry-button" onClick={() => setShowForm(true)}>
+                    New Entry
+                </button>
+            )}
         </div>
     );
 }
