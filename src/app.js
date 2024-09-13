@@ -1,14 +1,15 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import './styles/App.css'
 import PersonalInfo from './components/personal-info/PersonalInfo';
 import Education from './components/education/Education';
 import Experience from './components/experience/Experience';
-import Skill from './components/Skills/Skill';
+import Skills from './components/Skills/Skill';
+import ResumePreview from './components/ResumePreview/ResumePreview';
 import CollapsibleSection from './components/CollapsibleSection';
 
 
 function App() {
-  const [PersonalInfo, setPersonalInfo] = useState({name:'', email:'', phone:'', birthDate:'', city:''  });
+  const [personalInfo, setPersonalInfo] = useState({name:'', email:'', phone:'', birthDate:'', city:''  });
   const [educations, setEducations] = useState([]);
   const [experiences, setExperiences] = useState([]);
   const [skills, setSkills] = useState([]);
