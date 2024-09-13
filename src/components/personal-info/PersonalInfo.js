@@ -17,6 +17,7 @@ function PersonalInfo({personalInfo,setPersonalInfo}){
     return (
         <div className="personal-info">
             <FormTemplate
+            //passing hardcoded data from common parent
                 title="Personal Information"
                 fields={fields}
                 data={personalInfo}

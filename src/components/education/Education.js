@@ -75,6 +75,7 @@ function Education({educations, setEducations}){
                         title={`${edu.degree} in ${edu.fieldOfStudy}`}
                         subtitle={`${edu.school} (${edu.startDate} - ${edu.endDate || 'Present'})`}
                         description={edu.description}
+                        //passing an event handler down as a prop
                         onEdit={() => handleEdit(index)}
                         onDelete={() => handleDelete(index)}
                     />

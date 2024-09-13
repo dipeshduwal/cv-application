@@ -1,5 +1,6 @@
 import React from "react";
 
+//lifting the state as props to give control to parent component - parent controls onSubmit
 function FormTemplate({title, fields, data, setData, onSubmit}){
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -21,6 +22,7 @@ function FormTemplate({title, fields, data, setData, onSubmit}){
                         <label htmlFor={field.name}>{field.label}</label>
                         {field.type === 'textarea' ? (
                             <textarea
+                            //passing hardcoded data from common parent
                                 id={field.name}
                                 name={field.name}
                                 value={data[field.name] || ''}
