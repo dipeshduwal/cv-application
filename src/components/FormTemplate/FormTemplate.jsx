@@ -1,4 +1,5 @@
 import React from "react";
+import './FormTemplate.css';
 
 //lifting the state as props to give control to parent component - parent controls onSubmit
 function FormTemplate({title, fields, data, setData, onSubmit}){

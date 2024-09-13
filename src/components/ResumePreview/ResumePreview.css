@@ -1,1 +1,45 @@
- 
+.resume-preview {
+    flex: 1;
+    margin-left: 20px;
+}
+
+.paper {
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 40px;
+    border-radius: 5px;
+    min-height: 800px;
+}
+
+.paper h2 {
+    margin-bottom: 5px;
+}
+
+.paper h3 {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+    margin-top: 20px;
+}
+
+.entry {
+    margin-bottom: 15px;
+    margin-left: 15px;
+}
+
+.entry h4 {
+    margin-bottom: 5px;
+}
+
+.entry p {
+    margin: 0;
+    color: #666;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+.info-header {
+    padding: 15px;
+    background-color: lightsteelblue;
+}
