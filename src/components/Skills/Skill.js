@@ -42,7 +42,6 @@ function Skill({skills, setSkills}){
             </div>
         </div>
     );
-
-
-
 }
+
+export default Skill;

@@ -1,35 +1,48 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './styles/App.css'
+import PersonalInfo from './components/personal-info/PersonalInfo';
+import Education from './components/education/Education';
+import Experience from './components/experience/Experience';
+import Skill from './components/Skills/Skill';
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [PersonalInfo, setPersonalInfo] = useState({name:'', email:'', phone:'', birthDate:'', city:''  });
+  const [educations, setEducations] = useState([]);
+  const [experiences, setExperiences] = useState([]);
+  const [skills, setSkills] = useState([]);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className='App'>
+      <div className='input-section'>
+        <div className='section'>
+          <h3>Personal Information</h3>
+          <PersonalInfo personalInfo={personalInfo} setPersonalInfo={setPersonalInfo}/>
+        </div>
 
-export default App
+        <CollapsibleSection title="Education">
+          <Education educations={educations} setEducations={setEducations}/>
+        </CollapsibleSection>
+
+        <CollapsibleSection title="Work Experience">
+                    <Experience experiences={experiences} setExperiences={setExperiences} />
+                </CollapsibleSection>
+
+                <CollapsibleSection title="Skills">
+                    <Skills skills={skills} setSkills={setSkills} />
+                </CollapsibleSection>
+
+      </div>
+      <div className="preview-section">
+                <ResumePreview
+                    personalInfo={personalInfo}
+                    educations={educations}
+                    experiences={experiences}
+                    skills={skills}
+                />
+      </div>
+    </div>
+  )
+};
+
+export default App;

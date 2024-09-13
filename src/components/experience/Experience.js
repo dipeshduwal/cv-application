@@ -57,3 +57,5 @@ function Experience({experiences,setExperiences}) {
 
 }
 
+export default Experience;
+

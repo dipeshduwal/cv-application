@@ -35,7 +35,7 @@ function Education({educations, setEducations}){
     };
 
     const handleEdit = (index) => {
-        setEducation(education[index]);
+        setEducation(educations[index]);
         setEditingIndex(index);
         setShowForm(true);
     };
@@ -60,6 +60,8 @@ function Education({educations, setEducations}){
     )
 
 };
+
+export default Education;
 
 
 
