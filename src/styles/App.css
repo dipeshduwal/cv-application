@@ -1,42 +1,90 @@
+/* Reset default margins and paddings */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Set the root and body to full height */
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: #f0f0f0;
+}
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  min-height: 100%;
+  display: flex;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.App {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #f0f0f0;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.input-section {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-right: 20px;
+  overflow-y: auto;
+  align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.preview-section {
+  flex: 1;
+  overflow-y: auto;
 }
 
-.card {
-  padding: 2em;
+.section, .collapsible-section {
+  margin-bottom: 15px;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 90%;
 }
 
-.read-the-docs {
-  color: #888;
+.section {
+  min-height: 200px;
+}
+
+
+.collapsible-section h3 {
+  cursor: pointer;
+  user-select: none;
+  padding: 15px;
+  margin: 0;
+  background-color: white;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.collapsible-section h3 span:last-child {
+  font-size: 12px;
+}
+
+.section-content {
+  padding: 0 15px 15px 15px;
+  border: none;
+}
+
+.section .section-content {
+  display: block;
+  padding: 15px;
+}
+
+.paper {
+  width: 90%;
+}
+
+h3 {
+  padding: 15px;
 }
