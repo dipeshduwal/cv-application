@@ -29,8 +29,8 @@ function ResumePreview({ personalInfo, educations, experiences, skills }) {
                     <h3>Education</h3>
                     {educations.map((edu, index) => (
                         <div key={index} className="entry">
-                            <p>{formatDate(edu.startDate)} - {edu.endDate ? formatDate(edu.endDate) : 'Present'}</p>
                             <h4>{`${edu.degree} in ${edu.fieldOfStudy} at ${edu.school}`}</h4>
+                            <p>{formatDate(edu.startDate)} - {edu.endDate ? formatDate(edu.endDate) : 'Present'}</p>
                             <p>{edu.description}</p>
                         </div>
                     ))}
@@ -50,9 +50,9 @@ function ResumePreview({ personalInfo, educations, experiences, skills }) {
                 <section>
                     <h3>Skills</h3>
                     {skills.map((skl, index) => (
-                        <div key={index} className="entry">
-                            <h4>{skl.skillName}</h4>
-                        </div>
+                        <li key={index} className="entry">
+                            {skl.skillName}
+                        </li>
                     ))}
                 </section>
             </div>
