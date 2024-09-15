@@ -46,7 +46,7 @@
 }
 
 .form-container button {
-    background-color: #007bff;
+    background-color: #07715f;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -54,15 +54,16 @@
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-weight: 600;
 }
 
 .form-container button:hover {
-    background-color: #0056b3;
+    background-color: #07715f;
 }
 
 .form-container button:focus {
     outline: none;
-    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
+    box-shadow: 0 0 0 2px #07715f;
 }
 
 /* Responsive adjustments */
