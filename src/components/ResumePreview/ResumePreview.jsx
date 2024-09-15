@@ -15,14 +15,13 @@ function ResumePreview({ personalInfo, educations, experiences, skills }) {
                 <div className='info-header'>
                     <h2>{personalInfo.fullName}</h2>
                     <p>
-                        {personalInfo.email && `E-Mail: ${personalInfo.email}`}
-                        {personalInfo.email && personalInfo.phone && ' | '}
-                        {personalInfo.phone && `Number: ${personalInfo.phone}`}
+                        {personalInfo.email && `E-Mail: ${personalInfo.email}`} <br/>
+                        {personalInfo.phone && `Contact: ${personalInfo.phone}`} <br/>
                     </p>
                     <p>
-                        {personalInfo.address && `City: ${personalInfo.address}`}
-                        {personalInfo.address && personalInfo.birthDate && ' | '}
-                        {personalInfo.birthDate && `Date of Birth: ${personalInfo.birthDate}`}
+                        {personalInfo.address && `Address: ${personalInfo.address}`} <br/>
+                        {personalInfo.birthDate && `Date of Birth: ${personalInfo.birthDate}`} <br/>
+                        {personalInfo.linkedIn && `LinkedIn Profile: ${personalInfo.linkedIn}`}
                     </p>
                 </div>
 

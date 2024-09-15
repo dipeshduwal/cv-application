@@ -57,7 +57,7 @@ function FormTemplate({title, fields, data, setData, onSubmit}){
                         )}
                     
                     </div>
-                ))};
+                ))}
                 <button type="submit">Save</button>
             </form>
         </div>

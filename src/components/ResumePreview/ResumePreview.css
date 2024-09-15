@@ -9,9 +9,12 @@
     padding: 40px;
     border-radius: 5px;
     min-height: 800px;
+    
+    
 }
 
 .paper h2 {
+    font-size: 50px;
     margin-bottom: 5px;
 }
 
@@ -31,6 +34,7 @@
 }
 
 .entry p {
+    font-size: 30px;
     margin: 0;
     color: #666;
 }
@@ -41,5 +45,7 @@ ul {
 
 .info-header {
     padding: 15px;
-    background-color: lightsteelblue;
+    background-color: rgb(54, 73, 97);
+    color: white;
+    font-size: larger;
 }
