@@ -7,7 +7,7 @@ import Skills from './components/Skills/Skill';
 import ResumePreview from './components/ResumePreview/ResumePreview';
 import CollapsibleSection from './components/CollapsibleSection';
 
-
+//collects data from different sections like personal information, education, experience, and skills, and then shows a preview of the resume
 function App() {
   const [personalInfo, setPersonalInfo] = useState({name:'', email:'', phone:'', birthDate:'', city:''  });
   const [educations, setEducations] = useState([]);
