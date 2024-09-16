@@ -27,23 +27,23 @@ This project is built using modular React components to manage each section of t
 10. InputGroup.jsx: A reusable input component that can handle different input types (text, textarea, date, etc.) and provides support for additional labels like optional or recommended. It simplifies form input creation throughout the app. <br>
 11. main.jsx: The entry point for the React application, where the App component is rendered and injected into the DOM using ReactDOM.render. This is the root file where the React application starts running. <br>
 
-**Installation:**
-To run this project locally, follow the steps below:
+**Installation:** <br>
+To run this project locally, follow the steps below: <br>
 
-1. Clone the repository:
-- bash
+1. Clone the repository: <br>
+- bash <br>
 
 ```
 git clone https://github.com/your-username/cv-resume-generator.git
 cd cv-resume-generator
 ```
 
-2. Install dependencies: Run the following command to install all necessary dependencies:
-- bash
+2. Install dependencies: Run the following command to install all necessary dependencies: <br>
+- bash <br>
 ```npm install```
 
-3. Start the development server: To start the application in development mode, run:
-- bash
+3. Start the development server: To start the application in development mode, run: <br>
+- bash <br>
 ```npm start```
 
 4. Open the application: Open your browser and go to http://localhost:3000 to view the app.
