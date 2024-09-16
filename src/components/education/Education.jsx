@@ -27,12 +27,12 @@ function Education({educations, setEducations}){
 
     const handleSubmit = (data) => {
         if (editingIndex !== null){
-            const newEducations = [...educations];
-            newEducations[editingIndex] = data;
+            const newEducations = [...educations]; 
+            newEducations[editingIndex] = data; //updating existing entry
             setEducations(newEducations);
             setEditingIndex(null);
         } else {
-            setEducations([...educations, data]);
+            setEducations([...educations, data]); //adding entry
         }
         resetForm();
     };
