@@ -1,7 +1,7 @@
 import React from "react";
 import './FormTemplate.css';
 
-//form template to handle the input fields
+//form template to handle the input fields/generate form template
 //lifting the state as props to give control to parent component - parent controls onSubmit
 function FormTemplate({title, fields, data, setData, onSubmit}){
     const handleChange = (e) => {
@@ -12,7 +12,7 @@ function FormTemplate({title, fields, data, setData, onSubmit}){
     };
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault(); //prevents the default form submission behavior (which would reload the page).
         onSubmit(data);
     };
 

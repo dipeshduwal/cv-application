@@ -1,5 +1,6 @@
 import "../styles/InputGroup.css";
 
+//to render an input field or a textarea dynamically
 function InputGroup({
                         id,
                         placeholder,

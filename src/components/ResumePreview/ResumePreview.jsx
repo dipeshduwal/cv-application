@@ -1,6 +1,7 @@
 import React from 'react';
 import './ResumePreview.css';
 
+//to display a formatted resume based on the personal information, education, work experience, and skills passed as props
 function ResumePreview({ personalInfo, educations, experiences, skills }) {
 
     const formatDate = (dateString) => {

@@ -38,13 +38,13 @@ function Education({educations, setEducations}){
     };
 
     const handleEdit = (index) => {
-        setEducation(educations[index]);
-        setEditingIndex(index);
-        setShowForm(true);
+        setEducation(educations[index]); // Load existing data into the form
+        setEditingIndex(index); // Set the current index to edit
+        setShowForm(true); // Show the form
     };
 
     const handleDelete = (index) => {
-        const newEducations = educations.filter((_, i) => i !== index);
+        const newEducations = educations.filter((_, i) => i !== index); // Remove the education at the given index
         setEducations(newEducations);
     };
 
@@ -65,7 +65,7 @@ function Education({educations, setEducations}){
         resetForm();
     };
 
-
+    // rendering the component
     return(
         <div className="education-section">
             <div className="education-list">
@@ -86,6 +86,7 @@ function Education({educations, setEducations}){
             {showForm ? (
                 <div className="form-container">
                     <FormTemplate
+                    //conditional form rendering
                         title={editingIndex !== null ? "Edit Education" : "Add Education"}
                         fields={fields}
                         data={education}

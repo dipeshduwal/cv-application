@@ -1,6 +1,7 @@
 import React from 'react';
 import './ItemTemplate.css';
 
+//displays a specific item (such as an educational entry, job experience, or any other list item) with an option to perform actions on that item
 function ItemTemplate({ title, subtitle, description, onEdit, onDelete }) {
 
     return (
