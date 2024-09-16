@@ -27,6 +27,13 @@ function FormTemplate({title, fields, data, setData, onSubmit}){
 
     const handleSubmit = (e) => {
         e.preventDefault(); //prevents the default form submission behavior (which would reload the page).
+         // Perform required field validation manually
+         const missingFields = fields.filter(field => field.required && !data[field.name]);
+         if (missingFields.length > 0) {
+             alert(`Please fill out the required fields: ${missingFields.map(field => field.label).join(", ")}`);
+             return; // Prevent form submission
+         }
+        
         onSubmit(data);
     };
 
