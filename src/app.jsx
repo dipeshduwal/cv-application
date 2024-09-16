@@ -5,7 +5,7 @@ import Education from './components/education/Education';
 import Experience from './components/experience/Experience';
 import Skills from './components/Skills/Skill';
 import ResumePreview from './components/ResumePreview/ResumePreview';
-import CollapsibleSection from './components/CollapsibleSection';
+import CollapsibleSection from './components/CollapsibleSection/CollapsibleSection';
 
 //collects data from different sections like personal information, education, experience, and skills, and then shows a preview of the resume
 function App() {
