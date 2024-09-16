@@ -6,6 +6,20 @@ import './FormTemplate.css';
 function FormTemplate({title, fields, data, setData, onSubmit}){
     const handleChange = (e) => {
         const {name, value} = e.target;
+
+        // Phone number validation to allow only numbers
+        if (name === 'phone' && !/^\d*$/.test(value)) {
+            return;  // If non-numeric input is entered, ignore it
+        }
+
+        if (name === 'email') {
+            // Simple email validation regex
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(value)) {
+                console.error("Invalid email format");  // Optional: Handle invalid email input
+            }
+        }
+
         setData(prevData => ({
             ...prevData, [name]: value
         }));
