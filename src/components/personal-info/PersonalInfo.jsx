@@ -6,7 +6,7 @@ function PersonalInfo({personalInfo,setPersonalInfo}){
         {name: 'email', type:'email', label: 'Email', placeholder: 'Enter your email address', required: true},
         {name: 'phone', type:'tel', label: 'Phone Number', placeholder: 'Enter your phone number', required: true},
         {name: 'address', type:'text', label: 'Address', placeholder: 'Enter your Address', required: true},
-        {name: 'birthDate', type:'date', label: 'Date of Birth', placeholder: 'Select your date of birth'},
+        {name: 'birthDate', type:'date', label: 'Date of Birth', placeholder: 'Select your date of birth', required: true},
         {name: 'linkedIn', type:'url', label: 'LinkedIn Profile', placeholder: 'Enter your LinkedIn profile URL'}
     ];
 
