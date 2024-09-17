@@ -4,7 +4,7 @@ import './FormTemplate.css';
 //form template to handle the input fields/generate form template
 //lifting the state as props to give control to parent component - parent controls onSubmit
 function FormTemplate({title, fields, data, setData, onSubmit}){
-    const [error, setError] = useState("");
+    
     const handleChange = (e) => {
         const {name, value} = e.target;
 
@@ -21,12 +21,11 @@ function FormTemplate({title, fields, data, setData, onSubmit}){
     const handleSubmit = (e) => {
         e.preventDefault(); //prevents the default form submission behavior (which would reload the page).
          // Perform required field validation manually
-         const missingFields = fields.filter(field => field.required && !data[field.name]);
-         if (missingFields.length > 0) {
-            setError(`Please fill out the required fields: ${missingFields.map(field => field.label).join(", ")}`);
+        const missingFields = fields.filter(field => field.required && !data[field.name]);
+        if (missingFields.length > 0) {
+            alert(`Please fill out the required fields: ${missingFields.map(field => field.label).join(", ")}`);
             return; // Prevent form submission
-         }
-        setError("");
+        }
         onSubmit(data);
     };
 
