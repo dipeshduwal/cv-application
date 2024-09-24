@@ -1,0 +1,75 @@
+/* Login.css */
+
+body {
+    background-color: #f5f5f5; /* Light background for contrast */
+    font-family: Arial, sans-serif; /* Clean font for the entire page */
+}
+
+.login-container {
+    max-width: 400px;
+    margin: 100px auto; /* Centered with top margin */
+    padding: 30px;
+    background-color: #fff; /* White background for the form */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+h1 {
+    text-align: center; /* Centered heading */
+    color: #333; /* Darker color for headings */
+    margin-bottom: 10px; /* Spacing below the heading */
+}
+
+h2 {
+    text-align: center; /* Centered subheading */
+    color: #666; /* Lighter color for subheading */
+    margin-bottom: 20px; /* Spacing below the subheading */
+}
+
+.input-group {
+    margin-bottom: 15px; /* Spacing between input groups */
+}
+
+label {
+    display: block; /* Block display for labels */
+    margin-bottom: 5px; /* Spacing below labels */
+    color: #555; /* Medium gray for labels */
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 4px; /* Rounded input corners */
+    transition: border 0.3s; /* Smooth border color transition */
+}
+
+input:focus {
+    border-color: #007bff; /* Blue border on focus */
+    outline: none; /* Remove default outline */
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white;
+    border: none;
+    border-radius: 4px; /* Rounded button corners */
+    cursor: pointer;
+    transition: background 0.3s; /* Smooth background transition */
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+button:disabled {
+    background-color: #ccc; /* Gray background when disabled */
+}
+
+.error-message {
+    color: red; /* Red color for error messages */
+    margin-top: 10px; /* Spacing above error messages */
+    text-align: center; /* Centered error message */
+}
