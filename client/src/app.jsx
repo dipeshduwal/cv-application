@@ -25,7 +25,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
             
         <Route
-            path="/"
+            path="/cvapp"
             element={
               <div className='resume-builder'>
                  <div className='input-section'>
