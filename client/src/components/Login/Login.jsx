@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
 
 function Login() {
@@ -9,24 +9,30 @@ function Login() {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
+    const navigate = useNavigate();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         setError('');
 
+
         try {
             const res = await axios.post('http://localhost:5000/api/auth/login', { email, password });
             localStorage.setItem('token', res.data.token);
-            alert('Login successful');
+            navigate('/cvapp');
         } catch (err) {
             setError(err.response?.data?.message || 'An error occurred');
-        } finally {
+        } finally {     
             setLoading(false);
         }
     };
 
     return (
         <div className="login-container">
+            <div className='nav-links'>
+            <Link to="/HomePage" className="nav-button">Go To Homepage</Link>
+            </div>      
             <h1>Welcome Back!</h1>
             <h2>Please Login</h2>
             <form onSubmit={handleSubmit}>
@@ -61,6 +67,7 @@ function Login() {
             <p className='signup'>
                 Don't have an account?... <Link to="/Signup"> Sign up</Link>
             </p>
+            
         </div>
     );
 }

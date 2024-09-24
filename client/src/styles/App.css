@@ -30,6 +30,11 @@ body {
   background-color: #f0f0f0;
 }
 
+.resume-builder{
+  display: flex;
+  flex: 1;
+}
+
 .input-section {
   display: flex;
   flex-direction: column;
@@ -42,7 +47,7 @@ body {
 
 .preview-section {
   flex: 1;
-  
+  min-width: 700px;
   overflow-y: auto;
 }
 
