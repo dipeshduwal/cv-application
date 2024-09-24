@@ -6,6 +6,9 @@ import Experience from './components/experience/Experience';
 import Skills from './components/Skills/Skill';
 import ResumePreview from './components/ResumePreview/ResumePreview';
 import CollapsibleSection from './components/CollapsibleSection/CollapsibleSection';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Login from './components/Login/Login';
+import Signup from './components/SignUp/SignUp';
 
 //collects data from different sections like personal information, education, experience, and skills, and then shows a preview of the resume
 function App() {
@@ -16,6 +19,12 @@ function App() {
 
   return (
     <div className='App'>
+      <Router>
+            <Routes>
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+            </Routes>
+        </Router>
       <div className='input-section'>
         <div className='section'>
           <h3>Personal Information</h3>
