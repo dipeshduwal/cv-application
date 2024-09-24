@@ -9,6 +9,7 @@ import CollapsibleSection from './components/CollapsibleSection/CollapsibleSecti
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './components/Login/Login';
 import Signup from './components/SignUp/SignUp';
+import HomePage from './components/Homepage/Homepage';
 
 //collects data from different sections like personal information, education, experience, and skills, and then shows a preview of the resume
 function App() {
@@ -21,6 +22,7 @@ function App() {
     <Router>
      <div className='App'>
       <Routes>
+        <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
             
