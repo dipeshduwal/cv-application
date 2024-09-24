@@ -67,3 +67,11 @@ button:hover {
     margin-top: 10px;
     text-align: center;
 }
+
+.login{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    color: #555;
+    text-decoration: none;
+}

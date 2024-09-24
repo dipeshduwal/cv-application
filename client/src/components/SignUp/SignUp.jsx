@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import './Signup.css';
 
 function Signup() {
@@ -59,6 +60,9 @@ function Signup() {
                 <button type="submit">Signup</button>
             </form>
             {error && <p className="error-message">{error}</p>}
+            <p className='login'>
+                Already have an account?... <Link to="/Login">Login</Link>
+            </p>
         </div>
     );
 }
