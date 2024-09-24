@@ -18,41 +18,49 @@ function App() {
   const [skills, setSkills] = useState([]);
 
   return (
-    <div className='App'>
-      <Router>
-            <Routes>
-                <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<Signup />} />
-            </Routes>
-        </Router>
-      <div className='input-section'>
-        <div className='section'>
-          <h3>Personal Information</h3>
-          <PersonalInfo personalInfo={personalInfo} setPersonalInfo={setPersonalInfo}/>
-        </div>
+    <Router>
+     <div className='App'>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+            
+        <Route
+            path="/"
+            element={
+              <div className='resume-builder'>
+                 <div className='input-section'>
+                 <div className='section'>
+                    <h3>Personal Information</h3>
+                    <PersonalInfo personalInfo={personalInfo} setPersonalInfo={setPersonalInfo}/>
+                  </div>
 
-        <CollapsibleSection title="Education">
-          <Education educations={educations} setEducations={setEducations}/>
-        </CollapsibleSection>
+                   <CollapsibleSection title="Education">
+                    <Education educations={educations} setEducations={setEducations}/>
+                   </CollapsibleSection>
 
-        <CollapsibleSection title="Work Experience">
-                    <Experience experiences={experiences} setExperiences={setExperiences} />
-                </CollapsibleSection>
+                    <CollapsibleSection title="Work Experience">
+                     <Experience experiences={experiences} setExperiences={setExperiences} />
+                    </CollapsibleSection>
 
-                <CollapsibleSection title="Skills">
-                    <Skills skills={skills} setSkills={setSkills} />
-                </CollapsibleSection>
+                     <CollapsibleSection title="Skills">
+                      <Skills skills={skills} setSkills={setSkills} />
+                     </CollapsibleSection>
 
-      </div>
-      <div className="preview-section">
-                <ResumePreview
+                </div>
+                 <div className="preview-section">
+                  <ResumePreview
                     personalInfo={personalInfo}
                     educations={educations}
                     experiences={experiences}
                     skills={skills}
-                />
+                  />
       </div>
-    </div>
+      </div>
+      }
+      /> 
+      </Routes>
+      </div>
+    </Router>
   )
 };
 

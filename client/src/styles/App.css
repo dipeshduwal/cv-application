@@ -22,6 +22,8 @@ body {
 
 .App {
   display: flex;
+  flex: 1;
+  overflow-y: auto;
   width: 100%;
   min-height: 100vh;
   padding: 20px;
@@ -32,6 +34,7 @@ body {
   display: flex;
   flex-direction: column;
   flex: 1;
+  min-width: 700px;
   margin-right: 20px;
   overflow-y: auto;
   align-items: center;
@@ -39,6 +42,7 @@ body {
 
 .preview-section {
   flex: 1;
+  
   overflow-y: auto;
 }
 
