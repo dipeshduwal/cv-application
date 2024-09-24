@@ -18,8 +18,6 @@ function ResumePreview({ personalInfo, educations, experiences, skills }) {
                     <p>
                         {personalInfo.email && `E-Mail: ${personalInfo.email}`} <br/>
                         {personalInfo.phone && `Contact: ${personalInfo.phone}`} <br/>
-                    </p>
-                    <p>
                         {personalInfo.address && `Address: ${personalInfo.address}`} <br/>
                         {personalInfo.birthDate && `Date of Birth: ${personalInfo.birthDate}`} <br/>
                         {personalInfo.linkedIn && `LinkedIn Profile: ${personalInfo.linkedIn}`}
