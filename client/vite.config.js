@@ -5,19 +5,12 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 5173,  // Specify the port for the Vite server
-    open: true,  // Automatically open the browser when the server starts
-    // Uncomment the following lines if you have issues with WebSocket connections
-    // host: 'localhost', // Specify the host
-    // strictPort: true, // Fail if the port is already in use
-    // cors: true, // Enable CORS if needed for API requests
-    // hmr: { // Configure Hot Module Replacement settings
-    //   protocol: 'ws',
-    //   host: 'localhost',
+    port: 5173,
+    open: true,  
     // },
   },
   build: {
-    outDir: 'dist', // Specify the output directory for build
-    sourcemap: true, // Enable source maps for easier debugging
+    outDir: 'dist', 
+    sourcemap: true,
   },
 });

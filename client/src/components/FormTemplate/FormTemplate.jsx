@@ -3,7 +3,7 @@ import './FormTemplate.css';
 
 //form template to handle the input fields/generate form template
 //lifting the state as props to give control to parent component - parent controls onSubmit
-function FormTemplate({title, fields, data, setData, onSubmit}){
+function FormTemplate({title, fields, data, setData, onSubmit, handlePhotoChange}){
     
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -16,6 +16,12 @@ function FormTemplate({title, fields, data, setData, onSubmit}){
         setData(prevData => ({
             ...prevData, [name]: value
         }));
+    };
+
+    const handleFileChange = (e) => {
+        if (handlePhotoChange) {
+            handlePhotoChange(e); // Call the photo change handler
+        }
     };
 
     const handleSubmit = (e) => {
@@ -35,7 +41,15 @@ function FormTemplate({title, fields, data, setData, onSubmit}){
                 {fields.map((field) => (
                     <div key={field.name} className="form-field">
                         <label htmlFor={field.name}>{field.label}</label>
-                        {field.type === 'textarea' ? (
+                        {field.type === 'file' ? (
+                            <input
+                                type="file"
+                                id={field.name}
+                                name={field.name}
+                                accept={field.accept} // Allow only specific file types
+                                onChange={handleFileChange} // Call the file change handler
+                            />
+                        ):field.type === 'textarea' ? (
                             <textarea
                             //passing hardcoded data from common parent
                                 id={field.name}

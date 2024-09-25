@@ -7,13 +7,27 @@ function PersonalInfo({personalInfo,setPersonalInfo}){
         {name: 'phone', type:'tel', label: 'Phone Number', placeholder: 'Enter your phone number', required: true},
         {name: 'address', type:'text', label: 'Address', placeholder: 'Enter your Address', required: true},
         {name: 'birthDate', type:'date', label: 'Date of Birth', placeholder: 'Select your date of birth', required: true},
-        {name: 'linkedIn', type:'url', label: 'LinkedIn Profile', placeholder: 'Enter your LinkedIn profile URL'}
+        {name: 'linkedIn', type:'url', label: 'LinkedIn Profile', placeholder: 'Enter your LinkedIn profile URL'},
+        { name: 'photo', type: 'file', label: 'Upload Photo', accept: 'image/*' }
     ];
 
     const handleSubmit = (data) => {
         setPersonalInfo(data);
     };
     
+    // Handle photo change
+    const handlePhotoChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                // Set the base64 encoded image to the personalInfo
+                setPersonalInfo((prev) => ({ ...prev, photo: reader.result }));
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     return (
         <div className="personal-info">
             <FormTemplate
@@ -23,7 +37,11 @@ function PersonalInfo({personalInfo,setPersonalInfo}){
                 data={personalInfo}
                 setData={setPersonalInfo}
                 onSubmit={handleSubmit}
+                handlePhotoChange={handlePhotoChange}
             />
+            {personalInfo.photo && (
+                <img src={personalInfo.photo} alt="Profile" style={{ width: '100px', height: '100px', borderRadius: '50%' }} />
+            )}
         </div>
     );
 }

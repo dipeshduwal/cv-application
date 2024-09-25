@@ -2,7 +2,7 @@ import React from 'react';
 import './ResumePreview.css';
 
 //to display a formatted resume based on the personal information, education, work experience, and skills passed as props
-function ResumePreview({ personalInfo, educations, experiences, skills }) {
+function ResumePreview({ personalInfo, educations, experiences, skills, photo }) {
 
     const formatDate = (dateString) => {
         if (!dateString) return '';
@@ -14,6 +14,7 @@ function ResumePreview({ personalInfo, educations, experiences, skills }) {
         <div className="resume-preview">
             <div className="paper">
                 <div className='info-header'>
+                {photo && <img src={photo} alt="Profile" className="profile-photo" />}
                     <h2>{personalInfo.fullName}</h2>
                     <p>
                         {personalInfo.email && `E-Mail: ${personalInfo.email}`} <br/>
