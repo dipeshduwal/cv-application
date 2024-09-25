@@ -43,6 +43,22 @@ h2 {
     color: #333;
 }
 
+.logout-button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.logout-button:hover {
+    background-color: #ff1a1a;
+}
+
 @media screen and (max-width: 600px) {
     .profile-card {
         padding: 15px;
