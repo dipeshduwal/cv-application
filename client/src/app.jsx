@@ -64,6 +64,7 @@ function App() {
                       educations={educations}
                       experiences={experiences}
                       skills={skills}
+                      photo={personalInfo.photo}
                     />
                   </div>
                 </div>
