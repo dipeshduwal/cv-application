@@ -2,10 +2,10 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const authMiddleware = require('../middleware/authMiddleware'); 
 require('dotenv').config();
 
 const router = express.Router();
-
 
 // Signup Route
 router.post('/signup', async (req, res) => {
@@ -55,6 +55,23 @@ router.post('/login', async (req, res) => {
                 email: user.email,
             },
         });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+// Get User Profile
+router.get('/profile', authMiddleware, async (req, res) => {
+    try {
+        const user = await User.findByPk(req.user.id, {
+            attributes: ['id', 'username', 'email'] 
+        });
+        
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        res.status(200).json(user);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }

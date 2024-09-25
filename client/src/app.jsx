@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import Login from './components/Login/Login';
 import Signup from './components/SignUp/SignUp';
 import HomePage from './components/Homepage/Homepage';
+import ProfileComponent from './pages/ProfileComponent/ProfileComponent';
 
 //collects data from different sections like personal information, education, experience, and skills, and then shows a preview of the resume
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/profile" element={<ProfileComponent />} />
 
           <Route
             path="/cvapp"
