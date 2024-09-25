@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import './styles/App.css'
+import React, { useState } from 'react';
+import './styles/App.css';
 import PersonalInfo from './components/personal-info/PersonalInfo';
 import Education from './components/education/Education';
 import Experience from './components/experience/Experience';
@@ -12,7 +12,7 @@ import Signup from './pages/SignUp/SignUp';
 import HomePage from './pages/Homepage/Homepage';
 import ProfileComponent from './pages/ProfileComponent/ProfileComponent';
 
-//collects data from different sections like personal information, education, experience, and skills, and then shows a preview of the resume
+// Collects data from different sections like personal information, education, experience, and skills, and then shows a preview of the resume
 function App() {
   const [personalInfo, setPersonalInfo] = useState({ name: '', email: '', phone: '', birthDate: '', city: '' });
   const [educations, setEducations] = useState([]);
@@ -31,9 +31,13 @@ function App() {
           <Route
             path="/cvapp"
             element={
-              <div className="main-content">
-              {/* Sidebar for Profile */}
-              <ProfileComponent />
+              <div className='cvapp-container'>
+                {/* Display Profile Section at the top */}
+                <div className='profile-section'>
+                  <ProfileComponent />
+                </div>
+                
+                {/* Resume Builder Section */}
                 <div className='resume-builder'>
                   <div className='input-section'>
                     <div className='section'>
@@ -52,8 +56,8 @@ function App() {
                     <CollapsibleSection title="Skills">
                       <Skills skills={skills} setSkills={setSkills} />
                     </CollapsibleSection>
-
                   </div>
+
                   <div className="preview-section">
                     <ResumePreview
                       personalInfo={personalInfo}
@@ -66,12 +70,13 @@ function App() {
               </div>
             }
           />
-      /* Redirect to homepage for any unmatched routes */
+          
+          {/* Redirect to homepage for any unmatched routes */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
     </Router>
-  )
-};
+  );
+}
 
 export default App;

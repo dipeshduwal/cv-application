@@ -1,44 +1,59 @@
-.sidebar {
-    width: 250px;
-    background-color: #f4f4f4;
-    padding: 20px;
-    height: 100vh;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    top: 0;
-    left: 0;
+/* ProfileComponent.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 0;
 }
 
-.profile-header {
-    font-size: 18px;
-    font-weight: bold;
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f7f6;
+}
+
+h2 {
+    display: flex;
+    justify-content: center;
+    color: #333;
+    text-align: center;
+    font-size: 2rem;
     margin-bottom: 20px;
-    color: #333;
 }
 
-.profile-info {
-    margin-top: 10px;
-}
-
-.profile-info p {
-    margin: 5px 0;
-    font-size: 14px;
-}
-
-.sidebar a {
-    display: block;
-    padding: 10px;
-    color: #333;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.sidebar a:hover {
-    background-color: #ddd;
-    color: #000;
-}
-
-.main-content {
-    margin-left: 250px; /* Adjust the content to the right of the sidebar */
+.profile-card {
+    background-color: #fff;
     padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: left;
+}
+
+.profile-card p {
+    font-size: 1.2rem;
+    color: #555;
+    margin: 10px 0;
+}
+
+.profile-card strong {
+    color: #333;
+}
+
+@media screen and (max-width: 600px) {
+    .profile-card {
+        padding: 15px;
+        max-width: 90%;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .profile-card p {
+        font-size: 1rem;
+    }
 }

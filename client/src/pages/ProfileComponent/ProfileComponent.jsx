@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './ProfileComponent.css';
+import './ProfileComponent.css';  // Import CSS
 
 const ProfileComponent = () => {
     const [profile, setProfile] = useState(null);
@@ -36,16 +36,24 @@ const ProfileComponent = () => {
         fetchProfile();
     }, [navigate]);
 
+    const handleLogout = () => {
+        localStorage.removeItem('token');  // Clear the token
+        navigate('/HomePage'); 
+    };
+
     if (loading) return <p>Loading profile...</p>;
-    if (error) return <p style={{ color: 'red' }}>{error}</p>;
+    if (error) return <p className="error">{error}</p>;
 
     return (
-        <div>
-            <h2>User Profile</h2>
+        <div className="profile-container">
             {profile && (
-                <div>
-                    <p><strong>Your Username:</strong> {profile.username}</p>
-                    <p><strong>Your Email:</strong> {profile.email}</p>
+                <div className="profile-card">
+                    <h2>User Profile</h2>
+                    <p><strong>Username:</strong> {profile.username}</p>
+                    <p><strong>Email:</strong> {profile.email}</p>
+                    <button className="logout-button" onClick={handleLogout}>
+                        Logout
+                    </button>
                 </div>
             )}
         </div>
