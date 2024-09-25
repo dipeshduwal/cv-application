@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './styles/App.css';
-import PersonalInfo from './components/personal-info/PersonalInfo';
-import Education from './components/education/Education';
-import Experience from './components/experience/Experience';
+import PersonalInfo from './components/PersonalInfo/PersonalInfo';
+import Education from './components/Education/Education';
+import Experience from './components/Experience/Experience';
 import Skills from './components/Skills/Skill';
 import ResumePreview from './components/ResumePreview/ResumePreview';
 import CollapsibleSection from './components/CollapsibleSection/CollapsibleSection';
