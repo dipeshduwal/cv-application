@@ -29,8 +29,8 @@ function Login() {
 
     return (
         <div className="login-container">
-            <div className='nav-links'>
-            <Link to="/HomePage" className="nav-button">Go To Homepage</Link>
+            <div className='nav-link'>
+            <Link to="/HomePage" className="nav-link1">Go To Homepage</Link>
             </div>      
             <h1>Welcome Back!</h1>
             <h2>Please Login</h2>

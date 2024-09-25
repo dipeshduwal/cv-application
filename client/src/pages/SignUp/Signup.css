@@ -75,3 +75,20 @@ button:hover {
     color: #555;
     text-decoration: none;
 }
+
+.nav-link {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    background-color: #38792c;
+    margin-bottom: 30px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+.nav-link1{
+    padding: 10px 25px;
+    font-size: 1.1rem;
+    color: white;
+    border: none;
+    text-decoration: none;
+  }

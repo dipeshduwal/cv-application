@@ -21,6 +21,9 @@ function Signup() {
 
     return (
         <div className="signup-container">
+            <div className='nav-link'>
+            <Link to="/HomePage" className="nav-link1">Go To Homepage</Link>
+            </div>      
             <h1>Create an Account</h1>
             <h2>Signup</h2>
             <form onSubmit={handleSubmit}>
