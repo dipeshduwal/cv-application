@@ -7,9 +7,9 @@ import Skills from './components/Skills/Skill';
 import ResumePreview from './components/ResumePreview/ResumePreview';
 import CollapsibleSection from './components/CollapsibleSection/CollapsibleSection';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import Login from './components/Login/Login';
-import Signup from './components/SignUp/SignUp';
-import HomePage from './components/Homepage/Homepage';
+import Login from './pages/Login/Login';
+import Signup from './pages/SignUp/SignUp';
+import HomePage from './pages/Homepage/Homepage';
 import ProfileComponent from './pages/ProfileComponent/ProfileComponent';
 
 //collects data from different sections like personal information, education, experience, and skills, and then shows a preview of the resume
@@ -31,7 +31,9 @@ function App() {
           <Route
             path="/cvapp"
             element={
-        
+              <div className="main-content">
+              {/* Sidebar for Profile */}
+              <ProfileComponent />
                 <div className='resume-builder'>
                   <div className='input-section'>
                     <div className='section'>
@@ -59,7 +61,7 @@ function App() {
                       experiences={experiences}
                       skills={skills}
                     />
-                 
+                  </div>
                 </div>
               </div>
             }

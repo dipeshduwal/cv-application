@@ -44,8 +44,8 @@ const ProfileComponent = () => {
             <h2>User Profile</h2>
             {profile && (
                 <div>
-                    <p><strong>Username:</strong> {profile.username}</p>
-                    <p><strong>Email:</strong> {profile.email}</p>
+                    <p><strong>Your Username:</strong> {profile.username}</p>
+                    <p><strong>Your Email:</strong> {profile.email}</p>
                 </div>
             )}
         </div>

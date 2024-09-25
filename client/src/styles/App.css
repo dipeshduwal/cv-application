@@ -30,6 +30,21 @@ body {
   background-color: #f0f0f0;
 }
 
+.cvapp-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #f4f7f6;
+}
+
+.profile-section {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 30px;
+}
+
 .resume-builder{
   display: flex;
   flex: 1;
