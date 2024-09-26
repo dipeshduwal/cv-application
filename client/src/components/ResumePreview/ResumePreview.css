@@ -62,7 +62,6 @@ ul {
     align-items: center;           
 }
 
-
 .profile-photo {
     width: 100px; 
     height: 100px; 
@@ -70,7 +69,6 @@ ul {
     object-fit: cover;           
     margin-right: 25px;          
 }
-
 
 .heading-name {
     font-size: 1.5rem;            

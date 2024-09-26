@@ -2,7 +2,6 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
-const authMiddleware = require('../middleware/AuthMiddleware'); 
 require('dotenv').config();
 
 const router = express.Router();
@@ -57,23 +56,6 @@ router.post('/login', async (req, res) => {
         });
     } catch (err) {
         res.status(500).json({ error: err.message });
-    }
-});
-
-// Get User Profile
-router.get('/profile', authMiddleware, async (req, res) => {
-    try {
-        const user = await User.findByPk(req.user.id, {
-            attributes: ['id', 'username', 'email'] 
-        });
-        
-        if (!user) {
-            return res.status(400).json({ message: 'Invalid Credentials' });
-        }
-
-        res.status(200).json(user);
-    } catch (err) {
-        res.status(500).json({ error: err.message });   
     }
 });
 
