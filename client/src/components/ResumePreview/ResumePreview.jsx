@@ -14,8 +14,12 @@ function ResumePreview({ personalInfo, educations, experiences, skills, photo })
         <div className="resume-preview">
             <div className="paper">
                 <div className='info-header'>
-                {photo && <img src={photo} alt="Profile" className="profile-photo" />}
-                    <h2>{personalInfo.fullName}</h2>
+                    <div className='profile-header'>
+                    {photo && <img src={photo} alt="Profile" className="profile-photo" />}
+                    <h2 className='heading-name'>{personalInfo.fullName}</h2>
+                    
+                    </div>
+                    <div className='personal-info'>
                     <p>
                         {personalInfo.email && `E-Mail: ${personalInfo.email}`} <br/>
                         {personalInfo.phone && `Contact: ${personalInfo.phone}`} <br/>
@@ -23,6 +27,7 @@ function ResumePreview({ personalInfo, educations, experiences, skills, photo })
                         {personalInfo.birthDate && `Date of Birth: ${personalInfo.birthDate}`} <br/>
                         {personalInfo.linkedIn && `LinkedIn Profile: ${personalInfo.linkedIn}`}
                     </p>
+                    </div>
                 </div>
 
                 <section>
