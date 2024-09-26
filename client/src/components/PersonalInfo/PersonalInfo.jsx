@@ -39,9 +39,7 @@ function PersonalInfo({personalInfo,setPersonalInfo}){
                 onSubmit={handleSubmit}
                 handlePhotoChange={handlePhotoChange}
             />
-            {personalInfo.photo && (
-                <img src={personalInfo.photo} alt="Profile" style={{ width: '100px', height: '100px', borderRadius: '50%' }} />
-            )}
+        
         </div>
     );
 }

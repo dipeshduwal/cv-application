@@ -20,7 +20,7 @@ const ProfileComponent = () => {
             try {
                 const res = await axios.get('http://localhost:5000/api/auth/profile', {
                     headers: {
-                        'x-auth-token': token,
+                        'Authorization': `Bearer ${token}`, 
                     },
                 });
                 setProfile(res.data);
