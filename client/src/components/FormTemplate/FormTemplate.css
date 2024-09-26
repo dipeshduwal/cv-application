@@ -66,6 +66,24 @@
     box-shadow: 0 0 0 2px #07715f;
 }
 
+.form-field {
+    margin-bottom: 1.5rem;
+}
+
+.form-field input.error, 
+.form-field textarea.error {
+    border: 1px solid red;
+}
+
+.error-message1 {
+    display: flex;
+    justify-content: left;
+    color: red;
+    font-size: 0.875rem;
+    
+    margin-top: 0.25rem;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .form-container {

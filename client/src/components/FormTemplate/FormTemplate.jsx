@@ -1,12 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import './FormTemplate.css';
 
-//form template to handle the input fields/generate form template
-//lifting the state as props to give control to parent component - parent controls onSubmit
-function FormTemplate({title, fields, data, setData, onSubmit, handlePhotoChange}){
-    
+function FormTemplate({ title, fields, data, setData, onSubmit, handlePhotoChange }) {
+    const [validationErrors, setValidationErrors] = useState({}); // Track validation errors
+
     const handleChange = (e) => {
-        const {name, value} = e.target;
+        const { name, value } = e.target;
 
         // Phone number validation to allow only numbers
         if (name === 'phone' && !/^\d*$/.test(value)) {
@@ -15,6 +14,11 @@ function FormTemplate({title, fields, data, setData, onSubmit, handlePhotoChange
 
         setData(prevData => ({
             ...prevData, [name]: value
+        }));
+
+        // Clear validation error when user starts typing
+        setValidationErrors(prevErrors => ({
+            ...prevErrors, [name]: ""
         }));
     };
 
@@ -25,17 +29,25 @@ function FormTemplate({title, fields, data, setData, onSubmit, handlePhotoChange
     };
 
     const handleSubmit = (e) => {
-        e.preventDefault(); //prevents the default form submission behavior (which would reload the page).
-         // Perform required field validation manually
-        const missingFields = fields.filter(field => field.required && !data[field.name]);
-        if (missingFields.length > 0) {
-            alert(`Please fill out the required fields: ${missingFields.map(field => field.label).join(", ")}`);
+        e.preventDefault(); // Prevent default form submission
+
+        // Validate required fields
+        let newValidationErrors = {};
+        fields.forEach(field => {
+            if (field.required && !data[field.name]) {
+                newValidationErrors[field.name] = `${field.label} is required`;
+            }
+        });
+
+        if (Object.keys(newValidationErrors).length > 0) {
+            setValidationErrors(newValidationErrors); // Set validation errors
             return; // Prevent form submission
         }
-        onSubmit(data);
+
+        onSubmit(data); // Submit the data if validation passes
     };
 
-    return(
+    return (
         <div className="form-container">
             <form onSubmit={handleSubmit} autoComplete="off" noValidate>
                 {fields.map((field) => (
@@ -46,21 +58,21 @@ function FormTemplate({title, fields, data, setData, onSubmit, handlePhotoChange
                                 type="file"
                                 id={field.name}
                                 name={field.name}
-                                accept={field.accept} // Allow only specific file types
-                                onChange={handleFileChange} // Call the file change handler
+                                accept={field.accept}
+                                onChange={handleFileChange}
+                                className={validationErrors[field.name] ? "error" : ""}
                             />
-                        ):field.type === 'textarea' ? (
+                        ) : field.type === 'textarea' ? (
                             <textarea
-                            //passing hardcoded data from common parent
                                 id={field.name}
                                 name={field.name}
                                 value={data[field.name] || ''}
                                 onChange={handleChange}
                                 placeholder={field.placeholder}
                                 required={field.required}
-                                autoComplete="off"
+                                className={validationErrors[field.name] ? "error" : ""}
                             />
-                        ): field.type === 'date-month'? (
+                        ) : field.type === 'date-month' ? (
                             <input
                                 type="month"
                                 id={field.name}
@@ -68,9 +80,8 @@ function FormTemplate({title, fields, data, setData, onSubmit, handlePhotoChange
                                 value={data[field.name] || ''}
                                 onChange={handleChange}
                                 required={field.required}
-                                autoComplete="off"
+                                className={validationErrors[field.name] ? "error" : ""}
                             />
-
                         ) : (
                             <input
                                 type={field.type}
@@ -80,10 +91,14 @@ function FormTemplate({title, fields, data, setData, onSubmit, handlePhotoChange
                                 onChange={handleChange}
                                 placeholder={field.placeholder}
                                 required={field.required}
-                                autoComplete="new-password"
+                                className={validationErrors[field.name] ? "error" : ""}
                             />
                         )}
-                    
+
+                        {/* Show validation error message if there's an error */}
+                        {validationErrors[field.name] && (
+                            <div className="error-message1">{validationErrors[field.name]}</div>
+                        )}
                     </div>
                 ))}
                 <button type="submit">Save</button>
