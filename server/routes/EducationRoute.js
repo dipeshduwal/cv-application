@@ -1,3 +1,6 @@
+const express = require('express');
+const Education = require('../models/Education');
+
 // Create a new education entry
 app.post('/educations', async (req, res) => {
     try {
