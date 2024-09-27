@@ -24,9 +24,11 @@ const PersonalInfo = sequelize.define('PersonalInfo', {
     },
     linkedIn: {
         type: DataTypes.STRING,
+        allowNull: true,
     },
     photo: {
         type: DataTypes.TEXT, // Store base64-encoded image
+        allowNull: true,
     }
 });
 

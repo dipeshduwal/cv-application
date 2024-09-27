@@ -22,7 +22,7 @@ app.use('/api/user', userRoutes);
 app.use('/educations', educationRoutes);
 app.use('/experiences', experienceRoutes);
 app.use('/skills', skillRoutes);
-app.use('./infos', infoRoutes);
+app.use('/infos', infoRoutes);
 
 const PORT = process.env.PORT || 5000;
 
