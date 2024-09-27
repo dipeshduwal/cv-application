@@ -8,6 +8,7 @@ const authRoutes = require('./routes/AuthRoute');
 const userRoutes = require('./routes/UserRoute');
 const educationRoutes = require('./routes/EducationRoute');
 const experienceRoutes = require('./routes/ExperienceRoute');
+const skillRoutes = require('./routes/SkillRoute');
 
 const app = express();
 app.use(cors());
@@ -18,7 +19,8 @@ app.use(bodyParser.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/educations', educationRoutes);
-app.use('/experiences', experienceRoutes)
+app.use('/experiences', experienceRoutes);
+app.use('/skills', skillRoutes);
 
 const PORT = process.env.PORT || 5000;
 

@@ -14,14 +14,48 @@ function Skill({skills, setSkills}){
         {name:'skillName', type:'text', label:'Skill', placeholder:'Enter Skill', required: true}
     ];
 
-    const handleSubmit = (data) => {
-        if(editingIndex !== null){
-            const newSkills = [...skills];
-            newSkills[editingIndex] = data;
-            setSkills(newSkills);
-            setEditingIndex(null)
-        } else {
-            setSkills([...skills, data]);
+    useEffect(() => {
+        const fetchSkills = async () => {
+            try {
+                const response = await fetch('http://localhost:5000/skills');
+                const data = await response.json();
+                setSkills(data);
+            } catch (error) {
+                console.error("Error fetching skill entries:", error);
+            }
+        };
+        fetchSkills();
+    }, []);
+
+    const handleSubmit = async (data) => {
+        try {
+            if (editingIndex !== null) {
+                const response = await fetch(`http://localhost:5000/skills/${skills[editingIndex].id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+                const updatedSkill = await response.json();
+                const newSkills = [...skills];
+                newSkills[editingIndex] = updatedSkill; // Update the edited entry
+                setSkills(newSkills);
+                setEditingIndex(null);
+            } else {
+                
+                const response = await fetch('http://localhost:5000/skills', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+                const newSkill = await response.json();
+                setSkills([...skills, newSkill]); // Add new entry to the state
+            }
+        } catch (error) {
+            console.error("Error submitting skill entry:", error);
         }
         resetForm();
     };
@@ -32,9 +66,18 @@ function Skill({skills, setSkills}){
         setShowForm(true);
     }
 
-    const handleDelete = (index) => {
-        const newExperiences = skills.filter((_, i) => i !== index);
-        setSkills(newExperiences);
+    const handleDelete = async (index) => {
+        try {
+            const response = await fetch(`http://localhost:5000/skills/${skills[index].id}`, {
+                method: 'DELETE',
+            });
+            if (response.ok) {
+                const newSkills = skills.filter((_, i) => i !== index);
+                setSkills(newSkills);
+            }
+        } catch (error) {
+            console.error("Error deleting skill entry:", error);
+        }
     };
 
     const resetForm = () => {
@@ -54,7 +97,7 @@ function Skill({skills, setSkills}){
             <div className="skill-list">
                 {skills.map((skl, index) => (
                     <ItemTemplate 
-                        key={index}
+                        key={skl.id}
                         title={skl.skillName}
                         onEdit={() => handleEdit(index)}
                         onDelete={() => handleDelete(index)}
