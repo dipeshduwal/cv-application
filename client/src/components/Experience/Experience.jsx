@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import FormTemplate from "../FormTemplate/FormTemplate";
 import ItemTemplate from "../FormTemplate/ItemTemplate";
 import '../../styles/Buttons.css';
@@ -22,15 +22,49 @@ function Experience({experiences,setExperiences}) {
         {name:'responsibilities', type:'textarea', label:'Responsibilities', placeholder:'Describe your key responsibilities'}
     ];
 
-    const handleSubmit = (data) => {
-        if (editingIndex !== null){
+    useEffect(() => {
+        const fetchExperiences = async () => {
+            try{
+                const response = await fetch('http://localhost:5000/experiences');
+                const data = await response.json();
+                setExperiences(data);
+            } catch (error){
+                console.error("Error fetching experience entries:", error);
+            }
+        };
+        fetchExperiences();
+    }, []);
+
+    const handleSubmit = async (data) => {
+        try{
+            if (editingIndex !== null){
+                const response = await fetch(`http://localhost:5000/experiences/${experiences[editingIndex].id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+            });
+            const updatedExperience = await response.json();
             const newExperiences = [...experiences];
-            newExperiences[editingIndex] = data;
+            newExperiences[editingIndex] = updatedExperience; // Update the edited entry
             setExperiences(newExperiences);
             setEditingIndex(null);
-        } else{
-            setExperiences([...experiences, data]);
+        } else {
+            // Adding new entry
+            const response = await fetch('http://localhost:5000/experiences', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+            const newExperience = await response.json();
+            setExperiences([...experiences, newExperience]); // Add new entry to the state
         }
+    } catch (error) {
+        console.error("Error submitting experience entry:", error);
+    }
         resetForm();
     };
 
@@ -40,9 +74,18 @@ function Experience({experiences,setExperiences}) {
         setShowForm(true);
     };
 
-    const handleDelete = (index) => {
-        const newExperiences = experiences.filter((_, i) => i !== index);
-        setExperiences(newExperiences);
+    const handleDelete = async (index) => {
+        try{
+            const response = await fetch(`http://localhost:5000/experiences/${experiences[index].id}`, {
+                method: 'DELETE',
+            });
+            if (response.ok) {
+                const newExperiences = experiences.filter((_, i) => i !== index);
+                setExperiences(newExperiences);
+            }
+        } catch (error) {
+            console.error("Error deleting experience entry:", error);
+        }
     };
 
     const resetForm = () => {
@@ -66,7 +109,7 @@ function Experience({experiences,setExperiences}) {
             <div className="experience-list">
                 {experiences.map((exp, index) => (
                     <ItemTemplate
-                        key={index}
+                        key={exp.id}
                         title={`${exp.position} at ${exp.company}`}
                         subtitle={`${exp.startDate} - ${exp.endDate || 'Present'}`}
                         description={exp.responsibilities}
@@ -77,7 +120,7 @@ function Experience({experiences,setExperiences}) {
 
             </div>
             {showForm ? (
-                <div>
+                <div className="form-container">
                     <FormTemplate
                         title={editingIndex !== null ? "Edit Work Experience" : "Add Work Experience"}
                         fields={fields}
