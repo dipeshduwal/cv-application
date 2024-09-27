@@ -2,15 +2,10 @@
     background-color: #f8f9fa;
     border-radius: 8px;
     padding: 15px;
-    margin: 0 0 15px 0;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-}
-
-.item-content {
-    flex-grow: 1;
 }
 
 .item-template h3 {
@@ -21,7 +16,8 @@
 }
 
 .item-template p {
-    color: #666;
+    color: #3d3c3c;
+    margin-top: 10px;
 }
 
 .item-actions {

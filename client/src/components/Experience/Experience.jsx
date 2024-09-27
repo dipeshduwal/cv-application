@@ -104,6 +104,12 @@ function Experience({experiences,setExperiences}) {
         resetForm();
     };
 
+    const formatDate = (dateString) => {
+        if (!dateString) return '';
+        const [year, month] = dateString.split('-');
+        return `${month}.${year}`;
+    };
+
     return(
         <div className="experience-section">
             <div className="experience-list">
@@ -111,7 +117,7 @@ function Experience({experiences,setExperiences}) {
                     <ItemTemplate
                         key={exp.id}
                         title={`${exp.position} at ${exp.company}`}
-                        subtitle={`${exp.startDate} - ${exp.endDate || 'Present'}`}
+                        subtitle={`${formatDate(exp.startDate)} - ${formatDate(exp.endDate) || 'Present'}`}
                         description={exp.responsibilities}
                         onEdit={() => handleEdit(index)}
                         onDelete={() => handleDelete(index)}

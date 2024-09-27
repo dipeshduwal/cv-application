@@ -110,6 +110,12 @@ function Education({educations,setEducations}) {
         resetForm();
     };
 
+    const formatDate = (dateString) => {
+        if (!dateString) return '';
+        const [year, month] = dateString.split('-');
+        return `${month}.${year}`;
+    };
+
     // Rendering the component
     return (
         <div className="education-section">
@@ -117,8 +123,8 @@ function Education({educations,setEducations}) {
                 {educations.map((edu, index) => (
                     <ItemTemplate
                         key={edu.id} // Use unique id from database
-                        title={`${edu.degree} in ${edu.fieldOfStudy}`}
-                        subtitle={`${edu.school} (${edu.startDate} - ${edu.endDate || 'Present'})`}
+                        title={`${edu.fieldOfStudy} in ${edu.degree}`}
+                        subtitle={`${edu.school} (${formatDate(edu.startDate)} - ${formatDate(edu.endDate) || 'Present'})`}
                         description={edu.description}
                         onEdit={() => handleEdit(index)}
                         onDelete={() => handleDelete(index)}
