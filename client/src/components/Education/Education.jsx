@@ -3,8 +3,8 @@ import FormTemplate from "../FormTemplate/FormTemplate";
 import ItemTemplate from "../FormTemplate/ItemTemplate";
 import '../../styles/Buttons.css';
 
-function Education() {
-    const [educations, setEducations] = useState([]);
+function Education({educations,setEducations}) {
+    // const [educations, setEducations] = useState([]);
     const [showForm, setShowForm] = useState(false);
     const [editingIndex, setEditingIndex] = useState(null);
     const [education, setEducation] = useState({
