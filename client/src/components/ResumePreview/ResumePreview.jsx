@@ -47,7 +47,8 @@ function ResumePreview({ personalInfo, educations, experiences, skills, photo })
                         <div key={index} className="entry">
                             <h4>{exp.company}</h4>
                             <p>{exp.position}</p>
-                            <p>{exp.startDate} - {exp.endDate}</p>
+                            <p>{formatDate(exp.startDate)} - {exp.endDate ? formatDate(exp.endDate) : 'Present'}</p>
+                            <p>{exp.responsibilities}</p>
                         </div>
                     ))}
                 </section>
