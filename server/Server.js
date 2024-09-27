@@ -7,6 +7,7 @@ const sequelize = require('./config/Database');
 const authRoutes = require('./routes/AuthRoute');
 const userRoutes = require('./routes/UserRoute');
 const educationRoutes = require('./routes/EducationRoute');
+const experienceRoutes = require('./routes/ExperienceRoute');
 
 const app = express();
 app.use(cors());
@@ -17,6 +18,7 @@ app.use(bodyParser.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/educations', educationRoutes);
+app.use('/experiences', experienceRoutes)
 
 const PORT = process.env.PORT || 5000;
 
