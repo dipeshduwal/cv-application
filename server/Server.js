@@ -9,6 +9,7 @@ const userRoutes = require('./routes/UserRoute');
 const educationRoutes = require('./routes/EducationRoute');
 const experienceRoutes = require('./routes/ExperienceRoute');
 const skillRoutes = require('./routes/SkillRoute');
+const infoRoutes = require('./routes/PersonalInfoRoute')
 
 const app = express();
 app.use(cors());
@@ -21,6 +22,7 @@ app.use('/api/user', userRoutes);
 app.use('/educations', educationRoutes);
 app.use('/experiences', experienceRoutes);
 app.use('/skills', skillRoutes);
+app.use('./infos', infoRoutes);
 
 const PORT = process.env.PORT || 5000;
 
