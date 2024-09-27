@@ -6,7 +6,7 @@ import Skills from '../../components/Skills/Skill';
 import ResumePreview from '../../components/ResumePreview/ResumePreview';
 import CollapsibleSection from '../../components/CollapsibleSection/CollapsibleSection';
 import ProfileComponent from '../ProfileComponent/ProfileComponent';
-import './Cvapp.css'; // Add styles for the CV app if needed
+import './Cvapp.css'; 
 
 const CVApp = () => {
   const [personalInfo, setPersonalInfo] = useState({ name: '', email: '', phone: '', birthDate: '', city: '' });
@@ -16,12 +16,10 @@ const CVApp = () => {
 
   return (
     <div className='cvapp-container'>
-      {/* Display Profile Section at the top */}
       <div className='profile-section'>
         <ProfileComponent />
       </div>
-      
-      {/* Resume Builder Section */}
+    
       <div className='resume-builder'>
         <div className='input-section'>
           <div className='section'>

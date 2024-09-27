@@ -2,7 +2,7 @@
 * {
     margin: 0;
     padding: 0;
-   
+    box-sizing: border-box;
   }
   
   /* Set the root and body to full height */
@@ -10,7 +10,10 @@
     height: 100%;
     width: 100%;
   }
-
+  
+  body {
+    background-color: #f0f0f0;
+  }
   
   #root {
     min-height: 100%;

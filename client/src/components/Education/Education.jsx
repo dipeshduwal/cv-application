@@ -28,39 +28,47 @@ function Education() {
     // Fetch all education entries on component mount
     useEffect(() => {
         const fetchEducations = async () => {
-            const response = await fetch('/educations');
-            const data = await response.json();
-            setEducations(data);
+            try {
+                const response = await fetch('http://localhost:5000/educations');
+                const data = await response.json();
+                setEducations(data);
+            } catch (error) {
+                console.error("Error fetching education entries:", error);
+            }
         };
         fetchEducations();
     }, []);
 
     const handleSubmit = async (data) => {
-        if (editingIndex !== null) {
-            // Updating existing entry
-            const response = await fetch(`/educations/${educations[editingIndex].id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            });
-            const updatedEducation = await response.json();
-            const newEducations = [...educations];
-            newEducations[editingIndex] = updatedEducation; // Update the edited entry
-            setEducations(newEducations);
-            setEditingIndex(null);
-        } else {
-            // Adding new entry
-            const response = await fetch('/educations', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            });
-            const newEducation = await response.json();
-            setEducations([...educations, newEducation]); // Add new entry to the state
+        try {
+            if (editingIndex !== null) {
+                // Updating existing entry
+                const response = await fetch(`http://localhost:5000/educations/${educations[editingIndex].id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+                const updatedEducation = await response.json();
+                const newEducations = [...educations];
+                newEducations[editingIndex] = updatedEducation; // Update the edited entry
+                setEducations(newEducations);
+                setEditingIndex(null);
+            } else {
+                // Adding new entry
+                const response = await fetch('http://localhost:5000/educations', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+                const newEducation = await response.json();
+                setEducations([...educations, newEducation]); // Add new entry to the state
+            }
+        } catch (error) {
+            console.error("Error submitting education entry:", error);
         }
         resetForm();
     };
@@ -72,12 +80,16 @@ function Education() {
     };
 
     const handleDelete = async (index) => {
-        const response = await fetch(`/educations/${educations[index].id}`, {
-            method: 'DELETE',
-        });
-        if (response.ok) {
-            const newEducations = educations.filter((_, i) => i !== index); // Remove the education at the given index
-            setEducations(newEducations);
+        try {
+            const response = await fetch(`http://localhost:5000/educations/${educations[index].id}`, {
+                method: 'DELETE',
+            });
+            if (response.ok) {
+                const newEducations = educations.filter((_, i) => i !== index); // Remove the education at the given index
+                setEducations(newEducations);
+            }
+        } catch (error) {
+            console.error("Error deleting education entry:", error);
         }
     };
 
@@ -98,7 +110,7 @@ function Education() {
         resetForm();
     };
 
-    // rendering the component
+    // Rendering the component
     return (
         <div className="education-section">
             <div className="education-list">

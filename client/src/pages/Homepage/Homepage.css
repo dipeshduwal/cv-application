@@ -11,6 +11,7 @@ body {
   .homepage-container {
     text-align: center;
     margin: 100px auto;
+    margin-left: 500px;
     max-width: 600px;
     padding: 40px;
     background-color: white;

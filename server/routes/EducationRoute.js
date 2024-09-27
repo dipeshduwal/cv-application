@@ -1,8 +1,10 @@
 const express = require('express');
 const Education = require('../models/Education');
 
+const router = express.Router();
+
 // Create a new education entry
-app.post('/educations', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const education = await Education.create(req.body);
         res.status(201).json(education); // Respond with the created education entry
@@ -12,7 +14,7 @@ app.post('/educations', async (req, res) => {
 });
 
 // Get all education entries
-app.get('/educations', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const educations = await Education.findAll();
         res.status(200).json(educations); // Respond with all education entries
@@ -22,7 +24,7 @@ app.get('/educations', async (req, res) => {
 });
 
 // Update an education entry
-app.put('/educations/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
     try {
         const [updated] = await Education.update(req.body, {
             where: { id: req.params.id }
@@ -39,7 +41,7 @@ app.put('/educations/:id', async (req, res) => {
 });
 
 // Delete an education entry
-app.delete('/educations/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
         const deleted = await Education.destroy({
             where: { id: req.params.id }
@@ -53,3 +55,5 @@ app.delete('/educations/:id', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+
+module.exports = router;
