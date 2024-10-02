@@ -26,7 +26,21 @@ function PersonalInfo({ personalInfo, setPersonalInfo }) {
         fetchPersonalInfo();
     }, [setPersonalInfo]);
 
+    // Format date to 'yy-mm-dd' before submission
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const year = date.getFullYear().toString().slice(-2); // Last two digits of year
+        const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are 0-based
+        const day = date.getDate().toString().padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    };
+
     const handleSubmit = async (data) => {
+        // Format the birthDate to 'yy-mm-dd'
+        if (data.birthDate) {
+            data.birthDate = formatDate(data.birthDate);
+        }
+
         try {
             const response = await fetch('http://localhost:5000/infos', {
                 method: 'POST',
