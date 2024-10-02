@@ -13,20 +13,21 @@ function PersonalInfo({ personalInfo, setPersonalInfo }) {
     ];
 
     // Fetch personal info on mount
+    const fetchPersonalInfo = async () => {
+        try {
+            const response = await fetch('http://localhost:5000/infos');
+            const data = await response.json();
+            setPersonalInfo(data);
+        } catch (error) {
+            console.error("Error fetching personal info:", error);
+        }
+    };
+
     useEffect(() => {
-        const fetchPersonalInfo = async () => {
-            try {
-                const response = await fetch('http://localhost:5000/infos');
-                const data = await response.json();
-                setPersonalInfo(data);
-            } catch (error) {
-                console.error("Error fetching personal info:", error);
-            }
-        };
         fetchPersonalInfo();
     }, [setPersonalInfo]);
 
-    // Format date to 'yy-mm-dd' before submission
+    // Handle date formatting
     const formatDate = (dateString) => {
         const date = new Date(dateString);
         const year = date.getFullYear().toString().slice(-2); // Last two digits of year
@@ -51,6 +52,9 @@ function PersonalInfo({ personalInfo, setPersonalInfo }) {
             });
             const updatedPersonalInfo = await response.json();
             setPersonalInfo(updatedPersonalInfo);
+
+            // Re-fetch the updated data after successful submission
+            await fetchPersonalInfo();  // Ensure the data is refreshed after submitting
         } catch (error) {
             console.error("Error submitting personal info:", error);
         }

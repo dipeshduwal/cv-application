@@ -9,7 +9,7 @@ const userRoutes = require('./routes/UserRoute');
 const educationRoutes = require('./routes/EducationRoute');
 const experienceRoutes = require('./routes/ExperienceRoute');
 const skillRoutes = require('./routes/SkillRoute');
-const infoRoutes = require('./routes/PersonalInfoRoute')
+const infoRoutes = require('./routes/PersonalInfoRoute');
 
 const app = express();
 app.use(cors());
