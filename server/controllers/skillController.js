@@ -1,11 +1,12 @@
 const Skill = require('../models/skill');
+const { handleServerError } = require('../utils/errorHandler');
 
 exports.PostSkill = async(req, res) => {
     try {
         const skill = await Skill.create(req.body);
         res.status(201).json(skill);
     } catch (error){
-        res.status(400).json({error: error.message});
+        handleServerError(res, error);
     }
 };
 
@@ -14,7 +15,7 @@ exports.GetSkill = async(req, res) => {
         const skills = await Skill.findAll();
         res.status(200).json(skills);
     } catch (error){
-        res.status(500).json({error: error.message});
+        handleServerError(res, error);
     }
 };
 
@@ -30,7 +31,7 @@ exports.PutSkill = async(req, res) => {
             res.status(404).json({message: 'Skill not found'});
         }
     } catch (error){
-        res.status(400).json({error: error.message});
+        handleServerError(res, error);
     }
 };
 
@@ -45,7 +46,7 @@ exports.DeleteSkill = async(req, res) => {
             res.status(404).json({message: 'Skill not found'});
         }
     } catch (error){
-        res.status(500).json({error: error.message});
+        handleServerError(res, error);
     }
 };
 

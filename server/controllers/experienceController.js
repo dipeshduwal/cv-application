@@ -5,7 +5,7 @@ exports.PostExperience = async (req, res) => {
         const experience = await Experience.create(req.body);
         res.status(201).json(experience);
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        handleServerError(res, error);
     }
 };
 
@@ -14,7 +14,7 @@ exports.GetExperience = async (req, res) => {
         const experiences = await Experience.findAll();
         res.status(200).json(experiences); 
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        handleServerError(res, error);
     }
 };
 
@@ -30,7 +30,7 @@ exports.PutExperience = async (req, res) => {
             res.status(404).json({ message: 'Experience not found' });
         }
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        handleServerError(res, error);
     }
 };
 
@@ -45,6 +45,6 @@ exports.DeleteExperience = async (req, res) => {
             res.status(404).json({ message: 'Experience not found' });
         }
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        handleServerError(res, error);
     }
 };

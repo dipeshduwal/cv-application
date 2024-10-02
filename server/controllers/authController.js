@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
+const { handleServerError } = require('../utils/errorHandler');
 require('dotenv').config();
 
 // Signup Controller
@@ -29,7 +30,7 @@ exports.signup = async (req, res) => {
 
         res.status(201).json({ message: 'User created successfully' });
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        handleServerError(res, error);
     }
 };
 
@@ -65,6 +66,6 @@ exports.login = async (req, res) => {
             },
         });
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        handleServerError(res, error);
     }
 };

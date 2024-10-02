@@ -1,11 +1,12 @@
 const PersonalInfo = require('../models/personalInfo');
+const { handleServerError } = require('../utils/errorHandler');
 
 exports.GetInfo = async (req, res) => {
     try {
         const personalInfo = await PersonalInfo.findOne();
         res.status(200).json(personalInfo);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        handleServerError(res, error);
     }
 };
 
@@ -14,7 +15,7 @@ exports.PostInfo = async (req, res) => {
         const personalInfo = await PersonalInfo.upsert(req.body); // Upsert for either insert or update
         res.status(201).json(personalInfo);
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        handleServerError(res, error);
     }
 };
 
@@ -31,7 +32,7 @@ exports.DeleteInfo = async (req, res) => {
             res.status(404).json({ message: 'Personal info not found.' });
         }
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        handleServerError(res, error);
     }
 };
 

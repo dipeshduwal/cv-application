@@ -1,11 +1,12 @@
 const Education = require('../models/education');
+const { handleServerError } = require('../utils/errorHandler');
 
 exports.PostEducation = async (req, res) => {
     try {
         const education = await Education.create(req.body);
         res.status(201).json(education); // Respond with the created education entry
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        handleServerError(res, error);
     }
 };
 
@@ -14,7 +15,7 @@ exports.GetEducation = async (req, res) => {
         const educations = await Education.findAll();
         res.status(200).json(educations); // Respond with all education entries
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        handleServerError(res, error);
     }
 };
 
@@ -30,7 +31,7 @@ exports.PutEducation = async (req, res) => {
             res.status(404).json({ message: 'Education not found' });
         }
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        handleServerError(res, error);
     }
 };
 
@@ -45,6 +46,6 @@ exports.DeleteEducation = async (req, res) => {
             res.status(404).json({ message: 'Education not found' });
         }
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        handleServerError(res, error);
     }
 };

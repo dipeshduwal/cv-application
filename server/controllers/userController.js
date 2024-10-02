@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const { handleServerError } = require('../utils/errorHandler');
 
 exports.GetProfile = async (req, res) => {
     try {
@@ -12,6 +13,6 @@ exports.GetProfile = async (req, res) => {
 
         res.status(200).json(user);
     } catch (err) {
-        res.status(500).json({ error: err.message });   
+        handleServerError(res, error);  
     }
 };
