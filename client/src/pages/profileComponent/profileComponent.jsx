@@ -56,6 +56,18 @@ const ProfileComponent = () => {
                     </button>
                 </div>
             )}
+            <div className="profile-tips">
+                        <h3>Quick Tips</h3>
+                        <p>Here are some tips to help you get the most out of our resume builder:</p>
+                        <ul>
+                            <li>Use action verbs to describe your work experience for a more impactful resume.</li>
+                            <li>Keep your resume concise — one page is ideal for most industries.</li>
+                            <li>Tailor your resume for each job application to increase your chances.</li>
+                        </ul>
+            </div>
+            <div className="profile-footer">
+                <p>You are using the Resume Builder. We hope you're having a great experience!</p>
+            </div>
         </div>
     );
 };

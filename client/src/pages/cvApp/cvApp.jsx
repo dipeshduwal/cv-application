@@ -17,8 +17,8 @@ const CVApp = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem('token'); // Remove the token from localStorage
-    navigate('/HomePage'); // Redirect the user to the login page after logout
+    localStorage.removeItem('token');
+    navigate('/HomePage'); 
   };
 
   return (
@@ -32,7 +32,7 @@ const CVApp = () => {
             <Link to="/profile">Profile</Link>
           </li>
           <li>
-            <button className="logout-button" onClick={handleLogout}>Logout</button>
+            <button className="logout-button2" onClick={handleLogout}>Logout</button>
           </li>
         </ul>
       </nav>

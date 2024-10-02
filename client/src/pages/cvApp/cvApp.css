@@ -136,7 +136,7 @@ h3 {
   display: inline;
 }
 
-.navbar-links a, .logout-button {
+.navbar-links a, .logout-button2 {
   align-items: center;
   justify-content: center;
   color: #fff;
@@ -153,14 +153,13 @@ h3 {
   line-height: 1.5;
 }
 
-.navbar-links a:hover, .logout-button:hover {
+.navbar-links a:hover, .logout-button2:hover {
   background-color: #ce7f5d;
   transform: scale(1.05);
 }
 
-.logout-button{
+.logout-button2{
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 10px;
 }
