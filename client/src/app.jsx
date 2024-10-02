@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import Login from './pages/Login/Login';
-import Signup from './pages/SignUp/SignUp';
-import HomePage from './pages/Homepage/Homepage';
-import ProfileComponent from './pages/ProfileComponent/ProfileComponent';
-import CVApp from './pages/Cvapp/Cvapp';
+import Login from './pages/login/login'
+import Signup from './pages/signUp/signUp';
+import HomePage from './pages/homePage/homePage';
+import ProfileComponent from './pages/profileComponent/profileComponent';
+import CVApp from './pages/cvApp/cvApp';
 
 function App() {
   return (
