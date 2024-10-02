@@ -8,8 +8,27 @@ function Login() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const [isValid, setIsValid] = useState(false);
 
     const navigate = useNavigate();
+
+    //Disable login until validation is passed
+    const validateForm = () => {
+        const isEmailValid = email.trim() !== '' && /\S+@\S+\.\S+/.test(email);
+        const isPasswordValid = password.trim() !== '';
+        setIsValid(isEmailValid && isPasswordValid);
+    }
+
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+        validateForm();
+    };
+
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
+        validateForm();
+    };
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -42,7 +61,7 @@ function Login() {
                         id="email"
                         placeholder="Enter your email"
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={handleEmailChange}
                         required
                     />
                 </div>
@@ -53,11 +72,11 @@ function Login() {
                         id="password"
                         placeholder="Enter your password"
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={handlePasswordChange}
                         required
                     />
                 </div>
-                <button type="submit" disabled={loading}>
+                <button type="submit" disabled={loading || !isValid}>
                     {loading ? 'Logging in...' : 'Login'}
                 </button>
             
