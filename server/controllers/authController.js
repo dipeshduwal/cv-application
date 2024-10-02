@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
-const { handleServerError } = require('../utils/errorHandler');
+const { handleServerError } = require('../utils/serverErrorHandler');
 require('dotenv').config();
 
 // Signup Controller

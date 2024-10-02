@@ -1,104 +1,151 @@
 /* Reset default margins and paddings */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* Set the root and body to full height */
-  html, body {
-    height: 100%;
-    width: 100%;
-  }
-  
-  body {
-    background-color: #f0f0f0;
-  }
-  
-  #root {
-    min-height: 100%;
-    display: flex;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: #f0f0f0;
+}
+
+#root {
+  min-height: 100%;
+  display: flex;
+}
 
 .cvapp-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background-color: #f4f7f6;
-  }
-  
-  .profile-section {
-    width: 100%;
-    max-width: 600px;
-    margin-bottom: 30px;
-  }
-  
-  .resume-builder{
-    display: flex;
-    flex: 1;
-  }
-  
-  .input-section {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    min-width: 700px;
-    margin-right: 20px;
-    overflow-y: auto;
-    align-items: center;
-  }
-  
-  .preview-section {
-    flex: 1;
-    min-width: 700px;
-    overflow-y: auto;
-  }
-  
-  .section, .collapsible-section {
-    margin-bottom: 15px;
-    background-color: white;
-    border-radius: 8px;
-    overflow: hidden;
-    width: 90%;
-  }
-  
-  .section {
-    min-height: 200px;
-  }
-  
-  
-  .collapsible-section h3 {
-    cursor: pointer;
-    user-select: none;
-    padding: 15px;
-    margin: 0;
-    background-color: white;
-    font-size: 18px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .collapsible-section h3 span:last-child {
-    font-size: 12px;
-  }
-  
-  .section-content {
-    padding: 0 15px 15px 15px;
-    border: none;
-  }
-  
-  .section .section-content {
-    display: block;
-    padding: 15px;
-  }
-  
-  .paper {
-    width: 90%;
-  }
-  
-  h3 {
-    padding: 15px;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #f4f7f6;
+}
+
+.profile-section {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 30px;
+}
+
+.resume-builder {
+  display: flex;
+  flex: 1;
+}
+
+.input-section {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 700px;
+  margin-right: 20px;
+  overflow-y: auto;
+  align-items: center;
+}
+
+.preview-section {
+  flex: 1;
+  min-width: 700px;
+  overflow-y: auto;
+}
+
+.section, .collapsible-section {
+  margin-bottom: 15px;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 90%;
+}
+
+.section {
+  min-height: 200px;
+}
+
+.collapsible-section h3 {
+  cursor: pointer;
+  user-select: none;
+  padding: 15px;
+  margin: 0;
+  background-color: white;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.collapsible-section h3 span:last-child {
+  font-size: 12px;
+}
+
+.section-content {
+  padding: 0 15px 15px 15px;
+  border: none;
+}
+
+.section .section-content {
+  display: block;
+  padding: 15px;
+}
+
+.paper {
+  width: 90%;
+}
+
+h3 {
+  padding: 15px;
+}
+
+.navbar {
+  background: linear-gradient(90deg, #004d40, #00695c);
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.navbar-logo h2 {
+  color: #fff;
+  font-size: 24px;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 1px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-links li {
+  display: inline;
+}
+
+.navbar-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  padding: 10px 20px;
+  background-color: #d8490b;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar-links a:hover {
+  background-color: #ce7f5d;
+  transform: scale(1.05);
+}

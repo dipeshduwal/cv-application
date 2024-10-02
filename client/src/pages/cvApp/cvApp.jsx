@@ -5,7 +5,7 @@ import Experience from '../../components/experience/experience';
 import Skills from '../../components/skills/skill';
 import ResumePreview from '../../components/resumePreview/resumePreview';
 import CollapsibleSection from '../../components/collapsibleSection/collapsibleSection';
-import ProfileComponent from '../profileComponent/profileComponent';
+import { Link } from 'react-router-dom';
 import './cvApp.css'; 
 
 const CVApp = () => {
@@ -16,9 +16,16 @@ const CVApp = () => {
 
   return (
     <div className='cvapp-container'>
-      <div className='profile-section'>
-        <ProfileComponent />
-      </div>
+       <nav className="navbar">
+        <div className="navbar-logo">
+          <h2>Resume Builder</h2>
+        </div>
+        <ul className="navbar-links">
+          <li>
+            <Link to="/profile">Profile</Link>
+          </li>
+        </ul>
+      </nav>
     
       <div className='resume-builder'>
         <div className='input-section'>

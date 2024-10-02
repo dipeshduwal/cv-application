@@ -1,5 +1,5 @@
 const PersonalInfo = require('../models/personalInfo');
-const { handleServerError } = require('../utils/errorHandler');
+const { handleServerError } = require('../utils/serverErrorHandler');
 
 exports.GetInfo = async (req, res) => {
     try {

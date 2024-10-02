@@ -1,5 +1,5 @@
 const User = require('../models/user');
-const { handleServerError } = require('../utils/errorHandler');
+const { handleServerError } = require('../utils/serverErrorHandler');
 
 exports.GetProfile = async (req, res) => {
     try {

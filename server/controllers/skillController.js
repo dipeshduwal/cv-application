@@ -1,5 +1,5 @@
 const Skill = require('../models/skill');
-const { handleServerError } = require('../utils/errorHandler');
+const { handleServerError } = require('../utils/serverErrorHandler');
 
 exports.PostSkill = async(req, res) => {
     try {

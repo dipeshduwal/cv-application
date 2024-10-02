@@ -1,5 +1,5 @@
 const Education = require('../models/education');
-const { handleServerError } = require('../utils/errorHandler');
+const { handleServerError } = require('../utils/serverErrorHandler');
 
 exports.PostEducation = async (req, res) => {
     try {
