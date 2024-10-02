@@ -122,19 +122,23 @@ h3 {
   font-weight: bold;
   text-transform: uppercase;
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+  margin: 0;
 }
 
 .navbar-links {
   list-style: none;
   display: flex;
   gap: 20px;
+  align-items: center;
 }
 
 .navbar-links li {
   display: inline;
 }
 
-.navbar-links a {
+.navbar-links a, .logout-button {
+  align-items: center;
+  justify-content: center;
   color: #fff;
   text-decoration: none;
   font-size: 16px;
@@ -142,10 +146,21 @@ h3 {
   padding: 10px 20px;
   background-color: #d8490b;
   border-radius: 5px;
+  border: none;
+  cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
+  height: 40px;
+  line-height: 1.5;
 }
 
-.navbar-links a:hover {
+.navbar-links a:hover, .logout-button:hover {
   background-color: #ce7f5d;
   transform: scale(1.05);
+}
+
+.logout-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
 }

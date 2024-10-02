@@ -5,7 +5,7 @@ import Experience from '../../components/experience/experience';
 import Skills from '../../components/skills/skill';
 import ResumePreview from '../../components/resumePreview/resumePreview';
 import CollapsibleSection from '../../components/collapsibleSection/collapsibleSection';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './cvApp.css'; 
 
 const CVApp = () => {
@@ -13,6 +13,13 @@ const CVApp = () => {
   const [educations, setEducations] = useState([]);
   const [experiences, setExperiences] = useState([]);
   const [skills, setSkills] = useState([]);
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('token'); // Remove the token from localStorage
+    navigate('/HomePage'); // Redirect the user to the login page after logout
+  };
 
   return (
     <div className='cvapp-container'>
@@ -23,6 +30,9 @@ const CVApp = () => {
         <ul className="navbar-links">
           <li>
             <Link to="/profile">Profile</Link>
+          </li>
+          <li>
+            <button className="logout-button" onClick={handleLogout}>Logout</button>
           </li>
         </ul>
       </nav>
