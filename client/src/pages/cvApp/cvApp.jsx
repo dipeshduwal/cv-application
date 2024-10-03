@@ -63,7 +63,7 @@ const CVApp = () => {
             educations={educations}
             experiences={experiences}
             skills={skills}
-            photo={personalInfo.photo}
+            photo={`http://localhost:5000/infos/uploads/${personalInfo.photo}`} 
           />
         </div>
       </div>

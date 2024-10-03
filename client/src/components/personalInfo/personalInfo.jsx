@@ -92,6 +92,12 @@ function PersonalInfo({ personalInfo, setPersonalInfo }) {
                 onSubmit={handleSubmit}
                 handlePhotoChange={handlePhotoChange}
             />
+            {personalInfo.photo && (
+                <div className="photo-preview">
+                    <h4>Current Photo:</h4>
+                    <img src={`http://localhost:5000${personalInfo.photo}`} alt="Profile" className="profile-photo" />
+                </div>
+            )}
         </div>
     );
 }
