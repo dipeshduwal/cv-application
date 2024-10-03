@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import FormTemplate from "../formTemplate/formTemplate";
 
 function PersonalInfo({ personalInfo, setPersonalInfo }) {
@@ -11,6 +11,8 @@ function PersonalInfo({ personalInfo, setPersonalInfo }) {
         { name: 'linkedIn', type: 'url', label: 'LinkedIn Profile', placeholder: 'Enter your LinkedIn profile URL' },
         { name: 'photo', type: 'file', label: 'Upload Photo', accept: 'image/*' }
     ];
+
+    const [selectedPhoto, setSelectedPhoto] = useState(null); // Track the selected file
 
     // Fetch personal info on mount
     const fetchPersonalInfo = async () => {
@@ -37,6 +39,20 @@ function PersonalInfo({ personalInfo, setPersonalInfo }) {
     };
 
     const handleSubmit = async (data) => {
+        const formData = new FormData();
+
+        //Append text fields to formData
+        for (const key in data) {
+            if (data.hasOwnProperty(key)){
+                formData.append(key, data[key]);
+            }
+        }
+
+        //Append the selected photo file to formData
+        if (selectedPhoto){
+            formData.append('profileImage', selectedPhoto); //'profileImage' should match the server-side field
+        }
+
         // Format the birthDate to 'yy-mm-dd'
         if (data.birthDate) {
             data.birthDate = formatDate(data.birthDate);
@@ -45,10 +61,8 @@ function PersonalInfo({ personalInfo, setPersonalInfo }) {
         try {
             const response = await fetch('http://localhost:5000/infos', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
+                body: formData,
+                
             });
             const updatedPersonalInfo = await response.json();
             setPersonalInfo(updatedPersonalInfo);
@@ -64,11 +78,7 @@ function PersonalInfo({ personalInfo, setPersonalInfo }) {
     const handlePhotoChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setPersonalInfo((prev) => ({ ...prev, photo: reader.result }));
-            };
-            reader.readAsDataURL(file);
+            setSelectedPhoto(file); // Update the selected photo file
         }
     };
 
