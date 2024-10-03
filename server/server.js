@@ -4,6 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const sequelize = require('./config/database');
+const fileUpload = require('express-fileupload');
 const authRoutes = require('./routes/authRoute');
 const userRoutes = require('./routes/userRoute');
 const educationRoutes = require('./routes/educationRoute');
@@ -15,6 +16,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
+app.use(fileUpload());
 
 // Routes
 app.use('/auth', authRoutes);
