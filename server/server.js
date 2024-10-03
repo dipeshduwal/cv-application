@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const sequelize = require('./config/database');
 const fileUpload = require('express-fileupload');
+const path = require('path');
 const authRoutes = require('./routes/authRoute');
 const userRoutes = require('./routes/userRoute');
 const educationRoutes = require('./routes/educationRoute');
@@ -15,8 +16,8 @@ const infoRoutes = require('./routes/personalInfoRoute');
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(bodyParser.json());
 app.use(fileUpload());
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Routes
 app.use('/auth', authRoutes);

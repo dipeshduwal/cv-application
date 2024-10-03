@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import './profileComponent.css';  
+import './profileComponent.css'; 
+import Modal from '../../components/modal/modal';  
 
 const ProfileComponent = () => {
     const [profile, setProfile] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -54,7 +56,7 @@ const ProfileComponent = () => {
                     <h2>User Profile</h2>
                     <p><strong>Username:</strong> {profile.username}</p>
                     <p><strong>Email:</strong> {profile.email}</p>
-                    <button className="logout-button" onClick={handleLogout}>
+                    <button className="logout-button" onClick={() => setIsModalOpen(true)}>
                         Logout
                     </button>
                 </div>
@@ -71,6 +73,11 @@ const ProfileComponent = () => {
             <div className="profile-footer">
                 <p>You are using the Resume Builder. We hope you're having a great experience!</p>
             </div>
+            <Modal 
+                isOpen={isModalOpen} 
+                onClose={() => setIsModalOpen(false)} 
+                onConfirm={handleLogout} 
+            />
         </div>
     );
 };

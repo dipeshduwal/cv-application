@@ -1,7 +1,7 @@
 import React from 'react';
 import './resumePreview.css';
 
-//to display a formatted resume based on the personal information, education, work experience, and skills passed as props
+// To display a formatted resume based on the personal information, education, work experience, and skills passed as props
 function ResumePreview({ personalInfo, educations, experiences, skills, photo }) {
 
     const formatDate = (dateString) => {
@@ -15,18 +15,24 @@ function ResumePreview({ personalInfo, educations, experiences, skills, photo })
             <div className="paper">
                 <div className='info-header'>
                     <div className='profile-header'>
-                    {photo && <img src={photo} alt="Profile" className="profile-photo" />}
-                    <h2 className='heading-name'>{personalInfo.fullName}</h2>
-                    
+                        {/* Display photo from the database */}
+                        {personalInfo.photo && (
+                            <img 
+                                src={`http://localhost:5000${personalInfo.photo}`} 
+                                alt="Profile" 
+                                className="profile-photo" 
+                            />
+                        )}
+                        <h2 className='heading-name'>{personalInfo.fullName}</h2>
                     </div>
                     <div className='personal-info'>
-                    <p>
-                        {personalInfo.email && `E-Mail: ${personalInfo.email}`} <br/>
-                        {personalInfo.phone && `Contact: ${personalInfo.phone}`} <br/>
-                        {personalInfo.address && `Address: ${personalInfo.address}`} <br/>
-                        {personalInfo.birthDate && `Date of Birth: ${personalInfo.birthDate}`} <br/>
-                        {personalInfo.linkedIn && `LinkedIn Profile: ${personalInfo.linkedIn}`}
-                    </p>
+                        <p>
+                            {personalInfo.email && `E-Mail: ${personalInfo.email}`} <br />
+                            {personalInfo.phone && `Contact: ${personalInfo.phone}`} <br />
+                            {personalInfo.address && `Address: ${personalInfo.address}`} <br />
+                            {personalInfo.birthDate && `Date of Birth: ${new Date(personalInfo.birthDate).toLocaleDateString()}`} <br />
+                            {personalInfo.linkedIn && `LinkedIn Profile: ${personalInfo.linkedIn}`}
+                        </p>
                     </div>
                 </div>
 

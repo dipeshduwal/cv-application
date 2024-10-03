@@ -27,7 +27,7 @@ const PersonalInfo = sequelize.define('PersonalInfo', {
         allowNull: true,
     },
     photo: {
-        type: DataTypes.TEXT, // Store base64-encoded image
+        type: DataTypes.STRING,
         allowNull: true,
     }
 });

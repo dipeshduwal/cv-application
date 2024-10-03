@@ -6,7 +6,7 @@ function PersonalInfo({ personalInfo, setPersonalInfo }) {
         { name: 'fullName', type: 'text', label: 'Full Name', placeholder: 'Enter your full name', required: true },
         { name: 'email', type: 'email', label: 'Email', placeholder: 'Enter your email address', required: true },
         { name: 'phone', type: 'tel', label: 'Phone Number', placeholder: 'Enter your phone number', required: true },
-        { name: 'address', type: 'text', label: 'Address', placeholder: 'Enter your Address', required: true },
+        { name: 'address', type: 'text', label: 'Address', placeholder: 'Enter your address', required: true },
         { name: 'birthDate', type: 'date', label: 'Date of Birth', placeholder: 'Select your date of birth', required: true },
         { name: 'linkedIn', type: 'url', label: 'LinkedIn Profile', placeholder: 'Enter your LinkedIn profile URL' },
         { name: 'photo', type: 'file', label: 'Upload Photo', accept: 'image/*' }
@@ -41,34 +41,41 @@ function PersonalInfo({ personalInfo, setPersonalInfo }) {
     const handleSubmit = async (data) => {
         const formData = new FormData();
 
-        //Append text fields to formData
+        // Format the birthDate to 'yy-mm-dd'
+        if (data.birthDate) {
+            data.birthDate = formatDate(data.birthDate);
+        }
+
+        // Append text fields to formData
         for (const key in data) {
-            if (data.hasOwnProperty(key)){
+            if (data.hasOwnProperty(key)) {
                 formData.append(key, data[key]);
             }
         }
 
-        //Append the selected photo file to formData
-        if (selectedPhoto){
-            formData.append('profileImage', selectedPhoto); //'profileImage' should match the server-side field
-        }
-
-        // Format the birthDate to 'yy-mm-dd'
-        if (data.birthDate) {
-            data.birthDate = formatDate(data.birthDate);
+        // Append the selected photo file to formData if it exists
+        if (selectedPhoto) {
+            formData.append('profileImage', selectedPhoto); // 'profileImage' should match the server-side field
         }
 
         try {
             const response = await fetch('http://localhost:5000/infos', {
                 method: 'POST',
                 body: formData,
-                
             });
-            const updatedPersonalInfo = await response.json();
-            setPersonalInfo(updatedPersonalInfo);
 
-            // Re-fetch the updated data after successful submission
-            await fetchPersonalInfo();  // Ensure the data is refreshed after submitting
+            // Handle the response and set the updated personal info
+            if (response.ok) {
+                const updatedPersonalInfo = await response.json();
+                setPersonalInfo(updatedPersonalInfo);
+                // Clear selected photo after upload
+                setSelectedPhoto(null);
+                // Re-fetch the updated data after successful submission
+                await fetchPersonalInfo();  // Ensure the data is refreshed after submitting
+            } else {
+                const errorData = await response.json();
+                console.error("Error submitting personal info:", errorData);
+            }
         } catch (error) {
             console.error("Error submitting personal info:", error);
         }
@@ -92,12 +99,6 @@ function PersonalInfo({ personalInfo, setPersonalInfo }) {
                 onSubmit={handleSubmit}
                 handlePhotoChange={handlePhotoChange}
             />
-            {personalInfo.photo && (
-                <div className="photo-preview">
-                    <h4>Current Photo:</h4>
-                    <img src={`http://localhost:5000${personalInfo.photo}`} alt="Profile" className="profile-photo" />
-                </div>
-            )}
         </div>
     );
 }

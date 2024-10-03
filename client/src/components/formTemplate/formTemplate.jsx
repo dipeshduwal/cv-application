@@ -49,6 +49,7 @@ function FormTemplate({ title, fields, data, setData, onSubmit, handlePhotoChang
 
     return (
         <div className="form-container">
+            <h2>{title}</h2>
             <form onSubmit={handleSubmit} autoComplete="off" noValidate>
                 {fields.map((field) => (
                     <div key={field.name} className="form-field">
@@ -60,26 +61,6 @@ function FormTemplate({ title, fields, data, setData, onSubmit, handlePhotoChang
                                 name={field.name}
                                 accept={field.accept}
                                 onChange={handleFileChange}
-                                className={validationErrors[field.name] ? "error" : ""}
-                            />
-                        ) : field.type === 'textarea' ? (
-                            <textarea
-                                id={field.name}
-                                name={field.name}
-                                value={data[field.name] || ''}
-                                onChange={handleChange}
-                                placeholder={field.placeholder}
-                                required={field.required}
-                                className={validationErrors[field.name] ? "error" : ""}
-                            />
-                        ) : field.type === 'date-month' ? (
-                            <input
-                                type="month"
-                                id={field.name}
-                                name={field.name}
-                                value={data[field.name] || ''}
-                                onChange={handleChange}
-                                required={field.required}
                                 className={validationErrors[field.name] ? "error" : ""}
                             />
                         ) : (
