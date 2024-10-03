@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './profileComponent.css';  
 
 const ProfileComponent = () => {
@@ -46,6 +46,9 @@ const ProfileComponent = () => {
 
     return (
         <div className="profile-container">
+            <div className='nav-link'>
+            <Link to="/cvapp" className="nav-link2">Go To Resume Builder</Link>
+            </div> 
             {profile && (
                 <div className="profile-card">
                     <h2>User Profile</h2>
@@ -57,7 +60,7 @@ const ProfileComponent = () => {
                 </div>
             )}
             <div className="profile-tips">
-                        <h3>Quick Tips</h3>
+                        <h3>Quick Tips:</h3>
                         <p>Here are some tips to help you get the most out of our resume builder:</p>
                         <ul>
                             <li>Use action verbs to describe your work experience for a more impactful resume.</li>

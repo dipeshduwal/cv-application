@@ -1,75 +1,138 @@
-/* ProfileComponent.css */
-
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f7f6;
-    margin: 0;
-    padding: 0;
-}
-
 .profile-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    background-color: #f4f7f6;
+    justify-content: center;
+    padding: 40px;
+    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    margin-left: 420px;
 }
 
-h2 {
-    display: flex;
-    justify-content: center;
-    color: #333;
-    text-align: center;
-    font-size: 2rem;
+.nav-link {
     margin-bottom: 20px;
 }
 
+.nav-link2 {
+    background-color: #00695c;
+    color: #ffffff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-link2:hover {
+    background-color: #00695c;
+    transform: scale(1.05);
+}
+
 .profile-card {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
+    background-color: #ffffff;
     width: 100%;
-    text-align: left;
+    max-width: 600px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    margin-bottom: 30px;
+}
+
+.profile-card:hover {
+    transform: translateY(-5px);
+}
+
+.profile-card h2 {
+    font-size: 28px;
+    color: #343a40;
+    margin-bottom: 20px;
 }
 
 .profile-card p {
-    font-size: 1.2rem;
-    color: #555;
+    font-size: 18px;
+    color: #495057;
     margin: 10px 0;
 }
 
-.profile-card strong {
-    color: #333;
-}
-
 .logout-button {
-    background-color: #ff4d4d;
-    color: white;
+    background-color: #ce524b;
+    color: #ffffff;
+    padding: 12px 25px;
     border: none;
-    padding: 10px;
+    border-radius: 8px;
+    font-size: 16px;
     cursor: pointer;
-    border-radius: 5px;
-    margin-top: 10px;
-    width: 100%;
-    text-align: center;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .logout-button:hover {
-    background-color: #ff1a1a;
+    background-color: #a72c28;
+    transform: scale(1.05);
 }
 
-@media screen and (max-width: 600px) {
-    .profile-card {
-        padding: 15px;
-        max-width: 90%;
+.profile-tips {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 600px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    text-align: left;
+    transition: transform 0.3s ease;
+}
+
+.profile-tips:hover {
+    transform: translateY(-5px);
+}
+
+.profile-tips h3 {
+    font-size: 24px;
+    color: #343a40;
+    margin-bottom: 15px;
+}
+
+.profile-tips p {
+    font-size: 18px;
+    color: #495057;
+    margin-bottom: 15px;
+}
+
+.profile-tips ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.profile-tips ul li {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #6c757d;
+}
+
+.profile-footer {
+    font-size: 16px;
+    color: #6c757d;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.profile-footer p {
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .profile-card, .profile-tips {
+        width: 90%;
     }
 
-    h2 {
-        font-size: 1.8rem;
+    .profile-card h2 {
+        font-size: 24px;
     }
 
-    .profile-card p {
-        font-size: 1rem;
+    .profile-card p, .profile-tips p, .profile-tips ul li {
+        font-size: 16px;
     }
 }

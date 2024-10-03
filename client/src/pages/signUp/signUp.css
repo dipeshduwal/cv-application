@@ -44,14 +44,14 @@ input {
 }
 
 input:focus {
-    border-color: #007bff;
+    border-color: #17569a;
     outline: none;
 }
 
 button {
     width: 100%;
     padding: 10px;
-    background-color: #007bff;
+    background-color: #17569a;
     color: white;
     border: none;
     border-radius: 4px;
