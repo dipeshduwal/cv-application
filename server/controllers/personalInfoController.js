@@ -8,7 +8,9 @@ exports.PostInfo = async (req, res) => {
         const { fullName, email, phone, address, birthDate, linkedIn } = req.body;
 
         // Find existing personal info to check for previous photo
-        const existingInfo = await PersonalInfo.findOne();
+
+        const existingInfo = await PersonalInfo.findByPk(req.user.id);
+        
         let previousPhotoPath = null;
 
         // If there's existing personal info, get the previous photo path
@@ -34,6 +36,7 @@ exports.PostInfo = async (req, res) => {
         if (previousPhotoPath) {
             const previousPhotoFullPath = path.join(__dirname, '../uploads/', path.basename(previousPhotoPath));
             
+            
             // Check if the previous photo file exists before trying to delete it
             fs.access(previousPhotoFullPath, fs.constants.F_OK, (err) => {
                 if (!err) {
@@ -52,6 +55,7 @@ exports.PostInfo = async (req, res) => {
 
         // Create or update personal info in the database
         const personalInfo = await PersonalInfo.upsert({
+            id: req.user.id, // Ensure personal info is linked to the user
             fullName,
             email,
             phone,
@@ -69,7 +73,10 @@ exports.PostInfo = async (req, res) => {
 
 exports.GetInfo = async (req, res) => {
     try {
-        const personalInfo = await PersonalInfo.findOne();
+        const personalInfo = await PersonalInfo.findByPk(req.user.id);
+        if (!personalInfo) {
+            return res.status(404).json({ message: 'Personal info not found.' });
+        }
         res.status(200).json(personalInfo);
     } catch (error) {
         handleServerError(res, error);
@@ -78,9 +85,9 @@ exports.GetInfo = async (req, res) => {
 
 exports.DeleteInfo = async (req, res) => {
     try {
-        const { id } = req.params;
+        
         const result = await PersonalInfo.destroy({
-            where: { id }
+            where: { id: req.user.id }
         });
         
         if (result) {

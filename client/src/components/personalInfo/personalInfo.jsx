@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from 'axios';
 import FormTemplate from "../formTemplate/formTemplate";
 
 function PersonalInfo({ personalInfo, setPersonalInfo }) {
@@ -17,11 +18,15 @@ function PersonalInfo({ personalInfo, setPersonalInfo }) {
     // Fetch personal info on mount
     const fetchPersonalInfo = async () => {
         try {
-            const response = await fetch('http://localhost:5000/infos');
-            const data = await response.json();
-            setPersonalInfo(data);
+            const response = await axios.get('http://localhost:5000/infos', {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}` // Add token for authentication if needed
+                }
+            });
+
+            setPersonalInfo(response.data);
         } catch (error) {
-            console.error("Error fetching personal info:", error);
+            console.error("Error fetching personal info:", error.response?.data || error.message);
         }
     };
 
@@ -59,25 +64,23 @@ function PersonalInfo({ personalInfo, setPersonalInfo }) {
         }
 
         try {
-            const response = await fetch('http://localhost:5000/infos', {
-                method: 'POST',
-                body: formData,
+            const response = await axios.post('http://localhost:5000/infos', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    Authorization: `Bearer ${localStorage.getItem('token')}` // Add token for authentication if needed
+                },
             });
 
             // Handle the response and set the updated personal info
-            if (response.ok) {
-                const updatedPersonalInfo = await response.json();
-                setPersonalInfo(updatedPersonalInfo);
+            if (response.status === 201) {
+                setPersonalInfo(response.data);
                 // Clear selected photo after upload
                 setSelectedPhoto(null);
                 // Re-fetch the updated data after successful submission
                 await fetchPersonalInfo();  // Ensure the data is refreshed after submitting
-            } else {
-                const errorData = await response.json();
-                console.error("Error submitting personal info:", errorData);
             }
         } catch (error) {
-            console.error("Error submitting personal info:", error);
+            console.error("Error submitting personal info:", error.response?.data || error.message);
         }
     };
 

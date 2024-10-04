@@ -1,12 +1,13 @@
 const express = require('express');
 const {GetInfo, PostInfo, DeleteInfo} = require('../controllers/personalInfoController');
+const authMiddleware = require('../middleware/authMiddleware'); 
 
 const router = express.Router();
 
-router.get('/', GetInfo);
+router.get('/', authMiddleware, GetInfo);
 
-router.post('/', PostInfo);
+router.post('/', authMiddleware, PostInfo);
 
-router.delete('/:id', DeleteInfo);
+router.delete('/:id', authMiddleware, DeleteInfo);
 
 module.exports = router;

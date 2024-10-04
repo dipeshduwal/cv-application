@@ -13,6 +13,6 @@ exports.GetProfile = async (req, res) => {
 
         res.status(200).json(user);
     } catch (err) {
-        handleServerError(res, error);  
+        handleServerError(res, err);  
     }
 };

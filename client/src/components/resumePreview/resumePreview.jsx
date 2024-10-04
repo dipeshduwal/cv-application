@@ -18,7 +18,7 @@ function ResumePreview({ personalInfo, educations, experiences, skills, photo })
                         {/* Display photo from the database */}
                         {personalInfo.photo && (
                             <img 
-                                src={`http://localhost:5000${personalInfo.photo}`} 
+                                src={`http://localhost:5000/${personalInfo.photo}`} 
                                 alt="Profile" 
                                 className="profile-photo" 
                             />
