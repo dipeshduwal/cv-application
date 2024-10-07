@@ -26,6 +26,14 @@ const Education = sequelize.define('Education', {
         type: DataTypes.TEXT,
         allowNull: true, 
     },
+    userEmail: {
+        type: DataTypes.STRING,  // Store the email of the user
+        allowNull: false,
+        references: {
+            model: 'Users',  // Ensure this references the User model's email
+            key: 'email',
+        },
+    },
 });
 
 module.exports = Education;

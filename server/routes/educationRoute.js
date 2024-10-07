@@ -1,14 +1,13 @@
 const express = require('express');
-const {PostEducation, PutEducation, GetEducation, DeleteEducation} = require('../controllers/educationController')
+const authMiddleware = require('../middleware/authMiddleware'); 
+const {PostEducation, GetEducation, DeleteEducation} = require('../controllers/educationController')
 
 const router = express.Router();
 
-router.post('/', PostEducation);
+router.post('/', authMiddleware, PostEducation);
 
-router.get('/', GetEducation);
+router.get('/', authMiddleware, GetEducation);
 
-router.put('/:id', PutEducation);
-
-router.delete('/:id', DeleteEducation);
+router.delete('/:id', authMiddleware, DeleteEducation);
 
 module.exports = router;

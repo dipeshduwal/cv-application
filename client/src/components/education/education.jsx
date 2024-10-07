@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
+import axios from 'axios';
 import FormTemplate from "../formTemplate/formTemplate";
 import ItemTemplate from "../formTemplate/itemTemplate";
 import '../../styles/buttons.css';
 
-function Education({educations,setEducations}) {
-    // const [educations, setEducations] = useState([]);
+function Education({ educations, setEducations }) {
     const [showForm, setShowForm] = useState(false);
     const [editingIndex, setEditingIndex] = useState(null);
     const [education, setEducation] = useState({
@@ -25,69 +25,80 @@ function Education({educations,setEducations}) {
         { name: 'description', type: 'textarea', label: 'Description', placeholder: 'Describe your education' }
     ];
 
-    // Fetch all education entries on component mount
+    // Fetch all education entries on component mount using axios
     useEffect(() => {
         const fetchEducations = async () => {
             try {
-                const response = await fetch('http://localhost:5000/educations');
-                const data = await response.json();
-                setEducations(data);
+                const token = localStorage.getItem('token');
+                console.log()
+                const response = await axios.get('http://localhost:5000/educations', {
+                    headers: {
+                        Authorization: `Bearer ${token}`  // Set the Authorization header
+                    }
+                });
+                setEducations(response.data);
             } catch (error) {
                 console.error("Error fetching education entries:", error);
             }
         };
         fetchEducations();
-    }, []);
+    }, [setEducations]);
 
     const handleSubmit = async (data) => {
+        console.log("Submitting data:", data);
         try {
+            const token = localStorage.getItem('token'); 
+    
             if (editingIndex !== null) {
+                // Ensure the educationId is part of the data object for the existing education
+                data.educationId = educations[editingIndex].id;
+    
                 // Updating existing entry
-                const response = await fetch(`http://localhost:5000/educations/${educations[editingIndex].id}`, {
-                    method: 'PUT',
+                const response = await axios.put(`http://localhost:5000/educations/${educations[editingIndex].id}`, data, {
                     headers: {
                         'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`   
                     },
-                    body: JSON.stringify(data),
                 });
-                const updatedEducation = await response.json();
+                const updatedEducation = response.data;
                 const newEducations = [...educations];
-                newEducations[editingIndex] = updatedEducation; // Update the edited entry
+                newEducations[editingIndex] = updatedEducation; // Update the edited entry in the state
                 setEducations(newEducations);
-                setEditingIndex(null);
+                setEditingIndex(null);  // Reset the editing state
             } else {
                 // Adding new entry
-                const response = await fetch('http://localhost:5000/educations', {
-                    method: 'POST',
+                const response = await axios.post('http://localhost:5000/educations', data, {
                     headers: {
                         'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`  // Set the Authorization header
                     },
-                    body: JSON.stringify(data),
                 });
-                const newEducation = await response.json();
+                const newEducation = response.data;
                 setEducations([...educations, newEducation]); // Add new entry to the state
             }
         } catch (error) {
             console.error("Error submitting education entry:", error);
         }
-        resetForm();
+        resetForm();  // Reset the form after submission
     };
 
     const handleEdit = (index) => {
-        setEducation(educations[index]); // Load existing data into the form
+        setEducation({ ...educations[index], educationId: educations[index].id }); // Load existing data into the form with educationId
         setEditingIndex(index); // Set the current index to edit
         setShowForm(true); // Show the form
     };
-
+    
     const handleDelete = async (index) => {
         try {
-            const response = await fetch(`http://localhost:5000/educations/${educations[index].id}`, {
-                method: 'DELETE',
+            const token = localStorage.getItem('token'); // Get the token
+
+            await axios.delete(`http://localhost:5000/educations/${educations[index].id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`  // Set the Authorization header
+                }
             });
-            if (response.ok) {
-                const newEducations = educations.filter((_, i) => i !== index); // Remove the education at the given index
-                setEducations(newEducations);
-            }
+            const newEducations = educations.filter((_, i) => i !== index); // Remove the education at the given index
+            setEducations(newEducations);
         } catch (error) {
             console.error("Error deleting education entry:", error);
         }
