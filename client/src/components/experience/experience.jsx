@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import axios from 'axios';
 import FormTemplate from "../formTemplate/formTemplate";
 import ItemTemplate from "../formTemplate/itemTemplate";
 import '../../styles/buttons.css';
@@ -17,8 +18,8 @@ function Experience({experiences,setExperiences}) {
     const fields = [
         {name:'company', type:'text', label:'Company Name', placeholder:'Enter Company Name', required: true},
         {name:'position', type:'text', label:'Position Name', placeholder:'Enter Job Title', required: true},
-        {name:'startDate', type:'date-month', label:'Date of Joining', placeholder:'Select Joining Date', required: true},
-        {name:'endDate', type:'date-month', label:'Date of Ending', placeholder:'Select Ending Date'},
+        {name:'startDate', type:'date', label:'Date of Joining', placeholder:'Select Joining Date', required: true},
+        {name:'endDate', type:'date', label:'Date of Ending', placeholder:'Select Ending Date'},
         {name:'responsibilities', type:'textarea', label:'Responsibilities', placeholder:'Describe your key responsibilities'}
     ];
 
