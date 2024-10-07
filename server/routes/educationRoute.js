@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post('/', authMiddleware, PostEducation);
 
-router.put('/', authMiddleware, PutEducation);
+router.put('/:id', authMiddleware, PutEducation);
 
 router.get('/', authMiddleware, GetEducation);
 

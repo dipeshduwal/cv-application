@@ -31,7 +31,7 @@ function Education({ educations, setEducations }) {
             try {
                 const token = localStorage.getItem('token');
                 
-                const response = await axios.get('http://localhost:5000/educations', {
+                const response = await axios.get(`http://localhost:5000/educations`, {
                     headers: {
                         Authorization: `Bearer ${token}`  // Set the Authorization header
                     }
@@ -68,7 +68,7 @@ function Education({ educations, setEducations }) {
                 setEditingIndex(null);  // Reset the editing state
             } else {
                 // Adding new entry
-                const response = await axios.post('http://localhost:5000/educations', data, {
+                const response = await axios.post(`http://localhost:5000/educations`, data, {
                     headers: {
                         'Content-Type': 'application/json',
                         Authorization: `Bearer ${token}`  // Set the Authorization header
