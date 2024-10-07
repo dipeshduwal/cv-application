@@ -1,57 +1,66 @@
 const Education = require('../models/education');
 const { handleServerError } = require('../utils/serverErrorHandler');
 
-// Create or update education entry for a user
+// Create a new education entry for a user
 exports.PostEducation = async (req, res) => {
     try {
-        const { school, degree, fieldOfStudy, startDate, endDate, description, educationId } = req.body;
-
-        // Extract the user's unique identifier (username or email) from the token
+        const { school, degree, fieldOfStudy, startDate, endDate, description } = req.body;
+        
+        // Extract the user's unique identifier (email) from the token
         const { email } = req.user;  // Assuming the token contains 'email'
 
-        let educationData;
+        // Create a new education entry linked to the user (by email)
+        const educationData = await Education.create({
+            userEmail: email,  // Store email instead of userId
+            school,
+            degree,
+            fieldOfStudy,
+            startDate,
+            endDate,
+            description
+        });
 
-        // Check if the request includes an educationId for editing
-        if (educationId) {
-            // Find the existing education entry by its ID and ensure it belongs to the user (by email)
-            const existingEducation = await Education.findOne({
-                where: { id: educationId, userEmail: email }  // Use the email to verify ownership
-            });
-
-            if (!existingEducation) {
-                return res.status(404).json({ message: 'Education record not found or you do not have permission to edit' });
-            }
-
-            // Update the existing education entry
-            educationData = await existingEducation.update({
-                school,
-                degree,
-                fieldOfStudy,
-                startDate,
-                endDate,
-                description
-            });
-
-            return res.status(200).json(educationData);
-        } else {
-            // Create a new education entry linked to the user (by email)
-            educationData = await Education.create({
-                userEmail: email,  // Store email instead of userId
-                school,
-                degree,
-                fieldOfStudy,
-                startDate,
-                endDate,
-                description
-            });
-
-            return res.status(201).json(educationData);
-        }
+        return res.status(201).json(educationData);
     } catch (error) {
         console.error('PostEducation Error:', error);
         handleServerError(res, error);
     }
 };
+
+// Update an existing education entry for a user
+exports.PutEducation = async (req, res) => {
+    try {
+        const { educationId, school, degree, fieldOfStudy, startDate, endDate, description } = req.body;
+        
+        // Extract the user's unique identifier (email) from the token
+        const { email } = req.user;
+
+        // Find the existing education entry by its ID and ensure it belongs to the user (by email)
+        const existingEducation = await Education.findOne({
+            where: { id: educationId, userEmail: email }  // Use the email to verify ownership
+        });
+
+        if (!existingEducation) {
+            return res.status(404).json({ message: 'Education record not found or you do not have permission to edit' });
+        }
+
+        // Update the existing education entry
+        const updatedEducation = await existingEducation.update({
+            school,
+            degree,
+            fieldOfStudy,
+            startDate,
+            endDate,
+            description
+        });
+
+        return res.status(200).json(updatedEducation);
+    } catch (error) {
+        console.error('PutEducation Error:', error);
+        handleServerError(res, error);
+    }
+};
+
 
 // Get all education entries for a user
 exports.GetEducation = async (req, res) => {

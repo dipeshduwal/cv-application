@@ -30,7 +30,7 @@ function Education({ educations, setEducations }) {
         const fetchEducations = async () => {
             try {
                 const token = localStorage.getItem('token');
-                console.log()
+                
                 const response = await axios.get('http://localhost:5000/educations', {
                     headers: {
                         Authorization: `Bearer ${token}`  // Set the Authorization header
@@ -50,6 +50,7 @@ function Education({ educations, setEducations }) {
             const token = localStorage.getItem('token'); 
     
             if (editingIndex !== null) {
+                console.log(`Updating education with ID: ${educations[editingIndex].id}`);
                 // Ensure the educationId is part of the data object for the existing education
                 data.educationId = educations[editingIndex].id;
     
