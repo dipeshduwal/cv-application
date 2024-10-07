@@ -1,14 +1,15 @@
 const express = require('express');
 const {PostExperience, PutExperience, GetExperience, DeleteExperience} = require('../controllers/experienceController'); 
+const authMiddleware = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
-router.post('/', PostExperience);
+router.post('/', authMiddleware, PostExperience);
 
-router.get('/', GetExperience);
+router.get('/', authMiddleware, GetExperience);
 
-router.put('/:id', PutExperience);
+router.put('/:id', authMiddleware, PutExperience);
 
-router.delete('/:id', DeleteExperience);
+router.delete('/:id', authMiddleware, DeleteExperience);
 
 module.exports = router;

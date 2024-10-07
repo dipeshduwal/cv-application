@@ -24,65 +24,77 @@ function Experience({experiences,setExperiences}) {
 
     useEffect(() => {
         const fetchExperiences = async () => {
-            try{
-                const response = await fetch('http://localhost:5000/experiences');
-                const data = await response.json();
-                setExperiences(data);
-            } catch (error){
+            try {
+                const token = localStorage.getItem('token');
+                
+                const response = await axios.get(`http://localhost:5000/experiences`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`  // Set the Authorization header
+                    }
+                });
+                setExperiences(response.data);
+            } catch (error) {
                 console.error("Error fetching experience entries:", error);
             }
         };
         fetchExperiences();
-    }, []);
+    }, [setExperiences]);
 
     const handleSubmit = async (data) => {
-        try{
-            if (editingIndex !== null){
-                const response = await fetch(`http://localhost:5000/experiences/${experiences[editingIndex].id}`, {
-                    method: 'PUT',
+        
+        try {
+            const token = localStorage.getItem('token'); 
+    
+            if (editingIndex !== null) {
+            
+                data.experienceId = experiences[editingIndex].id;
+    
+                // Updating existing entry
+                const response = await axios.put(`http://localhost:5000/experiences/${experiences[editingIndex].id}`, data, {
                     headers: {
                         'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`   
                     },
-                    body: JSON.stringify(data),
-            });
-            const updatedExperience = await response.json();
-            const newExperiences = [...experiences];
-            newExperiences[editingIndex] = updatedExperience; // Update the edited entry
-            setExperiences(newExperiences);
-            setEditingIndex(null);
-        } else {
-            // Adding new entry
-            const response = await fetch('http://localhost:5000/experiences', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            });
-            const newExperience = await response.json();
-            setExperiences([...experiences, newExperience]); // Add new entry to the state
+                });
+                const updatedExperience = response.data;
+                const newExperiences = [...experiences];
+                newExperiences[editingIndex] = updatedExperience; // Update the edited entry in the state
+                setExperiences(newExperiences);
+                setEditingIndex(null);  // Reset the editing state
+            } else {
+                // Adding new entry
+                const response = await axios.post(`http://localhost:5000/experiences`, data, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`  // Set the Authorization header
+                    },
+                });
+                const newExperience = response.data;
+                setExperiences([...experiences, newExperience]); // Add new entry to the state
+            }
+        } catch (error) {
+            console.error("Error submitting experience entry:", error);
         }
-    } catch (error) {
-        console.error("Error submitting experience entry:", error);
-    }
-        resetForm();
+        resetForm();  // Reset the form after submission
     };
 
     const handleEdit = (index) => {
-        setExperience(experiences[index]);
+        setExperience({...experiences[index],  experienceId: experiences[index].id});
         setEditingIndex(index);
         setShowForm(true);
     };
 
     const handleDelete = async (index) => {
-        try{
-            const response = await fetch(`http://localhost:5000/experiences/${experiences[index].id}`, {
-                method: 'DELETE',
+        try {
+            const token = localStorage.getItem('token'); // Get the token
+
+            await axios.delete(`http://localhost:5000/experiences/${experiences[index].id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`  // Set the Authorization header
+                }
             });
-            if (response.ok) {
-                const newExperiences = experiences.filter((_, i) => i !== index);
-                setExperiences(newExperiences);
-            }
+            const newExperiences = experiences.filter((_, i) => i !== index);
+            setExperiences(newExperiences);
         } catch (error) {
             console.error("Error deleting experience entry:", error);
         }

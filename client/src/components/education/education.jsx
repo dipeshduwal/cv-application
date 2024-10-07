@@ -45,12 +45,12 @@ function Education({ educations, setEducations }) {
     }, [setEducations]);
 
     const handleSubmit = async (data) => {
-        console.log("Submitting data:", data);
+        
         try {
             const token = localStorage.getItem('token'); 
     
             if (editingIndex !== null) {
-                console.log(`Updating education with ID: ${educations[editingIndex].id}`);
+                
                 // Ensure the educationId is part of the data object for the existing education
                 data.educationId = educations[editingIndex].id;
     
