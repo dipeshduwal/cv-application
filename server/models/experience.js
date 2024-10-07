@@ -22,6 +22,14 @@ const Experience = sequelize.define('Experience', {
         type: DataTypes.TEXT,
         allowNull: true, 
     },
+    userEmail: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        references: {
+            model: 'Users',
+            key: 'email',
+        }
+    },
 });
 
 module.exports = Experience;
