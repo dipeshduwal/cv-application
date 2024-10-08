@@ -6,7 +6,7 @@ const { handleServerError } = require('../utils/serverErrorHandler');
 exports.PostInfo = async (req, res) => {
     try {
         const { fullName, personalEmail, phone, address, birthDate, linkedIn } = req.body;
-        
+
         // Extract the user's email from the authenticated token
         const { email: userEmail } = req.user;
 
@@ -15,9 +15,10 @@ exports.PostInfo = async (req, res) => {
 
         let previousPhotoPath = null;
 
-        // If there's existing personal info, get the previous photo path
-        if (existingInfo) {
-            previousPhotoPath = existingInfo.photo; // Store the previous photo path if it exists
+        // If there's existing personal info, check if the photo path exists
+        if (existingInfo && existingInfo.photo) {
+            previousPhotoPath = existingInfo.photo;
+            console.log(`Previous photo path:`, previousPhotoPath);
         }
 
         let photoPath = null;
@@ -37,10 +38,11 @@ exports.PostInfo = async (req, res) => {
         // If there's a previous photo, delete it if it exists
         if (previousPhotoPath) {
             const previousPhotoFullPath = path.join(__dirname, '../uploads/', path.basename(previousPhotoPath));
-            
+
             // Check if the previous photo file exists before trying to delete it
             fs.access(previousPhotoFullPath, fs.constants.F_OK, (err) => {
                 if (!err) {
+                    // If the file exists, delete it
                     fs.unlink(previousPhotoFullPath, (unlinkErr) => {
                         if (unlinkErr) {
                             console.error('Failed to delete previous photo:', unlinkErr);
@@ -54,23 +56,47 @@ exports.PostInfo = async (req, res) => {
             });
         }
 
-        // Upsert personal info in the database
-        const personalInfo = await PersonalInfo.upsert({
-            userEmail,          // Use the user email from the token to identify the user
-            personalEmail,      // Store the personal email provided by the user
-            fullName,
-            phone,
-            address,
-            birthDate,
-            linkedIn,
-            photo: photoPath,   // Save the file path of the uploaded photo
-        });
+        // Check if the user already has personal info
+        if (existingInfo) {
+            // Update existing info
+            await PersonalInfo.update(
+                {
+                    fullName,
+                    personalEmail,
+                    phone,
+                    address,
+                    birthDate,
+                    linkedIn,
+                    photo: photoPath || existingInfo.photo, // Update photo only if new one is uploaded
+                },
+                { where: { userEmail } }
+            );
+            console.log('Personal info updated for user:', userEmail);
+        } else {
+            // Create new personal info
+            await PersonalInfo.create({
+                userEmail, // Ensure personal info is linked to the authenticated user
+                fullName,
+                personalEmail,
+                phone,
+                address,
+                birthDate,
+                linkedIn,
+                photo: photoPath, // Set new photo if uploaded
+            });
+            console.log('New personal info created for user:', userEmail);
+        }
 
-        res.status(201).json(personalInfo);
+        // Fetch updated info and return in the response
+        const updatedInfo = await PersonalInfo.findOne({ where: { userEmail } });
+        res.status(201).json(updatedInfo);
+
     } catch (error) {
-        handleServerError(res, error);
+        console.error('Error:', error);
+        res.status(500).json({ error: 'An internal server error occurred. Please try again later.' });
     }
 };
+
 
 exports.GetInfo = async (req, res) => {
     try {

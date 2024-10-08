@@ -9,6 +9,7 @@ const PersonalInfo = sequelize.define('PersonalInfo', {
     personalEmail: {
         type: DataTypes.STRING,
         allowNull: false,
+    
     },
     phone: {
         type: DataTypes.STRING,
@@ -37,7 +38,7 @@ const PersonalInfo = sequelize.define('PersonalInfo', {
             model: 'Users',
             key: 'email',
         },
-        unique: true,
+        
     },
 });
 

@@ -46,11 +46,6 @@ function PersonalInfo({ personalInfo, setPersonalInfo }) {
     const handleSubmit = async (data) => {
         const formData = new FormData();
 
-        // Format the birthDate to 'yy-mm-dd'
-        if (data.birthDate) {
-            data.birthDate = formatDate(data.birthDate);
-        }
-
         // Append text fields to formData
         for (const key in data) {
             if (data.hasOwnProperty(key)) {
