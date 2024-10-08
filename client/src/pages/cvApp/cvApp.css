@@ -142,9 +142,10 @@ h3 {
   color: #fff;
   text-decoration: none;
   font-size: 16px;
+  font-weight: 600;
   font-family: 'Poppins', sans-serif;
   padding: 10px 20px;
-  background-color: #d8490b;
+  background-color: #d4281f;
   border-radius: 5px;
   border: none;
   cursor: pointer;
@@ -154,7 +155,7 @@ h3 {
 }
 
 .navbar-links a:hover, .logout-button2:hover {
-  background-color: #ce7f5d;
+  background-color: #ce524b;
   transform: scale(1.05);
 }
 
