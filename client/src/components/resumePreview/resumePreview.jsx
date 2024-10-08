@@ -18,7 +18,7 @@ function ResumePreview({ personalInfo, educations, experiences, skills, photo })
                         {/* Display photo from the database */}
                         {personalInfo.photo && (
                             <img 
-                                src={`http://localhost:5000/${personalInfo.photo}`} 
+                                src={`http://localhost:5000${personalInfo.photo}`} 
                                 alt="Profile" 
                                 className="profile-photo" 
                             />
@@ -27,7 +27,7 @@ function ResumePreview({ personalInfo, educations, experiences, skills, photo })
                     </div>
                     <div className='personal-info'>
                         <p>
-                            {personalInfo.email && `E-Mail: ${personalInfo.email}`} <br />
+                            {personalInfo.personalEmail && `E-Mail: ${personalInfo.personalEmail}`} <br />
                             {personalInfo.phone && `Contact: ${personalInfo.phone}`} <br />
                             {personalInfo.address && `Address: ${personalInfo.address}`} <br />
                             {personalInfo.birthDate && `Date of Birth: ${new Date(personalInfo.birthDate).toLocaleDateString()}`} <br />
