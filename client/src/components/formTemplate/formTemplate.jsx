@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './formTemplate.css';
 
-function FormTemplate({ title, fields, data, setData, onSubmit, handlePhotoChange }) {
+function FormTemplate({ title, fields, data, setData, onSubmit, handlePhotoChange, photoError }) {
     const [validationErrors, setValidationErrors] = useState({}); // Track validation errors
 
     const handleChange = (e) => {
@@ -82,6 +82,7 @@ function FormTemplate({ title, fields, data, setData, onSubmit, handlePhotoChang
                         )}
                     </div>
                 ))}
+                {photoError && <p className="error-message1">{photoError}</p>}
                 <button className="save-button1" type="submit">Save</button>
             </form>
         </div>

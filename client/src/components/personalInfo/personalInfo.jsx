@@ -14,6 +14,7 @@ function PersonalInfo({ personalInfo, setPersonalInfo }) {
     ];
 
     const [selectedPhoto, setSelectedPhoto] = useState(null); // Track the selected file
+    const [photoError, setPhotoError] = useState(''); 
 
     // Fetch personal info on mount
     const fetchPersonalInfo = async () => {
@@ -70,8 +71,8 @@ function PersonalInfo({ personalInfo, setPersonalInfo }) {
             if (response.status === 201) {
                 setPersonalInfo(response.data);
                 // Clear selected photo after upload
-                setSelectedPhoto(null);
-                // Re-fetch the updated data after successful submission
+                setSelectedPhoto(null); // Re-fetch the updated data after successful submission
+                setPhotoError(''); // Clear any previous error message
                 fetchPersonalInfo(); 
             }
         } catch (error) {
@@ -85,18 +86,19 @@ function PersonalInfo({ personalInfo, setPersonalInfo }) {
         // Check file size (e.g., limit to 2MB)
         const MAX_SIZE = 2 * 1024 * 1024; // 2MB
         if (file.size > MAX_SIZE) {
-            alert("File size exceeds 2MB.");
+            setPhotoError("File size exceeds 2MB.");
             return;
         }
     
         // Check file type (e.g., allow only JPEG and PNG)
         const ALLOWED_TYPES = ['image/jpeg', 'image/png'];
         if (!ALLOWED_TYPES.includes(file.type)) {
-            alert("Only JPEG and PNG files are allowed.");
+            setPhotoError("Only JPEG and PNG files are allowed.");
             return;
         }
 
         setSelectedPhoto(file); // Update the selected photo file
+        setPhotoError(''); // Clear any previous error message
     };
 
     return (
@@ -108,7 +110,9 @@ function PersonalInfo({ personalInfo, setPersonalInfo }) {
                 setData={setPersonalInfo}
                 onSubmit={handleSubmit}
                 handlePhotoChange={handlePhotoChange}
+                photoError={photoError}
             />
+        
         </div>
     );
 }
