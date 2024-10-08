@@ -59,7 +59,7 @@ function FormTemplate({ title, fields, data, setData, onSubmit, handlePhotoChang
                                 type="file"
                                 id={field.name}
                                 name={field.name}
-                                accept={field.accept}
+                                accept="image/jpeg,image/png"
                                 onChange={handleFileChange}
                                 className={validationErrors[field.name] ? "error" : ""}
                             />
@@ -82,7 +82,7 @@ function FormTemplate({ title, fields, data, setData, onSubmit, handlePhotoChang
                         )}
                     </div>
                 ))}
-                <button type="submit">Save</button>
+                <button className="save-button1" type="submit">Save</button>
             </form>
         </div>
     );

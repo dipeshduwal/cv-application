@@ -79,12 +79,24 @@ function PersonalInfo({ personalInfo, setPersonalInfo }) {
         }
     };
 
-    // Handle photo change
     const handlePhotoChange = (e) => {
         const file = e.target.files[0];
-        if (file) {
-            setSelectedPhoto(file); // Update the selected photo file
+    
+        // Check file size (e.g., limit to 2MB)
+        const MAX_SIZE = 2 * 1024 * 1024; // 2MB
+        if (file.size > MAX_SIZE) {
+            alert("File size exceeds 2MB.");
+            return;
         }
+    
+        // Check file type (e.g., allow only JPEG and PNG)
+        const ALLOWED_TYPES = ['image/jpeg', 'image/png'];
+        if (!ALLOWED_TYPES.includes(file.type)) {
+            alert("Only JPEG and PNG files are allowed.");
+            return;
+        }
+
+        setSelectedPhoto(file); // Update the selected photo file
     };
 
     return (

@@ -45,7 +45,7 @@
     resize: vertical;
 }
 
-.form-container button {
+.form-container button.save-button1 {
     background-color: #29bd4c;
     color: white;
     border: none;
@@ -58,12 +58,12 @@
 }
 
 .form-container button:hover {
-    background-color: #07715f;
+    background-color: #556b67;
 }
 
 .form-container button:focus {
     outline: none;
-    box-shadow: 0 0 0 2px #07715f;
+    box-shadow: 0 0 0 2px #556b67;
 }
 
 .form-field {
