@@ -6,7 +6,7 @@ const PersonalInfo = sequelize.define('PersonalInfo', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    email: {
+    personalEmail: {
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -29,7 +29,16 @@ const PersonalInfo = sequelize.define('PersonalInfo', {
     photo: {
         type: DataTypes.STRING,
         allowNull: true,
-    }
+    },
+    userEmail: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        references: {
+            model: 'Users',
+            key: 'email',
+        },
+        unique: true,
+    },
 });
 
 module.exports = PersonalInfo;

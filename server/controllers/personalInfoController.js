@@ -5,12 +5,14 @@ const { handleServerError } = require('../utils/serverErrorHandler');
 
 exports.PostInfo = async (req, res) => {
     try {
-        const { fullName, email, phone, address, birthDate, linkedIn } = req.body;
-
-        // Find existing personal info to check for previous photo
-
-        const existingInfo = await PersonalInfo.findByPk(req.user.id);
+        const { fullName, personalEmail, phone, address, birthDate, linkedIn } = req.body;
         
+        // Extract the user's email from the authenticated token
+        const { email: userEmail } = req.user;
+
+        // Find existing personal info based on the user's unique email (from the token)
+        const existingInfo = await PersonalInfo.findOne({ where: { userEmail } });
+
         let previousPhotoPath = null;
 
         // If there's existing personal info, get the previous photo path
@@ -36,7 +38,6 @@ exports.PostInfo = async (req, res) => {
         if (previousPhotoPath) {
             const previousPhotoFullPath = path.join(__dirname, '../uploads/', path.basename(previousPhotoPath));
             
-            
             // Check if the previous photo file exists before trying to delete it
             fs.access(previousPhotoFullPath, fs.constants.F_OK, (err) => {
                 if (!err) {
@@ -53,16 +54,16 @@ exports.PostInfo = async (req, res) => {
             });
         }
 
-        // Create or update personal info in the database
+        // Upsert personal info in the database
         const personalInfo = await PersonalInfo.upsert({
-            id: req.user.id, // Ensure personal info is linked to the user
+            userEmail,          // Use the user email from the token to identify the user
+            personalEmail,      // Store the personal email provided by the user
             fullName,
-            email,
             phone,
             address,
             birthDate,
             linkedIn,
-            photo: photoPath,  // Save file path
+            photo: photoPath,   // Save the file path of the uploaded photo
         });
 
         res.status(201).json(personalInfo);
@@ -73,7 +74,11 @@ exports.PostInfo = async (req, res) => {
 
 exports.GetInfo = async (req, res) => {
     try {
-        const personalInfo = await PersonalInfo.findByPk(req.user.id);
+        // Extract the user's email from the authenticated token
+        const { email: userEmail } = req.user;
+
+        // Find personal info based on the user's email
+        const personalInfo = await PersonalInfo.findOne({ where: { userEmail } });
         if (!personalInfo) {
             return res.status(404).json({ message: 'Personal info not found.' });
         }
@@ -85,10 +90,11 @@ exports.GetInfo = async (req, res) => {
 
 exports.DeleteInfo = async (req, res) => {
     try {
-        
-        const result = await PersonalInfo.destroy({
-            where: { id: req.user.id }
-        });
+        // Extract the user's email from the authenticated token
+        const { email: userEmail } = req.user;
+
+        // Delete personal info based on the user's email
+        const result = await PersonalInfo.destroy({ where: { userEmail } });
         
         if (result) {
             res.status(200).json({ message: 'Personal info deleted successfully.' });

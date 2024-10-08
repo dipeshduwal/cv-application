@@ -5,7 +5,7 @@ import FormTemplate from "../formTemplate/formTemplate";
 function PersonalInfo({ personalInfo, setPersonalInfo }) {
     const fields = [
         { name: 'fullName', type: 'text', label: 'Full Name', placeholder: 'Enter your full name', required: true },
-        { name: 'email', type: 'email', label: 'Email', placeholder: 'Enter your email address', required: true },
+        { name: 'personalEmail', type: 'email', label: 'Email', placeholder: 'Enter your email address', required: true },
         { name: 'phone', type: 'tel', label: 'Phone Number', placeholder: 'Enter your phone number', required: true },
         { name: 'address', type: 'text', label: 'Address', placeholder: 'Enter your address', required: true },
         { name: 'birthDate', type: 'date', label: 'Date of Birth', placeholder: 'Select your date of birth', required: true },
@@ -77,7 +77,7 @@ function PersonalInfo({ personalInfo, setPersonalInfo }) {
                 // Clear selected photo after upload
                 setSelectedPhoto(null);
                 // Re-fetch the updated data after successful submission
-                await fetchPersonalInfo();  // Ensure the data is refreshed after submitting
+                fetchPersonalInfo(); 
             }
         } catch (error) {
             console.error("Error submitting personal info:", error.response?.data || error.message);
