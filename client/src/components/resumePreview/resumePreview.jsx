@@ -6,8 +6,8 @@ function ResumePreview({ personalInfo, educations, experiences, skills, photo })
 
     const formatDate = (dateString) => {
         if (!dateString) return '';
-        const [year, month] = dateString.split('-');
-        return `${month}.${year}`;
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString(undefined, options);
     };
 
     return (

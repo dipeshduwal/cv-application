@@ -119,8 +119,8 @@ function Experience({experiences,setExperiences}) {
 
     const formatDate = (dateString) => {
         if (!dateString) return '';
-        const [year, month] = dateString.split('-');
-        return `${month}.${year}`;
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString(undefined, options);
     };
 
     return(
