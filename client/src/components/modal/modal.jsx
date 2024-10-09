@@ -10,7 +10,7 @@ const Modal = ({ isOpen, onClose, onConfirm }) => {
         <h3>Are you sure you want to logout?</h3>
         <div className="modal-buttons">
           <button className="confirm-button" onClick={onConfirm}>Yes</button>
-          <button className="cancel-button" onClick={onClose}>No</button>
+          <button className="cancel-button2" onClick={onClose}>No</button>
         </div>
       </div>
     </div>

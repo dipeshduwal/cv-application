@@ -20,7 +20,6 @@ function HomePage() {
           <li>Easy Login to Preserve Your CV</li>
           <li>Real-time Previews</li>
           <li>Easy PDF Export Options</li>
-          
         </ul>
       </div>
 
