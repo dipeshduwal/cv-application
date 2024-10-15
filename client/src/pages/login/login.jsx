@@ -9,8 +9,7 @@ function Login() {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const [isValid, setIsValid] = useState(false);
-    const [isResettingPassword, setIsResettingPassword] = useState(false);
-    
+
     const navigate = useNavigate();
 
     //Disable login until validation is passed
@@ -30,6 +29,7 @@ function Login() {
         validateForm();
     };
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -46,24 +46,10 @@ function Login() {
         }
     };
 
-    const handleForgotPassword = async () => {
-        setIsResettingPassword(true);
-        setError('');
-
-        try {
-            await axios.post('http://localhost:5000/auth/requestPasswordReset', { email });
-            alert('OTP sent to your email. Please check your inbox.'); // Notify the user
-        } catch (err) {
-            setError(err.response?.data?.message || 'An error occurred');
-        } finally {
-            setIsResettingPassword(false);
-        }
-    };
-
     return (
         <div className="login-container">
             <div className='nav-link'>
-                <Link to="/HomePage" className="nav-link1">Go To Homepage</Link>
+            <Link to="/HomePage" className="nav-link1">Go To Homepage</Link>
             </div>      
             <h1>Welcome Back!</h1>
             <h2>Please Login</h2>
@@ -93,16 +79,16 @@ function Login() {
                 <button type="submit" disabled={loading || !isValid}>
                     {loading ? 'Logging in...' : 'Login'}
                 </button>
+            
             </form>
             {error && <p className="error-message">{error}</p>}
+            <p>
+                <Link to="/forgot-password">Forgot Password?</Link>
+            </p>
             <p className='signup'>
                 Don't have an account?... <Link to="/Signup"> Sign up</Link>
             </p>
-            <p className='forgot-password'>
-                <div onClick={handleForgotPassword} disabled={isResettingPassword}>
-                    {isResettingPassword ? 'Sending...' : 'Forgot Password?'}
-                </div>
-            </p>
+            
         </div>
     );
 }
