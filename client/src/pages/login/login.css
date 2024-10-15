@@ -100,15 +100,15 @@ button:disabled {
 }
 
 .forgot-password {
-    color: #555; /* Default color */
-    text-align: center; /* Center the text */
-    margin-top: 20px; /* Space above the text */
-    cursor: pointer; /* Change cursor to pointer on hover */
-    text-decoration: none; /* No underline by default */
+    color: #555; 
+    text-align: center; 
+    margin-top: 20px; 
+    cursor: pointer; 
+    text-decoration: none; 
 }
 
 .forgot-password:hover {
-    color: red; /* Change text color to red on hover */
-    text-decoration: underline; /* Underline text on hover */
+    color: red; 
+    text-decoration: underline;
 }
 

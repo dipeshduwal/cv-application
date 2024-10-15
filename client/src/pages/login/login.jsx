@@ -82,7 +82,7 @@ function Login() {
             
             </form>
             {error && <p className="error-message">{error}</p>}
-            <p>
+            <p className='forgot-password'>
                 <Link to="/forgot-password">Forgot Password?</Link>
             </p>
             <p className='signup'>

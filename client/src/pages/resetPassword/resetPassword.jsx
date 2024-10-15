@@ -9,6 +9,7 @@ function ResetPassword() {
     const [otp, setOtp] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [error, setError] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
@@ -16,6 +17,7 @@ function ResetPassword() {
         e.preventDefault();
         setLoading(true);
         setError('');
+        setSuccessMessage('');
 
         try {
             await axios.post('http://localhost:5000/password/reset-password', {
@@ -23,8 +25,8 @@ function ResetPassword() {
                 otp,
                 newPassword,
             });
-            alert('Password reset successfully. Please log in.');
-            navigate('/login'); // Redirect to Login page
+            setSuccessMessage('✔ Password reset successfully. Please log in.');
+            setTimeout(() => navigate('/login'), 3000); // Redirect to Login page
         } catch (err) {
             setError(err.response?.data?.message || 'An error occurred');
         } finally {
@@ -61,6 +63,7 @@ function ResetPassword() {
                     {loading ? 'Resetting...' : 'Reset Password'}
                 </button>
             </form>
+            {successMessage && <div className="success-message">{successMessage}</div>}
             {error && <p className="error-message">{error}</p>}
             <Link to="/login">Back to Login</Link>
         </div>
