@@ -19,6 +19,14 @@ const User = sequelize.define('User', {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    otp: {
+        type: DataTypes.STRING,
+        allowNull: true,  // OTP can be null if not generated
+    },
+    otpExpiresAt: {
+        type: DataTypes.DATE,
+        allowNull: true,  // Expiration date for OTP
+    },
 });
 
 module.exports = User;

@@ -12,6 +12,7 @@ const educationRoutes = require('./routes/educationRoute');
 const experienceRoutes = require('./routes/experienceRoute');
 const skillRoutes = require('./routes/skillRoute');
 const infoRoutes = require('./routes/personalInfoRoute');
+const passwordRoutes = require('./routes/passwordRoute');
 
 const app = express();
 app.use(cors());
@@ -22,10 +23,12 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Routes
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
+app.use('/password', passwordRoutes);
 app.use('/educations', educationRoutes);
 app.use('/experiences', experienceRoutes);
 app.use('/skills', skillRoutes);
 app.use('/infos', infoRoutes);
+
 
 const PORT = process.env.PORT || 5000;
 
