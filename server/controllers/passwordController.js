@@ -1,11 +1,11 @@
-const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
 const User = require('../models/user');
-const { sendOtpEmail } = require('../utils/sendOtpEmail');
+const { sendOtpEmail } = require('../utils/emailHelper');
 const { handleServerError } = require('../utils/serverErrorHandler');
+const { generateOtp, getOtpExpiration, isOtpValid } = require('../utils/otpHelper');
 require('dotenv').config();
 
-const OTP_EXPIRATION_MINUTES = 600; // OTP valid for 10 minutes
+const OTP_EXPIRATION_MINUTES = 10; // Adjust OTP validity to 10 minutes
 
 // Forgot Password - Request OTP Controller
 exports.requestPasswordReset = async (req, res) => {
@@ -20,11 +20,9 @@ exports.requestPasswordReset = async (req, res) => {
             return res.status(400).json({ message: 'Email not found' });
         }
 
-        // Generate OTP (6-digit number)
-        const otp = crypto.randomInt(100000, 999999).toString();
-
-        // Set OTP expiration time
-        const otpExpiresAt = new Date(Date.now() + OTP_EXPIRATION_MINUTES * 60000);
+        // Generate OTP and expiration time
+        const otp = generateOtp();
+        const otpExpiresAt = getOtpExpiration(OTP_EXPIRATION_MINUTES);
 
         // Save OTP and expiration to the user record
         user.otp = otp;
@@ -53,8 +51,8 @@ exports.resetPassword = async (req, res) => {
             return res.status(400).json({ message: 'Invalid request' });
         }
 
-        // Check if OTP matches and is not expired
-        if (user.otp !== otp || user.otpExpiresAt < new Date()) {
+        // Validate OTP and expiration
+        if (!isOtpValid(otp, user.otp, user.otpExpiresAt)) {
             return res.status(400).json({ message: 'Invalid or expired OTP' });
         }
 

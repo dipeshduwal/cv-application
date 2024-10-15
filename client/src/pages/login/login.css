@@ -98,3 +98,17 @@ button:disabled {
     background-color: #2a5c21;  
     transform: scale(1.05); 
 }
+
+.forgot-password {
+    color: #555; /* Default color */
+    text-align: center; /* Center the text */
+    margin-top: 20px; /* Space above the text */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    text-decoration: none; /* No underline by default */
+}
+
+.forgot-password:hover {
+    color: red; /* Change text color to red on hover */
+    text-decoration: underline; /* Underline text on hover */
+}
+
