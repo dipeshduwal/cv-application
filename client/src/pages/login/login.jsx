@@ -86,7 +86,7 @@ function Login() {
                 <Link to="/forgot-password">Forgot Password?</Link>
             </p>
             <p className='signup'>
-                Don't have an account?... <Link to="/Signup"> Sign up</Link>
+                Don't have an account?...<Link to="/Signup"> Sign up</Link>
             </p>
             
         </div>
