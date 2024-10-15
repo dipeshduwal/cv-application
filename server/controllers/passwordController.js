@@ -5,7 +5,7 @@ const { sendOtpEmail } = require('../utils/sendOtpEmail');
 const { handleServerError } = require('../utils/serverErrorHandler');
 require('dotenv').config();
 
-const OTP_EXPIRATION_MINUTES = 10; // OTP valid for 10 minutes
+const OTP_EXPIRATION_MINUTES = 600; // OTP valid for 10 minutes
 
 // Forgot Password - Request OTP Controller
 exports.requestPasswordReset = async (req, res) => {
