@@ -1,4 +1,6 @@
 import React from 'react';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 import './resumePreview.css';
 
 // To display a formatted resume based on the personal information, education, work experience, and skills passed as props
@@ -10,8 +12,37 @@ function ResumePreview({ personalInfo, educations, experiences, skills, photo })
         return new Date(dateString).toLocaleDateString(undefined, options);
     };
 
+    const downloadPDF = () => {
+        const resume = document.getElementById('resume-content');
+        html2canvas(resume).then((canvas) => {
+            const imgData = canvas.toDataURL('image/png');
+            const pdf = new jsPDF('portrait', 'pt', 'a4');
+            const imgWidth = 550; //Fit to A4 width
+            const pageHeight = pdf.internal.pageSize.height;
+            const imgHeight = (canvas.height * imgWidth) / canvas.width;
+            let heightLeft = imgHeight;
+            let position = 0;
+
+            // Add pages if the content is long
+            pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+            heightLeft -= pageHeight;
+            while (heightLeft >= 0) {
+                position = heightLeft - imgHeight;
+                pdf.addPage();
+                pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+            }
+
+            pdf.save(`${personalInfo.fullName}_Resume.pdf`);
+        });
+    };
+
     return (
         <div className="resume-preview">
+            <button className="download-button" onClick={downloadPDF}>
+                Download as PDF
+            </button>
+
             <div className="paper">
                 <div className='info-header'>
                     <div className='profile-header'>

@@ -7,17 +7,17 @@ exports.sendOtpEmail = async (email, otp) => {
     const transporter = nodemailer.createTransport({
         service: 'gmail', // Use your preferred email service
         auth: {
-            user: process.env.SMTP_USER,      // Your email address (e.g., your-email@gmail.com)
-            pass: process.env.SMTP_PASSWORD,   // Your email password or app password
+            user: process.env.SMTP_USER,     
+            pass: process.env.SMTP_PASSWORD,  
         },
     });
 
     // Email options
     const mailOptions = {
-        from: process.env.SMTP_USER,         // Sender email address
-        to: email,                            // Recipient email address
-        subject: 'Your Password Reset OTP',   // Subject line
-        text: `Your OTP for password reset is: ${otp}`, // Email body
+        from: process.env.SMTP_USER,         
+        to: email,                            
+        subject: 'Your Password Reset OTP',  
+        text: `Your OTP for password reset is: ${otp}`, 
     };
 
     // Send the email
@@ -25,6 +25,6 @@ exports.sendOtpEmail = async (email, otp) => {
         await transporter.sendMail(mailOptions);
     } catch (error) {
         console.error('Error sending OTP:', error);
-        throw new Error('Could not send OTP email.'); // Throw a more generic error
+        throw new Error('Could not send OTP email.');
     }
 };
