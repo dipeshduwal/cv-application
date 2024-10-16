@@ -13,11 +13,22 @@ function ResetPassword() {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
+    const isValidOtp = (otp) => {
+        const otpPattern = /^\d{6}$/;
+        return otpPattern.test(otp);
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         setError('');
         setSuccessMessage('');
+
+        if (!isValidOtp(otp)) {
+            setError('Invalid OTP. Please enter a 6-digit number.');
+            setLoading(false);
+            return;
+        }
 
         try {
             await axios.post('http://localhost:5000/password/reset-password', {
