@@ -1,12 +1,20 @@
-.resume-preview {
+.resume-preview-container {
     display: flex;
-    flex: 1;
+    flex-direction: column; 
+    align-items: center; 
+    margin-top: 20px;
     margin-left: 20px;
+    width: 100%;
+}
+
+.resume-preview {
+    width: 100%; 
+    margin: 0 auto; 
 }
 
 .paper {
     background-color: white;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 40px;
     border-radius: 5px;
     min-height: 800px;
@@ -82,10 +90,11 @@ ul {
     margin-top: 15px;     
 }
 
-/* resumePreview.css */
 .download-button {
-    margin: 10px;
-    padding: 10px 20px;
+    margin-top: 20px;
+    padding: 10px 30px;
+    font-size: 16px;
+    width: 400px;
     background-color: #4caf50;
     color: white;
     border: none;
@@ -97,3 +106,4 @@ ul {
 .download-button:hover {
     background-color: #45a049;
 }
+
