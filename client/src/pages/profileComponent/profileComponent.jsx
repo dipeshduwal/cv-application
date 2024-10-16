@@ -78,7 +78,8 @@ const ProfileComponent = () => {
             <Modal 
                 isOpen={isModalOpen} 
                 onClose={() => setIsModalOpen(false)} 
-                onConfirm={handleLogout} 
+                onConfirm={handleLogout}
+                title="Are you sure you want to logout?"
             />
         </div>
     );

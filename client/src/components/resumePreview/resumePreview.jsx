@@ -13,31 +13,43 @@ function ResumePreview({ personalInfo, educations, experiences, skills, photo })
 
     const downloadPDF = () => {
         const resume = document.getElementById('resume-content');
-        html2canvas(resume).then((canvas) => {
-            const imgData = canvas.toDataURL('image/png');
-            const pdf = new jsPDF('portrait', 'pt', 'a4');
-            const imgWidth = pdf.internal.pageSize.getWidth() - 20;
-            const imgHeight = pdf.internal.pageSize.getHeight() - 20;
-            const xOffset = 10;
-            const yOffset = 10;
-            const pageHeight = pdf.internal.pageSize.height;
-            let heightLeft = imgHeight;
-            let position = 0;
 
-            pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight, xOffset, yOffset);
-            heightLeft -= pageHeight;
+        // Use high scale factor for better resolution
+        const scale = 3; // Adjust scale factor to 2x or 3x for higher quality
+        const zoomFactor = 1.1;
 
-            while (heightLeft >= 0) {
-                position = heightLeft - imgHeight;
+        html2canvas(resume, {
+            scale: scale, // Increases canvas resolution
+            useCORS: true, // Enable CORS for cross-origin images
+        }).then((canvas) => {
+            const imgData = canvas.toDataURL('image/png', 1.0); // Set quality to 100%
+            
+            // Create PDF with A4 size and maintain better aspect ratio
+            const pdf = new jsPDF('portrait', 'mm', 'a4');
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = pdf.internal.pageSize.getHeight();
+            
+            const imgWidth = pdfWidth * zoomFactor;
+            const imgHeight = (canvas.height * imgWidth) / canvas.width; // Maintain aspect ratio
+
+            // Add the image to the PDF
+            pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight, '', 'FAST');
+
+            // Handle overflow if content exceeds one page
+            let heightLeft = imgHeight - pdfHeight;
+            let position = pdfHeight;
+
+            while (heightLeft > 0) {
                 pdf.addPage();
-                pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-                heightLeft -= pageHeight;
+                pdf.addImage(imgData, 'PNG', 0, -position, imgWidth, imgHeight, '', 'FAST');
+                heightLeft -= pdfHeight;
+                position += pdfHeight;
             }
 
             pdf.save(`${personalInfo.fullName}_Resume.pdf`);
         });
     };
-
+    
     return (
         <div className="resume-preview-container">
             <div id="resume-content" className="resume-preview">
@@ -48,6 +60,7 @@ function ResumePreview({ personalInfo, educations, experiences, skills, photo })
                                 <img
                                     src={`http://localhost:5000${personalInfo.photo}`}
                                     alt="Profile"
+                                    crossOrigin="anonymous" // Ensure cross-origin access
                                     className="profile-photo"
                                 />
                             )}
