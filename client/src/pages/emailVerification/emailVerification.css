@@ -1,6 +1,7 @@
 .verify-otp-container {
     max-width: 400px;
-    margin: 0 auto;
+    margin-left: 600px;
+    margin-top: 200px;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;

@@ -8,12 +8,15 @@ function Signup() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             await axios.post('http://localhost:5000/auth/signup', { username, email, password });
-            navigate('/verify-otp');
+            setSuccessMessage('✔ OTP sent to your email. Please verify before login.');
+            setTimeout(() => navigate('/verify-otp'), 2000);
         } catch (err) {
             setError(err.response?.data?.message || 'An error occurred');
         }
@@ -62,6 +65,7 @@ function Signup() {
                 </div>
                 <button type="submit">Signup</button>
             </form>
+            {successMessage && <div className="success-message">{successMessage}</div>}
             {error && <p className="error-message">{error}</p>}
             <p className='login'>
                 Already have an account?... <Link to="/Login">Login</Link>

@@ -40,7 +40,7 @@ exports.signup = async (req, res) => {
 
         res.status(201).json({ message: 'User created successfully' });
     } catch (err) {
-        handleServerError(res, error);
+        handleServerError(res, err);
     }
 };
 

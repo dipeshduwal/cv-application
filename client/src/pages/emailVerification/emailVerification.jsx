@@ -7,14 +7,15 @@ function VerifyOtp() {
     const [email, setEmail] = useState('');
     const [otp, setOtp] = useState('');
     const [error, setError] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             await axios.post('http://localhost:5000/verification/verify-otp', { email, otp });
-            alert('Email verified successfully! You can now log in.');
-            navigate('/Login'); 
+            setSuccessMessage('✔ Email verified successfully! You can now log in.');
+            setTimeout(() => navigate('/login'), 3000); 
         } catch (err) {
             setError(err.response?.data?.message || 'An error occurred');
         }
@@ -51,6 +52,7 @@ function VerifyOtp() {
                 </div>
                 <button type="submit">Verify OTP</button>
             </form>
+            {successMessage && <div className="success-message">{successMessage}</div>}
             {error && <p className="error-message">{error}</p>}
         </div>
     );
