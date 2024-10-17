@@ -2,6 +2,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const { handleServerError } = require('../utils/serverErrorHandler');
+const {sendOtpEmail} = require('../utils/emailHelper');
+const otpHelper = require('../utils/otpHelper');
 require('dotenv').config();
 
 // Signup Controller
@@ -21,12 +23,20 @@ exports.signup = async (req, res) => {
         // Hash the password
         const hashedPassword = await bcrypt.hash(password, 10);
 
+        const otp = otpHelper.generateOtp();
+        const otpExpiresAt = otpHelper.getOtpExpiration(600);
+
         // Create new user
         const newUser = await User.create({
             username: lowercasedUsername,
             email: lowercasedEmail,
             password: hashedPassword,
+            otp: otp,
+            otpExpiresAt: otpExpiresAt,
+            isEmailVerified: false,
         });
+
+        await sendOtpEmail(lowercasedEmail, otp);
 
         res.status(201).json({ message: 'User created successfully' });
     } catch (err) {
@@ -46,6 +56,11 @@ exports.login = async (req, res) => {
         const user = await User.findOne({ where: { email: lowercasedEmail } });
         if (!user) {
             return res.status(400).json({ message: 'Invalid credentials' });
+        }
+
+        // Check if user has verified their email
+        if (!user.isEmailVerified){
+            return res.status(403).json({message: 'Email not verified. Verify first.'});
         }
 
         // Check if password matches
@@ -71,7 +86,7 @@ exports.login = async (req, res) => {
             },
         });
     } catch (err) {
-        console.error(err);  // Log the error for debugging
-        handleServerError(res, err);  // Handle the server error gracefully
+        console.error(err);  
+        handleServerError(res, err); 
     }
 }

@@ -27,6 +27,10 @@ const User = sequelize.define('User', {
         type: DataTypes.DATE,
         allowNull: true,  // Expiration date for OTP
     },
+    isEmailVerified: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+    },
 });
 
 module.exports = User;

@@ -31,7 +31,6 @@ app.use('/experiences', experienceRoutes);
 app.use('/skills', skillRoutes);
 app.use('/infos', infoRoutes);
 
-
 const PORT = process.env.PORT || 5000;
 
 // Sync with database and start the server

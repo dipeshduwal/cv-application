@@ -19,7 +19,7 @@ exports.sendOtpEmail = async (email, otp) => {
         subject: 'Your Password Reset OTP', 
         text: `Your OTP for password reset is: ${otp}`, 
         html: `
-            <div style="font-family: Verdana; max-width: 600px; margin: auto; padding: 20px; background-color: #f4f4f4; border-radius: 10px;">
+            <div style="font-family: Verdana, sans-serif; max-width: 600px; margin: auto; padding: 20px; background-color: #f4f4f4; border-radius: 10px;">
                 <h1 style="text-align: center; color: green;">Welcome to Resume Builder!</h1>
                 <p style="font-size: 18px; text-align: center; color: #333;">
                     Your OTP for password reset is: <strong style="color: red;">${otp}</strong>

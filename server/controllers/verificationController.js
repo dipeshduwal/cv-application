@@ -20,6 +20,7 @@ exports.verifyOtp = async (req, res) => {
         }
 
         // Mark the user as verified by clearing the OTP and expiration date
+        user.isEmailVerified = true;
         user.otp = null;
         user.otpExpiresAt = null;
         await user.save();
