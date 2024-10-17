@@ -13,6 +13,7 @@ const experienceRoutes = require('./routes/experienceRoute');
 const skillRoutes = require('./routes/skillRoute');
 const infoRoutes = require('./routes/personalInfoRoute');
 const passwordRoutes = require('./routes/passwordRoute');
+const verificationRoutes = require('./routes/verificationRoute');
 
 const app = express();
 app.use(cors());
@@ -24,6 +25,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
 app.use('/password', passwordRoutes);
+app.use('/verification', verificationRoutes);
 app.use('/educations', educationRoutes);
 app.use('/experiences', experienceRoutes);
 app.use('/skills', skillRoutes);
