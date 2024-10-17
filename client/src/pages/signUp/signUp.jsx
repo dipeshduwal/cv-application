@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './signUp.css';
 
 function Signup() {
@@ -13,7 +13,7 @@ function Signup() {
         e.preventDefault();
         try {
             await axios.post('http://localhost:5000/auth/signup', { username, email, password });
-            alert('Signup successful');
+            navigate('/verify-otp');
         } catch (err) {
             setError(err.response?.data?.message || 'An error occurred');
         }

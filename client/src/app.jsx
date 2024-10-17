@@ -7,6 +7,7 @@ import ProfileComponent from './pages/profileComponent/profileComponent';
 import CVApp from './pages/cvApp/cvApp';
 import ForgotPassword from './pages/forgotPassword/forgotPassword';
 import ResetPassword from './pages/resetPassword/resetPassword';
+import VerifyOtp from './pages/emailVerification/emailVerification';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/cvapp" element={<CVApp />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/verify-otp" element={<VerifyOtp/>}/>
 
           {/* Redirect to homepage for any unmatched routes */}
           <Route path="*" element={<Navigate to="/" replace />} />

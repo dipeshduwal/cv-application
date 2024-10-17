@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './verifyOtp.css';
+import './emailVerification.css';
 
 function VerifyOtp() {
     const [email, setEmail] = useState('');
@@ -12,9 +12,9 @@ function VerifyOtp() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5000/auth/verify-otp', { email, otp });
+            await axios.post('http://localhost:5000/verification/verify-otp', { email, otp });
             alert('Email verified successfully! You can now log in.');
-            navigate('/Login'); // Redirect to login page
+            navigate('/Login'); 
         } catch (err) {
             setError(err.response?.data?.message || 'An error occurred');
         }
@@ -23,6 +23,9 @@ function VerifyOtp() {
     return (
         <div className="verify-otp-container">
             <h1>Verify Your Email</h1>
+            <p className="verification-message">
+                You must verify your OTP before you can log in.
+            </p>
             <form onSubmit={handleSubmit}>
                 <div className="input-group">
                     <label htmlFor="email">Email</label>
