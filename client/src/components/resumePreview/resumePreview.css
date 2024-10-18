@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400&family=Roboto:wght@400&display=swap');
+
 .resume-preview-container {
     display: flex;
     flex-direction: column; 
@@ -10,7 +12,7 @@
 
 .resume-preview {
     width: 100%; 
-    margin: 0 auto; 
+    margin: 0 auto;
 }
 
 .paper {
@@ -19,11 +21,10 @@
     padding: 40px;
     border-radius: 5px;
     min-height: 800px;
-    font-family: Tahoma;
 }
 
 .paper h2 {
-    font-size: 42px;
+    font-size: 38px;
     margin-bottom: 5px;
     color: white;
 }
@@ -33,15 +34,15 @@
     align-items: center;
     border-radius: 10px;
     max-height: 40px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     color: white;
     margin-top: 10px;
-    font-size: 22px;
+    font-size: 19px;
     
 }
 
 .entry {
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 15px;
     margin-left: 15px;
 }
@@ -51,26 +52,26 @@
 }
 
 .entry p {
-    margin: 0;
-    color: #363636;
+    margin-bottom: 5px;
+    color: rgb(79, 77, 77);
 }
 
-ul {
-    padding-left: 20px;
+li.entry{
+    font-size: 17px;
+    margin-bottom: 5px;
 }
 
 .info-header {
     padding: 15px;
     background-color: #07715f;
     color: white;
-    font-size: large;
     line-height: 1.4;
     margin-bottom: 0;
 }
 
 .info-header p {
     color: white;
-    font-size: 19px;
+    font-size: 17px;
 }
 
 .profile-header {
@@ -86,10 +87,9 @@ ul {
     margin-right: 25px;          
 }
 
-.heading-name {
-    font-size: 1.5rem;            
+.heading-name {           
     color: white;
-    margin: 0;              
+    margin: 0;      
 }
 
 .personal-info {
@@ -98,12 +98,18 @@ ul {
     margin-top: 15px;     
 }
 
+.resume-editor{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .color-picker-section {
     display: flex;
     flex-direction: column;
     justify-content: left;
-    margin-left: 30px;
-
+    margin-left: 10px;
+    margin-right: 45px;
 }
 
 h5{
@@ -189,6 +195,41 @@ input[type="color"]:active {
     opacity: 1;
 }
 
+.font-picker-section {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    margin-left: 30px;
+}
+.font-buttons {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+    margin-top: 10px;
+}
+
+.font-button {
+    width: auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #4a4545;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 14px;
+}
+
+.font-button:hover {
+    background-color: #7e7676;
+    transform: scale(1.05);
+}
+
+.font-sample {
+    display: block;
+    font-size: 24px;
+    margin-top: 5px;
+    font-weight: bold;
+}
 
 .download-button {
     display: flex;

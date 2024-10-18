@@ -5,8 +5,9 @@ import jsPDF from 'jspdf';
 import './resumePreview.css';
 
 function ResumePreview({ personalInfo, educations, experiences, skills, photo }) {
-    const [accentColor, setAccentColor] = useState('#4CAF50'); // Default accent color
-    const [textColor, setTextColor] = useState('#000000');
+    const [accentColor, setAccentColor] = useState('#166a18'); // Default accent color
+    const [textColor, setTextColor] = useState('#143d15');
+    const [fontFamily, setFontFamily] = useState('Merriweather');
 
     const formatDate = (dateString) => {
         if (!dateString) return '';
@@ -55,7 +56,10 @@ function ResumePreview({ personalInfo, educations, experiences, skills, photo })
     
     return (
         <div className="resume-preview-container">
-            <div id="resume-content" className="resume-preview">
+            <div 
+            id="resume-content" 
+            className="resume-preview" 
+            style={{ fontFamily }}>
                 <div className="paper">
                     <div className="info-header" style={{ backgroundColor: accentColor }}>
                         <div className="profile-header">
@@ -115,6 +119,7 @@ function ResumePreview({ personalInfo, educations, experiences, skills, photo })
                 </div>
             </div>
 
+            <div className='resume-editor'>
             <div className="color-picker-section">
                 <h5>Colors</h5>
                 <div className="option-accent">
@@ -154,7 +159,36 @@ function ResumePreview({ personalInfo, educations, experiences, skills, photo })
                         />
                     </div>
                 </div>
+            </div>
 
+            <div className="font-picker-section">
+                <h5>Fonts</h5>
+                <div className='font-buttons'>
+                    <button
+                    className='font-button'
+                    style={{fontFamily: "'Roboto', sans-serif"}}
+                    onClick={() => setFontFamily("'Roboto', sans-serif")}>
+                        Roboto<br/>
+                        <span className='font-sample'>Aa</span>
+                    </button>
+
+                    <button
+                    className='font-button'
+                    style={{fontFamily: "'Merriweather', sans-serif"}}
+                    onClick={() => setFontFamily("'Merriweather', sans-serif")}>
+                        Merriweather<br/>
+                        <span className='font-sample'>Aa</span>
+                    </button>
+
+                    <button
+                    className='font-button'
+                    style={{fontFamily: "'Tahoma', sans-serif"}}
+                    onClick={() => setFontFamily("'Tahoma', sans-serif")}>
+                        Tahoma<br/>
+                        <span className='font-sample'>Aa</span>
+                    </button>
+                </div>
+            </div>
             </div>
 
             <button className="download-button" onClick={downloadPDF}>
