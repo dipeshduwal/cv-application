@@ -8,8 +8,9 @@
 
 .form-container h2 {
     color: #333;
-    margin-bottom: 20px;
-    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 18px;
 }
 
 .form-field {

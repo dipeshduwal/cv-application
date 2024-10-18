@@ -49,7 +49,7 @@ function FormTemplate({ title, fields, data, setData, onSubmit, handlePhotoChang
 
     return (
         <div className="form-container">
-            <h2>{title}</h2>
+            <h2>Enter Your Personal Data:</h2>
             <form onSubmit={handleSubmit} autoComplete="off" noValidate>
                 {fields.map((field) => (
                     <div key={field.name} className="form-field">
