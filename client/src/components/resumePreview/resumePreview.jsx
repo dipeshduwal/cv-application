@@ -190,10 +190,22 @@ function ResumePreview({ personalInfo, educations, experiences, skills, photo })
                 </div>
             </div>
             </div>
+            
+            <div className='resume-buttons'>
+            <button
+                className="reset-button"
+                onClick={() => {
+                    setFontFamily("'Merriweather', sans-serif");
+                    setAccentColor('#166a18');
+                    setTextColor('#143d15');
+                }}>
+                Reset to Default
+            </button>
 
             <button className="download-button" onClick={downloadPDF}>
                 Download as PDF
             </button>
+            </div>
         </div>
     );
 }
