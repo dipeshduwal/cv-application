@@ -34,7 +34,7 @@
     background-color: #ffffff;
     width: 100%;
     max-width: 600px;
-    padding: 30px;
+    padding: 25px;
     border-radius: 12px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
@@ -49,6 +49,7 @@
     font-size: 28px;
     color: #343a40;
     margin-bottom: 20px;
+    margin-top: 0;
 }
 
 .profile-card p {
@@ -78,10 +79,9 @@
     background-color: #ffffff;
     width: 100%;
     max-width: 600px;
-    padding: 25px;
+    padding: 20px;
     border-radius: 12px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
     text-align: left;
     transition: transform 0.3s ease;
 }
@@ -93,7 +93,8 @@
 .profile-tips h3 {
     font-size: 24px;
     color: #343a40;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+    margin-top: 0;
 }
 
 .profile-tips p {
