@@ -1,5 +1,5 @@
 // src/components/ResumePreview.js
-import React from 'react';
+import React, {useState} from 'react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import './resumePreview.css';
@@ -68,11 +68,11 @@ function ResumePreview({ personalInfo, educations, experiences, skills, photo })
                                     className="profile-photo"
                                 />
                             )}
-                            <h2 className="heading-name" style={{ color: textColor }}>{personalInfo.fullName}</h2>
+                            <h2 className="heading-name">{personalInfo.fullName}</h2>
                         </div>
                         <div className="personal-info" style={{ color: textColor }}>
                             <p>
-                                {personalInfo.personalEmail && `E-Mail: ${personalInfo.personalEmail}`} <br />
+                                {personalInfo.personalEmail && `E-mail: ${personalInfo.personalEmail}`} <br />
                                 {personalInfo.phone && `Contact: ${personalInfo.phone}`} <br />
                                 {personalInfo.address && `Address: ${personalInfo.address}`} <br />
                                 {personalInfo.birthDate &&
@@ -116,6 +116,18 @@ function ResumePreview({ personalInfo, educations, experiences, skills, photo })
                 </div>
             </div>
 
+            <div className='color-picker-section'>
+                <ColorPicker
+                    label="Accent Color"
+                    color={accentColor}
+                    onChange={(e) => setAccentColor(e.target.value)}
+                />
+                <ColorPicker
+                    label="Text Color"
+                    color={textColor}
+                    onChange={(e) => setTextColor(e.target.value)}
+                />
+            </div>
 
             <button className="download-button" onClick={downloadPDF}>
                 Download as PDF
