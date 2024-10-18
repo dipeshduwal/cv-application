@@ -22,7 +22,10 @@ const CVApp = () => {
   const [educations, setEducations] = useState([]);
   const [experiences, setExperiences] = useState([]);
   const [skills, setSkills] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to manage modal visibility
+  const [isModalOpen, setIsModalOpen] = useState(false); 
+
+  const [accentColor, setAccentColor] = useState('#4CAF50'); // Default accent color
+  const [textColor, setTextColor] = useState('#000000');
 
   const navigate = useNavigate();
 
@@ -74,6 +77,8 @@ const CVApp = () => {
             experiences={experiences}
             skills={skills}
             photo={`http://localhost:5000${personalInfo.photo}`} 
+            accentColor={accentColor}
+            textColor={textColor}
           />
         </div>
       </div>
