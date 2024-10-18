@@ -116,46 +116,45 @@ function ResumePreview({ personalInfo, educations, experiences, skills, photo })
             </div>
 
             <div className="color-picker-section">
-            <h4>Colors</h4>
+                <h5>Colors</h5>
                 <div className="option-accent">
                     <label>Accent Color:</label>
-                    <div 
-                    className='color-accent' 
-                    onClick={() => document.getElementById('accent-color-picker').click()}>
-                    <div 
-                        className="color-box" 
-                        style={{ backgroundColor: accentColor }}
-                         // Trigger input click
-                    />
-                    <span className='color-code'>{accentColor}</span>
+                    <div className="color-picker-wrapper">
+                        <div
+                            className="color-accent"
+                            onClick={() => document.getElementById('accent-color-picker').click()}
+                        >
+                            <div className="color-box" style={{ backgroundColor: accentColor }} />
+                            <span className="color-code">{accentColor}</span>
+                        </div>
+                        <input
+                            id="accent-color-picker"
+                            type="color"
+                            value={accentColor}
+                            onChange={(e) => setAccentColor(e.target.value)}
+                        />
                     </div>
-                    <input
-                        id="accent-color-picker"
-                        type="color"
-                        value={accentColor}
-                        style={{ display: 'none' }} // Hide the input
-                        onChange={(e) => setAccentColor(e.target.value)}
-                    />
                 </div>
 
                 <div className="option-text">
                     <label>Text Color:</label>
-                    <div className='color-text'
-                    onClick={() => document.getElementById('text-color-picker').click()}>
-                    <div 
-                        className="color-box" 
-                        style={{ backgroundColor: textColor }}
-                    />
-                    <span className='color-code'>{textColor}</span>
+                    <div className="color-picker-wrapper">
+                        <div
+                            className="color-text"
+                            onClick={() => document.getElementById('text-color-picker').click()}
+                        >
+                            <div className="color-box" style={{ backgroundColor: textColor }} />
+                            <span className="color-code">{textColor}</span>
+                        </div>
+                        <input
+                            id="text-color-picker"
+                            type="color"
+                            value={textColor}
+                            onChange={(e) => setTextColor(e.target.value)}
+                        />
                     </div>
-                    <input
-                        id="text-color-picker"
-                        type="color"
-                        value={textColor}
-                        style={{ display: 'none' }}
-                        onChange={(e) => setTextColor(e.target.value)}
-                    />
                 </div>
+
             </div>
 
             <button className="download-button" onClick={downloadPDF}>
