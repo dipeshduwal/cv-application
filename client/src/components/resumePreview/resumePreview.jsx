@@ -3,7 +3,6 @@ import React, {useState} from 'react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import './resumePreview.css';
-import ColorPicker from '../resumeEditor/resumeEditor';
 
 function ResumePreview({ personalInfo, educations, experiences, skills, photo }) {
     const [accentColor, setAccentColor] = useState('#4CAF50'); // Default accent color
@@ -116,17 +115,47 @@ function ResumePreview({ personalInfo, educations, experiences, skills, photo })
                 </div>
             </div>
 
-            <div className='color-picker-section'>
-                <ColorPicker
-                    label="Accent Color"
-                    color={accentColor}
-                    onChange={(e) => setAccentColor(e.target.value)}
-                />
-                <ColorPicker
-                    label="Text Color"
-                    color={textColor}
-                    onChange={(e) => setTextColor(e.target.value)}
-                />
+            <div className="color-picker-section">
+            <h4>Colors</h4>
+                <div className="option-accent">
+                    <label>Accent Color:</label>
+                    <div 
+                    className='color-accent' 
+                    onClick={() => document.getElementById('accent-color-picker').click()}>
+                    <div 
+                        className="color-box" 
+                        style={{ backgroundColor: accentColor }}
+                         // Trigger input click
+                    />
+                    <span className='color-code'>{accentColor}</span>
+                    </div>
+                    <input
+                        id="accent-color-picker"
+                        type="color"
+                        value={accentColor}
+                        style={{ display: 'none' }} // Hide the input
+                        onChange={(e) => setAccentColor(e.target.value)}
+                    />
+                </div>
+
+                <div className="option-text">
+                    <label>Text Color:</label>
+                    <div className='color-text'
+                    onClick={() => document.getElementById('text-color-picker').click()}>
+                    <div 
+                        className="color-box" 
+                        style={{ backgroundColor: textColor }}
+                    />
+                    <span className='color-code'>{textColor}</span>
+                    </div>
+                    <input
+                        id="text-color-picker"
+                        type="color"
+                        value={textColor}
+                        style={{ display: 'none' }}
+                        onChange={(e) => setTextColor(e.target.value)}
+                    />
+                </div>
             </div>
 
             <button className="download-button" onClick={downloadPDF}>

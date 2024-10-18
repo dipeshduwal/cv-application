@@ -25,7 +25,7 @@ function VerifyOtp() {
         <div className="verify-otp-container">
             <h1>Verify Your Email</h1>
             <p className="verification-message">
-                You must verify your OTP before you can log in.
+                You must verify your OTP before you login.
             </p>
             <form onSubmit={handleSubmit}>
                 <div className="input-group">
