@@ -1,4 +1,4 @@
-const { signup, login } = require('../services/auth_services');
+const { signup, login } = require('../services/authServices');
 const { handleServerError } = require('../utils/serverErrorHandler');
 
 
