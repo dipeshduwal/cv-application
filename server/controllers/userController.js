@@ -1,19 +1,13 @@
-const User = require('../models/user');
+const { getUserProfile} = require('../services/userServices');
 const { handleServerError } = require('../utils/serverErrorHandler');
 
 exports.GetProfile = async (req, res) => {
     try {
-        const user = await User.findOne({
-            where: { email: req.user.email }, // Use email for lookup
-            attributes: ['id', 'username', 'email'] 
-        });
-        
-        if (!user) {
-            return res.status(400).json({ message: 'Invalid Credentials' });
-        }
-
+        const { email } = req.user; // Extract email from authenticated token
+        const user = await getUserProfile(email);
         res.status(200).json(user);
     } catch (err) {
+        console.error('Error in GetProfile:', err);
         handleServerError(res, err);  
     }
 };
