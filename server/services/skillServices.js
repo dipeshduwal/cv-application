@@ -29,7 +29,7 @@ const getSkill = async (email) => {
     const skillList = await Skill.findAll({ where: { userEmail: email } });
 
         if (!skillList || skillList.length === 0) {
-            throw new Error('No skill records found');
+            return [];
         }
 
         return skillList;

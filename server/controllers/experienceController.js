@@ -32,6 +32,9 @@ exports.GetExperience = async (req, res) => {
         // Extract the user's unique identifier (email) from the verified token
         const { email } = req.user;
         const experienceList = await getExperience(email);
+        if (!experienceList.length) {
+            return res.status(404).json({ message: "No experience records found"});
+        }
         return res.status(200).json(experienceList);
     } catch (error) {
         console.error('GetExperience Error:', error);

@@ -50,7 +50,9 @@ const createOrUpdateInfo = async (userEmail, info, file) => {
 // Retrieve personal info
 const getInfo = async (userEmail) => {
     const personalInfo = await PersonalInfo.findOne({ where: { userEmail } });
-    if (!personalInfo) throw new Error('Personal info not found');
+    if (!personalInfo) {
+        return null;
+    }
     return personalInfo;
 };
 

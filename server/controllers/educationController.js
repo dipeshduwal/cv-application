@@ -32,7 +32,6 @@ exports.PutEducation = async (req, res) => {
     }
 };
 
-
 // Get all education entries for a user
 exports.GetEducation = async (req, res) => {
     try {
@@ -41,6 +40,11 @@ exports.GetEducation = async (req, res) => {
 
         // Fetch all education records for the user based on their email
         const educationList = await getEducation(email);
+
+        if (!educationList.length) {
+            return res.status(404).json({ message: "No education records found"});
+        }
+
         return res.status(200).json(educationList);
     } catch (error) {
         console.error('GetEducation Error:', error);

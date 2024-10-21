@@ -32,7 +32,7 @@ const getExperience = async(email) => {
     const experienceList = await Experience.findAll({ where: { userEmail: email } });
 
         if (!experienceList || experienceList.length === 0) {
-            throw new Error('No experience records found');
+            return [];
         }
 
         return experienceList;

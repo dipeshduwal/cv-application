@@ -25,6 +25,10 @@ exports.GetInfo = async (req, res) => {
     try {
         const { email: userEmail } = req.user;
         const personalInfo = await getInfo(userEmail);
+
+        if (!personalInfo) {
+            return res.status(404).json({ message: "Personal info not found" });
+        }
         res.status(200).json(personalInfo);
     } catch (error) {
         console.error('Error in GetInfo:', error);

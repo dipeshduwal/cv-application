@@ -18,6 +18,10 @@ exports.GetSkill = async (req, res) => {
     try {
         const { email } = req.user;
         const skillList = await getSkill(email);
+
+        if (!skillList.length) {
+            return res.status(404).json({ message: "No skill records found"});
+        }
         return res.status(200).json(skillList);
     } catch (error) {
         console.error('GetSkill Error:', error);

@@ -36,7 +36,7 @@ const getEducation = async (email) => {
     const educationList = await Education.findAll({ where: { userEmail: email } });
 
         if (!educationList || educationList.length === 0) {
-            throw new Error('No education records found');
+            return [];
         }
 
         return educationList;
