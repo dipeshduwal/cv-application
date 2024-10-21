@@ -31,9 +31,8 @@ exports.GetExperience = async (req, res) => {
     try {
         // Extract the user's unique identifier (email) from the verified token
         const { email } = req.user;
-
-        // Fetch all education records for the user based on their email
-         res.status(200).json(experienceList);
+        const experienceList = await getExperience(email);
+        return res.status(200).json(experienceList);
     } catch (error) {
         console.error('GetExperience Error:', error);
         handleServerError(res, error);
@@ -47,7 +46,8 @@ exports.DeleteExperience = async (req, res) => {
         // Extract the user's unique identifier (email) from the token
         const { email } = req.user;
 
-        res.status(200).json({ message: 'Experience record deleted successfully' });
+        const result = await deleteExperience(email, experienceId);
+        res.status(200).json(result);
     } catch (error) {
         console.error('DeleteExperience Error:', error);
         handleServerError(res, error);
