@@ -14,7 +14,7 @@ function Signup() {
     const navigate = useNavigate();
 
     const validateForm = () => {
-        const isEmailValid = email.trim() !== '' && /\S+@\S+\.\S+/.test(email);
+        const isEmailValid = email.trim() !== '' && /\S+@gmail\.com$/.test(email);
         const isPasswordValid = password.trim() !== '';
         setIsValid(isEmailValid && isPasswordValid);
     }
@@ -32,6 +32,7 @@ function Signup() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
+        setError('');
         try {
             await axios.post('http://localhost:5000/auth/signup', { username, email, password });
             setSuccessMessage('✔ OTP sent to your email. Please verify before login. Redirecting...');

@@ -17,8 +17,8 @@ function HomePage() {
       <div className="features">
         <h2>Features</h2>
         <ul>
-          <li>Easy Login to Preserve Your CV</li>
-          <li>Real-time Previews</li>
+          <li>Preserve Your CV with Easy Login/Signup</li>
+          <li>Customizable CV Template</li>
           <li>Easy PDF Export Options</li>
         </ul>
       </div>

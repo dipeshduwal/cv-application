@@ -10,6 +10,7 @@ const ProfileComponent = () => {
     const [error, setError] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const navigate = useNavigate();
+    const currentYear = new Date().getFullYear();
 
     useEffect(() => {
         const fetchProfile = async () => {
@@ -72,8 +73,15 @@ const ProfileComponent = () => {
                             <li>Tailor your resume for each job application to increase your chances.</li>
                         </ul>
             </div>
+            
             <div className="profile-footer">
                 <p>You are using the Resume Builder. We hope you're having a great experience!</p>
+            </div>
+            <div className="footer-bottom">
+                <p>
+                   Resume Builder {currentYear} &copy; Dipesh Duwal
+
+                </p>
             </div>
             <Modal 
                 isOpen={isModalOpen} 

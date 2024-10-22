@@ -5,7 +5,6 @@ const errorHandlerWrapper = (controller) => {
         try {
             await controller(req, res, next);
         } catch (error) {
-            console.error('Controller Error:', error);
             handleServerError(res, error);
         }
     };

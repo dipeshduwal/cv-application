@@ -12,7 +12,7 @@ const signup = async (username, email, password) => {
     // Check if user already exists
     const existingUser = await User.findOne({ where: { email: lowercasedEmail } });
     if (existingUser) {
-        return res.status(400).json({ message: 'User already exists' });
+        throw new Error('User already exists');
     }
 
     // Hash the password
@@ -41,18 +41,18 @@ const login = async (email, password) => {
     // Check if user exists
     const user = await User.findOne({ where: { email: lowercasedEmail } });
     if (!user) {
-        return res.status(400).json({ message: 'Invalid credentials' });
+        throw new Error('Invalid credentials');
     }
 
     // Check if user has verified their email
     if (!user.isEmailVerified){
-        return res.status(403).json({message: 'Email not verified. Verify first.'});
+        throw new Error('Email not verified. Verify first.');
     }
 
     // Check if password matches
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-        return res.status(400).json({ message: 'Invalid credentials' });
+        throw new Error('Invalid credentials');
     }
 
     // Generate JWT token with both id and email

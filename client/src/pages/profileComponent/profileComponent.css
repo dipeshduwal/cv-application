@@ -125,6 +125,17 @@
     margin: 0;
 }
 
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
+  }
+  
+  .footer-bottom p {
+    margin: 0;
+    color: #8a959f;
+  }
+
 @media (max-width: 768px) {
     .profile-card, .profile-tips {
         width: 90%;
