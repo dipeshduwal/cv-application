@@ -40,7 +40,18 @@ function Login() {
             localStorage.setItem('token', res.data.token);
             navigate('/cvapp');
         } catch (err) {
-            setError(err.response?.data?.message || 'Invalid Credentials');
+            const message = err.response?.data?.message || 'Invalid Credentials.';
+            
+            // Check if the error is related to unverified email
+            if (message.includes('Email not verified')) {
+                // Store the email in local storage to use in OTP verification
+                localStorage.setItem('unverifiedEmail', email);
+                
+                // Redirect to verify-otp page
+                navigate('/verify-otp');
+            } else {
+                setError(message);
+            }
         } finally {     
             setLoading(false);
         }

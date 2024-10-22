@@ -44,9 +44,16 @@ const login = async (email, password) => {
         throw new Error('Invalid credentials');
     }
 
-    // Check if user has verified their email
-    if (!user.isEmailVerified){
-        throw new Error('Email not verified. Verify first.');
+     // Check if email is verified
+     if (!user.isEmailVerified) {
+        // Resend OTP if email is not verified
+        const otp = otpHelper.generateOtp();
+        user.otp = otp;
+        user.otpExpiresAt = otpHelper.getOtpExpiration(600);
+        await user.save();
+
+        await sendOtpEmail(lowercasedEmail, otp);
+        return {message: 'Email not verified'};
     }
 
     // Check if password matches

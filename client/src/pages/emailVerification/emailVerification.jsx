@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import './emailVerification.css';
@@ -9,6 +9,12 @@ function VerifyOtp() {
     const [error, setError] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
     const navigate = useNavigate();
+
+    // Load the email from localStorage
+    useEffect(() => {
+        const storedEmail = localStorage.getItem('unverifiedEmail');
+        if (storedEmail) setEmail(storedEmail);
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -31,17 +37,7 @@ function VerifyOtp() {
                 You must verify your OTP before you login.
             </p>
             <form onSubmit={handleSubmit}>
-                <div className="input-group">
-                    <label htmlFor="email">Email</label>
-                    <input
-                        type="email"
-                        id="email"
-                        placeholder="Enter your email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                </div>
+                <p>Email: {email}</p>
                 <div className="input-group">
                     <label htmlFor="otp">OTP</label>
                     <input
