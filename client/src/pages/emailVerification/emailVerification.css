@@ -9,6 +9,22 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+.nav-link {
+    display: flex;
+    justify-content: center;
+    background-color: #1b5b1d;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none; 
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+}
+
+.nav-link:hover {
+    background-color: #2a5c21;  
+    transform: scale(1.05); 
+}
+
 h1 {
     text-align: center;
     color: #333;

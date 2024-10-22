@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './emailVerification.css';
 
 function VerifyOtp() {
@@ -23,6 +23,9 @@ function VerifyOtp() {
 
     return (
         <div className="verify-otp-container">
+            <div className='nav-link'>
+            <Link to="/HomePage" className="nav-link1">Go To Homepage</Link>
+            </div>  
             <h1>Verify Your Email</h1>
             <p className="verification-message">
                 You must verify your OTP before you login.
