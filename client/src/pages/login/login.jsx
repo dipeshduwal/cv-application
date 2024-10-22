@@ -40,7 +40,7 @@ function Login() {
             localStorage.setItem('token', res.data.token);
             navigate('/cvapp');
         } catch (err) {
-            setError(err.response?.data?.message || 'An error occurred');
+            setError(err.response?.data?.message || 'Invalid Credentials');
         } finally {     
             setLoading(false);
         }

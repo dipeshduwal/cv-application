@@ -8,17 +8,38 @@ function Signup() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [isValid, setIsValid] = useState(false);
     const [successMessage, setSuccessMessage] = useState('');
     const navigate = useNavigate();
 
+    const validateForm = () => {
+        const isEmailValid = email.trim() !== '' && /\S+@\S+\.\S+/.test(email);
+        const isPasswordValid = password.trim() !== '';
+        setIsValid(isEmailValid && isPasswordValid);
+    }
+
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+        validateForm();
+    };
+
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
+        validateForm();
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
         try {
             await axios.post('http://localhost:5000/auth/signup', { username, email, password });
             setSuccessMessage('✔ OTP sent to your email. Please verify before login. Redirecting...');
             setTimeout(() => navigate('/verify-otp'), 2000);
         } catch (err) {
-            setError(err.response?.data?.message || 'An error occurred');
+            setError(err.response?.data?.message || 'The username or email exists already.');
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -48,7 +69,7 @@ function Signup() {
                         id="email"
                         placeholder="Enter your email"
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={handleEmailChange}
                         required
                     />
                 </div>
@@ -59,11 +80,13 @@ function Signup() {
                         id="password"
                         placeholder="Create a password"
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={handlePasswordChange}
                         required
                     />
                 </div>
-                <button type="submit">Signup</button>
+                <button type="submit" disabled={loading || !isValid}>
+                    {loading ? 'Signing up...' : 'Signup'}
+                </button>
             </form>
             {successMessage && <div className="success-message">{successMessage}</div>}
             {error && <p className="error-message">{error}</p>}
