@@ -14,7 +14,7 @@ function VerifyOtp() {
         e.preventDefault();
         try {
             await axios.post('http://localhost:5000/verification/verify-otp', { email, otp });
-            setSuccessMessage('✔ Email verified successfully! You can now log in.');
+            setSuccessMessage('✔ Email verified successfully! You can now log in. Redirecting....');
             setTimeout(() => navigate('/login'), 3000); 
         } catch (err) {
             setError(err.response?.data?.message || 'An error occurred');

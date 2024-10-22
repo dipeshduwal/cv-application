@@ -36,7 +36,7 @@ function ResetPassword() {
                 otp,
                 newPassword,
             });
-            setSuccessMessage('✔ Password reset successfully. Please log in.');
+            setSuccessMessage('✔ Password reset successfully. Please log in. Redirecting...');
             setTimeout(() => navigate('/login'), 3000); // Redirect to Login page
         } catch (err) {
             setError(err.response?.data?.message || 'An error occurred');

@@ -15,7 +15,7 @@ function Signup() {
         e.preventDefault();
         try {
             await axios.post('http://localhost:5000/auth/signup', { username, email, password });
-            setSuccessMessage('✔ OTP sent to your email. Please verify before login.');
+            setSuccessMessage('✔ OTP sent to your email. Please verify before login. Redirecting...');
             setTimeout(() => navigate('/verify-otp'), 2000);
         } catch (err) {
             setError(err.response?.data?.message || 'An error occurred');

@@ -23,7 +23,7 @@ function ForgotPassword() {
 
         try {
             await axios.post('http://localhost:5000/password/forgot-password', { email });
-            setSuccessMessage('✔ OTP sent to your email. Please check your inbox.');
+            setSuccessMessage('✔ OTP sent to your email. Please check your inbox. Redirecting....');
             setTimeout(() => navigate('/reset-password'), 3000); // Redirect after 2 seconds
         } catch (err) {
             setError(err.response?.data?.message || 'An error occurred');

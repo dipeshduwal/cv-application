@@ -69,6 +69,9 @@ function ResumePreview({ personalInfo, educations, experiences, skills, photo })
                                     alt="Profile"
                                     crossOrigin="anonymous" // Ensure cross-origin access
                                     className="profile-photo"
+                                    onError={(e) => {
+                                        e.target.onerror = null; // Prevent looping
+                                    }}
                                 />
                             )}
                             <h2 className="heading-name">{personalInfo.fullName}</h2>
