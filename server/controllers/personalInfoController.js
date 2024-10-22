@@ -19,10 +19,7 @@ exports.GetInfo = async (req, res) => {
         const { email: userEmail } = req.user;
         const personalInfo = await getInfo(userEmail);
 
-        if (!personalInfo) {
-            return res.status(404).json({ message: "Personal info not found" });
-        }
-        res.status(200).json(personalInfo);
+        res.status(200).json(personalInfo || []);
 };
 
 // Delete personal info
