@@ -34,8 +34,8 @@ function Experience({experiences,setExperiences}) {
                     }
                 });
                 setExperiences(response.data);
-            } catch (error) {
-                console.error("Error fetching experience entries:", error);
+            } catch (err) {
+                console.error("Error fetching skill entries:", error);
             }
         };
         fetchExperiences();

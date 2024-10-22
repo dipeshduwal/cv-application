@@ -25,20 +25,16 @@ function Education({ educations, setEducations }) {
         { name: 'description', type: 'textarea', label: 'Description', placeholder: 'Describe your education' }
     ];
 
-    // Fetch all education entries on component mount using axios
     useEffect(() => {
         const fetchEducations = async () => {
             try {
                 const token = localStorage.getItem('token');
-                
-                const response = await axios.get(`http://localhost:5000/educations`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`  // Set the Authorization header
-                    }
+                const response = await axios.get('http://localhost:5000/educations', {
+                    headers: { Authorization: `Bearer ${token}` }
                 });
                 setEducations(response.data);
             } catch (error) {
-                console.error("Error fetching education entries:", error);
+                console.error("Error fetching skill entries:", error);
             }
         };
         fetchEducations();

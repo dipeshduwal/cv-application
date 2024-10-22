@@ -28,11 +28,7 @@ exports.GetEducation = async (req, res) => {
         // Fetch all education records for the user based on their email
         const educationList = await getEducation(email);
 
-        if (!educationList.length) {
-            return res.status(404).json({ message: "No education records found"});
-        }
-
-        return res.status(200).json(educationList);
+        return res.status(200).json(educationList || []);
 };
 
 // Delete a specific education entry for a user
