@@ -1,34 +1,22 @@
 const { createExperience, updateExperience, getExperience, deleteExperience} =  require('../services/experienceServices')
-const { handleServerError } = require('../utils/serverErrorHandler');
 
 exports.PostExperience = async (req, res) => {
-    try {
         const { email } = req.user;
         const experienceDetails = req.body;
 
         const newExperience = await createExperience(email, experienceDetails);
         return res.status(201).json(newExperience);
-    } catch (error) {
-        console.error('PostExperience Error:', error);
-        handleServerError(res, error);
-    }
 };
 
 exports.PutExperience = async (req, res) => {
-    try {
         const { experienceId, ...experienceDetails } = req.body;
         const { email } = req.user;
 
         const updatedExperience = await updateExperience(email, experienceId, experienceDetails);
         return res.status(200).json(updatedExperience);
-    } catch (error) {
-        console.error('PutExperience Error:', error);
-        handleServerError(res, error);
-    }
 };
 
 exports.GetExperience = async (req, res) => {
-    try {
         // Extract the user's unique identifier (email) from the verified token
         const { email } = req.user;
         const experienceList = await getExperience(email);
@@ -36,14 +24,9 @@ exports.GetExperience = async (req, res) => {
             return res.status(404).json({ message: "No experience records found"});
         }
         return res.status(200).json(experienceList);
-    } catch (error) {
-        console.error('GetExperience Error:', error);
-        handleServerError(res, error);
-    }
 };
 
 exports.DeleteExperience = async (req, res) => {
-    try {
         const experienceId = req.params.id;  
 
         // Extract the user's unique identifier (email) from the token
@@ -51,8 +34,4 @@ exports.DeleteExperience = async (req, res) => {
 
         const result = await deleteExperience(email, experienceId);
         res.status(200).json(result);
-    } catch (error) {
-        console.error('DeleteExperience Error:', error);
-        handleServerError(res, error);
-    }
 };
