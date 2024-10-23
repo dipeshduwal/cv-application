@@ -30,7 +30,7 @@ const signup = async (username, email, password) => {
         isEmailVerified: false,
     });
 
-    await sendOtpEmail(lowercasedEmail, otp);
+    sendOtpEmail(lowercasedEmail, otp);
     return { message: 'User created successully'};
 };
 
@@ -52,8 +52,8 @@ const login = async (email, password) => {
         user.otpExpiresAt = otpHelper.getOtpExpiration(600);
         await user.save();
 
-        await sendOtpEmail(lowercasedEmail, otp);
-        return {message: 'Email not verified'};
+        sendOtpEmail(lowercasedEmail, otp);
+        return { message: 'Email not verified' };
     }
 
     // Check if password matches

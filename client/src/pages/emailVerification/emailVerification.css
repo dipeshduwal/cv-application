@@ -37,6 +37,9 @@ h1 {
     color: #555;
 }
 
+.email-text{
+    font-weight: 600;
+}
 
 .input-group {
     margin-bottom: 15px;

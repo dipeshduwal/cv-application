@@ -29,30 +29,31 @@ function Login() {
         validateForm();
     };
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         setError('');
-
+    
         try {
             const res = await axios.post('http://localhost:5000/auth/login', { email, password });
+    
+            // Check if the email is verified
+            if (res.data.message === 'Email not verified') {
+                // Store the unverified email in localStorage
+                localStorage.setItem('unverifiedEmail', email);
+    
+                // Redirect to verify-otp page
+                navigate('/verify-otp');
+                return;  // Stop further execution
+            }
+    
+            // If email is verified, store the token and proceed to cvapp
             localStorage.setItem('token', res.data.token);
             navigate('/cvapp');
         } catch (err) {
             const message = err.response?.data?.message || 'Invalid Credentials.';
-            
-            // Check if the error is related to unverified email
-            if (message.includes('Email not verified')) {
-                // Store the email in local storage to use in OTP verification
-                localStorage.setItem('unverifiedEmail', email);
-                
-                // Redirect to verify-otp page
-                navigate('/verify-otp');
-            } else {
-                setError(message);
-            }
-        } finally {     
+            setError(message);
+        } finally {
             setLoading(false);
         }
     };

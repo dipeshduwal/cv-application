@@ -77,7 +77,7 @@ const ProfileComponent = () => {
             <div className="profile-footer">
                 <p>You are using the Resume Builder. We hope you're having a great experience!</p>
             </div>
-            <div className="footer-bottom">
+            <div className="footer-copy">
                 <p>
                    Resume Builder {currentYear} &copy; Dipesh Duwal
 

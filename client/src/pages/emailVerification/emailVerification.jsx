@@ -37,9 +37,9 @@ function VerifyOtp() {
                 You must verify your OTP before you login.
             </p>
             <form onSubmit={handleSubmit}>
-                <p>Email: {email}</p>
+                <p className='email-text'>Email: {email}</p>
                 <div className="input-group">
-                    <label htmlFor="otp">OTP</label>
+                    <label htmlFor="otp">OTP:</label>
                     <input
                         type="text"
                         id="otp"
