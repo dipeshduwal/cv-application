@@ -35,6 +35,7 @@ function Signup() {
         setError('');
         try {
             await axios.post('http://localhost:5000/auth/signup', { username, email, password });
+            localStorage.setItem('unverifiedEmail', email);
             setSuccessMessage('✔ OTP sent to your email. Please verify before login. Redirecting...');
             setTimeout(() => navigate('/verify-otp'), 2000);
         } catch (err) {
@@ -82,8 +83,8 @@ function Signup() {
                         placeholder="Create a password"
                         value={password}
                         onChange={handlePasswordChange}
-                        pattern="(?=.*\d)(?=.*[A-Z]).{6,}"
-                        title="Must contain at least one number, one uppercase, and at least 6 characters"
+                        pattern="(?=.*\d)(?=.*[a-z]).{6,}"
+                        title="Must contain at least one number, one lowercase, and at least 6 characters"
                         required
 
                     />
