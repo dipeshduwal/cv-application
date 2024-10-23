@@ -31,6 +31,8 @@ const CVApp = () => {
     navigate('/HomePage'); 
   };
 
+  const visibleEducations = educations.filter(edu => edu.isVisible);
+
   return (
     <div className='cvapp-container'>
       <nav className="navbar">
@@ -70,7 +72,7 @@ const CVApp = () => {
         <div className="preview-section">
           <ResumePreview
             personalInfo={personalInfo}
-            educations={educations}
+            visibleEducations={visibleEducations}
             experiences={experiences}
             skills={skills}
             photo={`http://localhost:5000${personalInfo.photo}`}

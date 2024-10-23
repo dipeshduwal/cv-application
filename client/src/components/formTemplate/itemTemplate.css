@@ -56,3 +56,22 @@
     background-color: #c82333;
     font-weight: 600;
 }
+
+.visibility-toggle-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25px;
+    border: none;
+    padding: 0;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+    background-color: #7f7f7a;
+    color: white;
+}
+
+.visibility-toggle-button:hover {
+    background-color: #626261;;
+    
+}
