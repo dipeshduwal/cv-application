@@ -15,6 +15,7 @@ function Education({ educations, setEducations }) {
         endDate: '',
         description: ''
     });
+    const [visibleEducations, setVisibleEducations] = useState({}); 
 
     const fields = [
         { name: 'school', type: 'text', label: 'School', placeholder: 'Enter School Name', required: true },
@@ -33,6 +34,12 @@ function Education({ educations, setEducations }) {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setEducations(response.data);
+                // Initialize visibility state for each education
+                const initialVisibility = response.data.reduce((acc, edu) => {
+                    acc[edu.id] = true; // Set each item to visible by default
+                    return acc;
+                }, {});
+                setVisibleEducations(initialVisibility);
             } catch (error) {
                 console.error("Error fetching skill entries:", error);
             }
@@ -124,6 +131,13 @@ function Education({ educations, setEducations }) {
         return new Date(dateString).toLocaleDateString(undefined, options);
     };
 
+    const toggleVisibility = (id, isVisible) => {
+        setVisibleEducations(prevState => ({
+            ...prevState,
+            [id]: isVisible
+        }));
+    };
+
     // Rendering the component
     return (
         <div className="education-section">
@@ -136,6 +150,7 @@ function Education({ educations, setEducations }) {
                         description={edu.description}
                         onEdit={() => handleEdit(index)}
                         onDelete={() => handleDelete(index)}
+                        onToggleVisibility={(isVisible) => toggleVisibility(edu.id, isVisible)}
                     />
                 ))}
             </div>

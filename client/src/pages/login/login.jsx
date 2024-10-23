@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import './login.css';
+import { FaEye, FaEyeSlash} from 'react-icons/fa';
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -9,6 +10,7 @@ function Login() {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const [isValid, setIsValid] = useState(false);
+    const [passwordVisible, setPasswordVisible] = useState('false');
 
     const navigate = useNavigate();
 
@@ -28,6 +30,10 @@ function Login() {
         setPassword(e.target.value);
         validateForm();
     };
+
+    const togglePasswordVisibility = () => {
+        setPasswordVisible(!passwordVisible);
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -79,14 +85,19 @@ function Login() {
                 </div>
                 <div className="input-group">
                     <label htmlFor="password">Password</label>
-                    <input
-                        type="password"
-                        id="password"
-                        placeholder="Enter your password"
-                        value={password}
-                        onChange={handlePasswordChange}
-                        required
-                    />
+                    <div className="password-container">
+                        <input
+                            type={passwordVisible ? "text" : "password"} // Toggle between text and password
+                            id="password"
+                            placeholder="Create a password"
+                            value={password}
+                            onChange={handlePasswordChange}
+                            required
+                        />
+                        <div type="button" className="toggle-password" onClick={togglePasswordVisibility}>
+                            {passwordVisible ? <FaEyeSlash /> : <FaEye />} {/* Icon for password visibility */}
+                        </div>
+                    </div>
                 </div>
                 <button type="submit" disabled={loading || !isValid}>
                     {loading ? 'Logging in...' : 'Login'}
