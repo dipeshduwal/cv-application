@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import './resetPassword.css';
+import { FaEye, FaEyeSlash} from 'react-icons/fa';
 
 function ResetPassword() {
     const [email, setEmail] = useState('');
@@ -11,12 +12,17 @@ function ResetPassword() {
     const [error, setError] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
     const [loading, setLoading] = useState(false);
+    const [passwordVisible, setPasswordVisible] = useState('false');
     const navigate = useNavigate();
 
     const isValidOtp = (otp) => {
         const otpPattern = /^\d{6}$/;
         return otpPattern.test(otp);
     };
+
+    const togglePasswordVisibility = () => {
+        setPasswordVisible(!passwordVisible);
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -63,13 +69,21 @@ function ResetPassword() {
                     onChange={(e) => setOtp(e.target.value)}
                     required
                 />
-                <input
-                    type="password"
-                    placeholder="Enter new password"
-                    value={newPassword}
-                    onChange={(e) => setNewPassword(e.target.value)}
-                    required
-                />
+                <div className="password-container">
+                    <input
+                        type={passwordVisible ? "text" : "password"} // Toggle between text and password
+                        id="password"
+                        placeholder="Create a new password"
+                        value={newPassword}
+                        onChange={(e) => setNewPassword(e.target.value)}
+                        pattern="(?=.*\d)(?=.*[A-Z]).{6,}"
+                        title="Must contain at least one number, one uppercase, and at least 6 characters"
+                        required
+                    />
+                    <div type="button" className="toggle-password" onClick={togglePasswordVisibility}>
+                        {passwordVisible ? <FaEyeSlash /> : <FaEye />} {/* Icon for password visibility */}
+                    </div>
+                </div>
                 <button type="submit" disabled={loading}>
                     {loading ? 'Resetting...' : 'Reset Password'}
                 </button>
