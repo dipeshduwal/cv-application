@@ -21,7 +21,7 @@ const requestPasswordReset = async (email) => {
     user.otpExpiresAt = otpExpiresAt;
     await user.save();
 
-    await sendOtpEmail(user.email, otp);
+    sendOtpEmail(user.email, otp);
 };
 
 // Reset Password Service

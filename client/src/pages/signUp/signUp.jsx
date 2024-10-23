@@ -82,7 +82,10 @@ function Signup() {
                         placeholder="Create a password"
                         value={password}
                         onChange={handlePasswordChange}
+                        pattern="(?=.*\d)(?=.*[A-Z]).{6,}"
+                        title="Must contain at least one number, one uppercase, and at least 6 characters"
                         required
+
                     />
                 </div>
                 <button type="submit" disabled={loading || !isValid}>

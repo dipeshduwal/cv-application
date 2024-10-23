@@ -21,9 +21,9 @@ function VerifyOtp() {
         try {
             await axios.post('http://localhost:5000/verification/verify-otp', { email, otp });
             setSuccessMessage('✔ Email verified successfully! You can now log in. Redirecting....');
-            setTimeout(() => navigate('/login'), 3000); 
+            setTimeout(() => navigate('/login'), 2000); 
         } catch (err) {
-            setError(err.response?.data?.message || 'An error occurred');
+            setError(err.response?.data?.message || 'The OTP does not match with send OTP.');
         }
     };
 

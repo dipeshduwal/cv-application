@@ -37,9 +37,9 @@ function ResetPassword() {
                 newPassword,
             });
             setSuccessMessage('✔ Password reset successfully. Please log in. Redirecting...');
-            setTimeout(() => navigate('/login'), 3000); // Redirect to Login page
+            setTimeout(() => navigate('/login'), 2000); // Redirect to Login page
         } catch (err) {
-            setError(err.response?.data?.message || 'An error occurred');
+            setError(err.response?.data?.message || 'Invalid OTP Provided.');
         } finally {
             setLoading(false);
         }
