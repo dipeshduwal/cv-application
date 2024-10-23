@@ -4,10 +4,13 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import './resumePreview.css';
 
-function ResumePreview({ personalInfo, visibleEducations, experiences, skills, photo }) {
+function ResumePreview({ personalInfo, educations = [], experiences, skills, photo }) {
     const [accentColor, setAccentColor] = useState('#166a18'); // Default accent color
     const [textColor, setTextColor] = useState('#143d15');
     const [fontFamily, setFontFamily] = useState('Merriweather');
+    
+    // Directly filter educations instead of using useEffect and state
+    const visibleEducations = educations.filter(edu => edu.isVisible);
 
     const formatDate = (dateString) => {
         if (!dateString) return '';

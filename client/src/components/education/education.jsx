@@ -150,7 +150,8 @@ function Education({ educations, setEducations }) {
                         description={edu.description}
                         onEdit={() => handleEdit(index)}
                         onDelete={() => handleDelete(index)}
-                        onToggleVisibility={(isVisible) => toggleVisibility(edu.id, isVisible)}
+                        isVisible={visibleEducations[edu.id]}  // Pass visibility state
+                        onToggleVisibility={(isVisible) => toggleVisibility(edu.id, isVisible)} 
                     />
                 ))}
             </div>

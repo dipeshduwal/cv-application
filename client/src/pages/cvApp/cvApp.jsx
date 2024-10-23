@@ -31,6 +31,15 @@ const CVApp = () => {
     navigate('/HomePage'); 
   };
 
+  // Toggle visibility for a specific education item
+  const toggleEducationVisibility = (id) => {
+    setEducations((prevEducations) =>
+      prevEducations.map((edu) =>
+        edu.id === id ? { ...edu, isVisible: !edu.isVisible } : edu
+      )
+    );
+  };
+
   const visibleEducations = educations.filter(edu => edu.isVisible);
 
   return (
@@ -57,7 +66,7 @@ const CVApp = () => {
           </div>
 
           <CollapsibleSection title="Education">
-            <Education educations={educations} setEducations={setEducations} />
+            <Education educations={educations} setEducations={setEducations} toggleVisibility={toggleEducationVisibility}/>
           </CollapsibleSection>
 
           <CollapsibleSection title="Work Experience">
