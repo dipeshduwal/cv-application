@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import './signUp.css';
+import { FaEye, FaEyeSlash } from 'react-icons/fa'; 
 
 function Signup() {
     const [username, setUsername] = useState('');
@@ -11,6 +12,7 @@ function Signup() {
     const [loading, setLoading] = useState(false);
     const [isValid, setIsValid] = useState(false);
     const [successMessage, setSuccessMessage] = useState('');
+    const [passwordVisible, setPasswordVisible] = useState('false');
     const navigate = useNavigate();
 
     const validateForm = () => {
@@ -28,6 +30,10 @@ function Signup() {
         setPassword(e.target.value);
         validateForm();
     };
+
+    const togglePasswordVisibility = () => {
+        setPasswordVisible(!passwordVisible);
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -77,17 +83,21 @@ function Signup() {
                 </div>
                 <div className="input-group">
                     <label htmlFor="password">Password</label>
-                    <input
-                        type="password"
-                        id="password"
-                        placeholder="Create a password"
-                        value={password}
-                        onChange={handlePasswordChange}
-                        pattern="(?=.*\d)(?=.*[a-z]).{6,}"
-                        title="Must contain at least one number, one lowercase, and at least 6 characters"
-                        required
-
-                    />
+                    <div className="password-container">
+                        <input
+                            type={passwordVisible ? "text" : "password"} // Toggle between text and password
+                            id="password"
+                            placeholder="Create a password"
+                            value={password}
+                            onChange={handlePasswordChange}
+                            pattern="(?=.*\d)(?=.*[A-Z]).{6,}"
+                            title="Must contain at least one number, one uppercase, and at least 6 characters"
+                            required
+                        />
+                        <div type="button" className="toggle-password" onClick={togglePasswordVisibility}>
+                            {passwordVisible ? <FaEyeSlash /> : <FaEye />} {/* Icon for password visibility */}
+                        </div>
+                    </div>
                 </div>
                 <button type="submit" disabled={loading || !isValid}>
                     {loading ? 'Signing up...' : 'Signup'}

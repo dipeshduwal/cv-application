@@ -29,6 +29,25 @@ h2 {
     margin-bottom: 15px;
 }
 
+.password-container {
+    position: relative;
+}
+
+.password-container input {
+    width: 100%;
+    padding-right: 40px; /* Space for the icon */
+}
+
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
 label {
     display: block;
     margin-bottom: 5px;
