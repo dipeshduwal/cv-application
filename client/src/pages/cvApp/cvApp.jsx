@@ -65,6 +65,9 @@ const CVApp = () => {
             <Link to="/profile">Profile</Link>
           </li>
           <li>
+            <Link to="/faq">FAQ</Link>
+          </li>
+          <li>
             <button className="logout-button2" onClick={() => setIsModalOpen(true)}>Logout</button>
           </li>
         </ul>

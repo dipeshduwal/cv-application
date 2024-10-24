@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './faq.css';
 
 const FAQ = () => {
@@ -25,9 +25,15 @@ const FAQ = () => {
         },
         {
             question: "How can I contact support?",
-            answer: "You can contact our support team through the 'Contact Us' page or via email at support@resumebuilder.com."
+            answer: "You can contact our support team through our email or LinkedIn."
         },
     ];
+
+    const [activeIndex, setActiveIndex] = useState(null);
+
+    const toggleAnswer = (index) => {
+        setActiveIndex(activeIndex === index ? null : index);
+    };
 
     return (
         <div className="faq-container">
@@ -35,8 +41,12 @@ const FAQ = () => {
             <div className="faq-list">
                 {faqs.map((item, index) => (
                     <div key={index} className="faq-item">
-                        <h2 className="faq-question">{item.question}</h2>
-                        <p className="faq-answer">{item.answer}</p>
+                        <h2 className="faq-question" onClick={() => toggleAnswer(index)}>
+                            {item.question}
+                        </h2>
+                        {activeIndex === index && (
+                            <p className="faq-answer">{item.answer}</p>
+                        )}
                     </div>
                 ))}
             </div>

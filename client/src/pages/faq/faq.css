@@ -1,41 +1,47 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    background-color: #f0f2f5;
+}
+
 .faq-container {
     max-width: 800px;
-    margin: 0 auto;
     padding: 20px;
     background-color: #f9f9f9;
-    border-radius: 8px;
+    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
+    margin-top: 200px;
     text-align: center;
     color: #333;
-    margin-bottom: 20px;
+    font-size: 30px;
 }
 
 .faq-list {
-    margin-top: 20px;
+    margin-top: 5px;
 }
 
 .faq-item {
     border-bottom: 1px solid #ddd;
-    padding: 15px 0;
+    padding: 10px;
 }
 
 .faq-question {
-    font-size: 18px;
-    color: #007BFF; /* Bootstrap Primary Color */
-    cursor: pointer; /* Indicate it's clickable if you want to implement expand/collapse */
+    font-size: 20px;
+    color: #007BFF;
+    cursor: pointer;
+}
+
+.faq-question:hover {
+    color: #0056b3;
 }
 
 .faq-answer {
     margin-top: 10px;
-    font-size: 16px;
+    font-size: 18px;
     color: #555;
-    display: none; /* Hidden by default; can be toggled */
-}
-
-/* Optional: Add hover effects */
-.faq-question:hover {
-    text-decoration: underline;
+    line-height: 1.6; /* Improved readability */
 }
