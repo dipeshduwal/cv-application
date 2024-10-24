@@ -22,7 +22,7 @@ function VerifyOtp() {
         try {
             await axios.post('http://localhost:5000/verification/verify-otp', { email, otp });
             setSuccessMessage('✔ Email verified successfully! You can now log in. Redirecting....');
-            setTimeout(() => navigate('/login'), 2000); 
+            setTimeout(() => navigate('/login'), 2000);
         } catch (err) {
             setError(err.response?.data?.message || 'The OTP does not match with send OTP.');
         }
@@ -32,7 +32,7 @@ function VerifyOtp() {
         try {
             await axios.post('http://localhost:5000/verification/resend-otp', { email });
             setResendMessage('✔ OTP has been resent to your email. Please check your inbox.');
-            setTimeout(() => setResendMessage(''), 2000);
+            setTimeout(() => setResendMessage(''), 4000);
         } catch (err) {
             setError('❌ Unable to resend OTP. Please try again later.');
         }
@@ -41,8 +41,8 @@ function VerifyOtp() {
     return (
         <div className="verify-otp-container">
             <div className='nav-link'>
-            <Link to="/HomePage" className="nav-link1">Go To Homepage</Link>
-            </div>  
+                <Link to="/HomePage" className="nav-link1">Go To Homepage</Link>
+            </div>
             <h1>Verify Your Email</h1>
             <p className="verification-message">
                 You must verify your OTP before you login. An OTP has been sent to your mail.
@@ -61,9 +61,10 @@ function VerifyOtp() {
                     />
                 </div>
                 <button type="submit">Verify OTP</button>
-                <button className="resend-otp-button" onClick={handleResendOtp}>
-                Resend OTP
-            </button>
+                <div className="resend-otp-button">
+                    <p> Did not get an otp? ⇒ </p>
+                    <button onClick={handleResendOtp}>Resend OTP</button>
+                </div>
             </form>
             {resendMessage && <div className="resend-message">{resendMessage}</div>}
             {successMessage && <div className="success-message">{successMessage}</div>}
@@ -72,7 +73,6 @@ function VerifyOtp() {
             <div className="help-section">
                 <h3>Having Trouble?</h3>
                 <p>If you did not receive the OTP, check your spam or junk folder. You can also click the <strong>Resend OTP</strong> button above.</p>
-                <p>If the issue persists, please <a href="/contact-support">contact support</a>.</p>
             </div>
         </div>
     );

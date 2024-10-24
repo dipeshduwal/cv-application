@@ -1,7 +1,7 @@
 .verify-otp-container {
-    max-width: 400px;
-    margin-left: 600px;
-    margin-top: 200px;
+    max-width: 450px;
+    margin-left: 580px;
+    margin-top: 50px;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -58,6 +58,34 @@ input {
     border-radius: 4px;
 }
 
+.resend-otp-button{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.resend-otp-button p{
+    display: flex;
+    margin-top: 15px;
+    justify-content: center;
+    align-items: center;
+    font-size: larger;
+}
+
+.resend-otp-button button{
+    margin-left: 10px;
+    color: rgb(254, 254, 254);
+    width: auto;
+    background-color: grey;
+}
+
+.resend-otp-button button:hover{
+    background-color: rgb(75, 74, 74);
+}
+
 button {
     width: 100%;
     padding: 10px;
@@ -72,7 +100,23 @@ button:hover {
     background-color: #218838;
 }
 
+.success-message, .resend-message {
+    margin-top: 10px;
+    color: green;
+    font-weight: bold;
+}
+
 .error-message {
     color: red;
     text-align: center;
 }
+
+.help-section {
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.help-section h3{
+    color: #000000;
+}
+
