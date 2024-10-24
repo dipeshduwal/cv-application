@@ -51,14 +51,24 @@ const ProfileComponent = () => {
 
     return (
         <div className="profile-container">
-            <div className='nav-link'>
-            <Link to="/cvapp" className="nav-link2">Go To Resume Builder</Link>
-            </div> 
+             <nav className="navbar">
+                <div className="navbar-logo">
+                    <h2>Resume Builder</h2>
+                </div>
+                <ul className="navbar-links">
+                    <li>
+                        <Link to="/cvapp">CV App</Link>
+                    </li>
+                    <li>
+                        <Link to="/faq">FAQ</Link>
+                    </li>
+                </ul>
+            </nav>
             {profile && (
                 <div className="profile-card">
                     <h2>User Profile</h2>
-                    <p><strong>Username:</strong> {profile.username}</p>
-                    <p><strong>Email:</strong> {profile.email}</p>
+                    <p><strong>Your Username:</strong> {profile.username}</p>
+                    <p><strong>Your Email:</strong> {profile.email}</p>
                     <button className="logout-button" onClick={() => setIsModalOpen(true)}>
                         Logout
                     </button>

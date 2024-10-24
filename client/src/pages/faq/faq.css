@@ -12,28 +12,6 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.nav-link {
-    display: flex;
-    gap: 80px;
-    margin-bottom: 20px;
-}
-
-.nav-link2 {
-    background-color: #00695c;
-    color: #ffffff;
-    padding: 12px 20px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.nav-link2:hover {
-    background-color: #00695c;
-    transform: scale(1.05);
-}
-
 h1 {
     margin-top: 10px;
     text-align: center;
@@ -52,12 +30,12 @@ h1 {
 
 .faq-question {
     font-size: 20px;
-    color: #007BFF;
+    color: #1f7942;
     cursor: pointer;
 }
 
 .faq-question:hover {
-    color: #0056b3;
+    color: #16532d;
 }
 
 .faq-answer {

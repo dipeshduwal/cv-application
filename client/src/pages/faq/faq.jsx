@@ -10,19 +10,31 @@ const FAQ = () => {
         },
         {
             question: "Is Resume Builder free to use?",
-            answer: "Yes, Resume Builder offers free access to its basic features, with optional premium features available for a fee."
+            answer: "Yes, Resume Builder offers free access to all of its features."
+        },
+        {   
+            question: "Can I customize the color and font of my resume?",
+            answer: "Yes, Resume Builder allows you to change the color scheme and fonts to match your style or industry requirements."
         },
         {
             question: "Can I download my resume in different formats?",
-            answer: "Absolutely! You can download your resume in various formats such as PDF, Word, and TXT."
+            answer: "Currently, you can download your resume in PDF Format which can be easily converted to other formats using other tools."
         },
         {
             question: "How do I edit my resume after creation?",
             answer: "You can easily log in to your account and navigate to your saved resumes to make any edits."
         },
         {
-            question: "Does Resume Builder provide templates?",
-            answer: "Yes, we offer a variety of professionally designed templates to choose from to help you get started."
+            question: "How do I upload an image to my CV?",
+            answer: "You can upload an image directly in the 'Personal Information' section of your resume template. Make sure to use an appropriate image size and format (e.g., JPG or PNG)."
+        },
+        {
+            question: "What should I do if I forget my password?",
+            answer: "If you forget your password, click on the 'Forgot Password' link on the login page. You will receive an OTP via email to reset your password."
+        },
+        {
+            question: "How does the email verification process work?",
+            answer: "After signing up, you will receive an OTP at your registered email address. Enter the OTP on the verification page to activate your account."
         },
         {
             question: "How can I contact support?",
