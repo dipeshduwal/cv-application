@@ -87,7 +87,7 @@ function Login() {
                     <label htmlFor="password">Password</label>
                     <div className="password-container">
                         <input
-                            type={passwordVisible ? "text" : "password"} // Toggle between text and password
+                            type={passwordVisible ? "password" : "text"} // Toggle between text and password
                             id="password"
                             placeholder="Create a password"
                             value={password}
