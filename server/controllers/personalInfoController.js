@@ -1,8 +1,4 @@
-const {
-    createOrUpdateInfo,
-    getInfo,
-    deleteInfo,
-} = require('../services/personalInfoServices');
+const { createOrUpdateInfo, getInfo, deleteInfo} = require('../services/personalInfoServices');
 
 // Create or update personal info
 exports.PostInfo = async (req, res) => {

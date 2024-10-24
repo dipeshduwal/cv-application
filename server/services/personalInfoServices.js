@@ -3,10 +3,27 @@ const path = require('path');
 const PersonalInfo = require('../models/personalInfo');
 
 // Save uploaded photo and return the relative path
-const savePhoto = async (file) => {
-    const uploadPath = path.join(__dirname, '../uploads/', file.name);
+const savePhoto = async (file, userEmail) => {
+
+    // Log the userEmail for debugging purposes
+    console.log('Saving photo for user email:', userEmail);
+
+    // Check if the user exists in the database
+    const personalInfo = await PersonalInfo.findOne({ where: { userEmail } });
+    if (!personalInfo) {
+        throw new Error('User not found. Cannot save photo.');
+    }
+     // Sanitize email to make it a valid file name (replace invalid characters)
+     const sanitizedEmail = userEmail.replace(/[^a-zA-Z0-9]/g, '_');
+    
+     // Get the original file extension (e.g., '.jpg', '.png')
+     const fileExtension = path.extname(file.name);
+     
+     // Create new file name using the sanitized email
+     const newFileName = `${sanitizedEmail}${fileExtension}`;
+    const uploadPath = path.join(__dirname, '../uploads/', newFileName);
     await file.mv(uploadPath);
-    return `/uploads/${file.name}`;
+    return `/uploads/${newFileName}`;
 };
 
 // Delete a photo if it exists on the server
