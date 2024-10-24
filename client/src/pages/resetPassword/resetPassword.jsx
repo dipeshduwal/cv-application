@@ -54,6 +54,7 @@ function ResetPassword() {
     return (
         <div className="reset-password-container">
             <h1>Reset Password</h1>
+            <p>Please enter your new password below. Make sure it’s strong and secure.</p>
             <form onSubmit={handleSubmit}>
                 <input
                     type="email"
@@ -90,7 +91,18 @@ function ResetPassword() {
             </form>
             {successMessage && <div className="success-message">{successMessage}</div>}
             {error && <p className="error-message">{error}</p>}
+
+            <div className='back-to-login'>
             <Link to="/login">Back to Login</Link>
+            </div>
+            <div className="info-section">
+                <h3>Security Tips for a Strong Password</h3>
+                <ul>
+                    <li>Use at least 7 characters, including uppercase, lowercase, and symbols.</li>
+                    <li>Avoid using personal information like your name or birthdate.</li>
+                    <li>Don’t reuse old passwords across multiple sites.</li>
+                </ul>
+            </div>
         </div>
     );
 }
