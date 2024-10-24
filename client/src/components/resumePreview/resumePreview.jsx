@@ -4,13 +4,14 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import './resumePreview.css';
 
-function ResumePreview({ personalInfo, educations = [], visibleEducations, experiences = [], visibleExperiences, skills, photo, }) {
+function ResumePreview({ personalInfo, educations = [], visibleEducations, experiences = [], visibleExperiences, skills =[], visibleSkills, photo, }) {
     const [accentColor, setAccentColor] = useState('#166a18'); // Default accent color
     const [textColor, setTextColor] = useState('#143d15');
     const [fontFamily, setFontFamily] = useState('Merriweather');
     
     const filteredEducations = educations.filter(edu => visibleEducations[edu.id]);
     const filteredExperiences = experiences.filter(exp => visibleExperiences[exp.id]);
+    const filteredSkills = skills.filter(skl => visibleSkills[skl.id]);
 
     const formatDate = (dateString) => {
         if (!dateString) return '';
@@ -116,8 +117,8 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
 
                     <section>
                         <h3 style={{ backgroundColor: accentColor }}>Skills</h3>
-                        {skills.map((skl, index) => (
-                            <li key={index} className="entry" style={{ color: textColor }}>
+                        {filteredSkills.map((skl) => (
+                            <li key={skl.id} className="entry" style={{ color: textColor }}>
                                 {skl.skillName}
                             </li>
                         ))}

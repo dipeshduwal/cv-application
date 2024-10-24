@@ -4,7 +4,7 @@ import FormTemplate from "../formTemplate/formTemplate";
 import ItemTemplate from "../formTemplate/itemTemplate";
 import '../../styles/buttons.css'
 
-function Skill({skills, setSkills}){
+function Skill({skills, setSkills, visibleSkills, setVisibleSkills}){
     const [showForm, setShowForm] = useState(false);
     const [editingIndex, setEditingIndex] = useState(null);
     const [skill, setSkill] = useState({
@@ -26,6 +26,10 @@ function Skill({skills, setSkills}){
                     }
                 });
                 setSkills(response.data);
+                const initialVisibility = response.data.reduce((acc, skl) => {
+                    acc[skl.id] = true;
+                    return acc;
+                }, {});
             } catch (error) {
                 console.error("Error fetching skill entries:", error);
             }
@@ -105,6 +109,13 @@ function Skill({skills, setSkills}){
         resetForm();
     };
 
+    const toggleVisibility = (id) => {
+        setVisibleSkills((prev) => ({
+            ...prev,
+            [id]: !prev[id], // Toggle visibility state
+        }));
+    };
+
     return (
         <div className="skill-section">
             <div className="skill-list">
@@ -114,7 +125,8 @@ function Skill({skills, setSkills}){
                         title={skl.skillName}
                         onEdit={() => handleEdit(index)}
                         onDelete={() => handleDelete(index)}
-                    
+                        isVisible={visibleSkills[skl.id]}
+                        onToggleVisibility={() => toggleVisibility(skl.id)}
                     />
                 
                 ))}

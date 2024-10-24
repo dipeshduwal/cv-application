@@ -25,6 +25,7 @@ const CVApp = () => {
   const [isModalOpen, setIsModalOpen] = useState(false); 
   const [visibleEducations, setVisibleEducations] = useState({});
   const [visibleExperiences, setVisibleExperiences] = useState({});
+  const [visibleSkills, setVisibleSkills] = useState({});
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -41,6 +42,13 @@ const CVApp = () => {
 
   const toggleExperienceVisibility = (id) => {
     setVisibleExperiences((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
+
+  const toggleSkillVisibility = (id) => {
+    setVisibleSkills((prev) => ({
       ...prev,
       [id]: !prev[id],
     }));
@@ -78,7 +86,7 @@ const CVApp = () => {
           </CollapsibleSection>
 
           <CollapsibleSection title="Skills">
-            <Skills skills={skills} setSkills={setSkills} />
+            <Skills skills={skills} setSkills={setSkills} visibleSkills={visibleSkills} setVisibleSkills={setVisibleSkills}/>
           </CollapsibleSection>
         </div>
 
@@ -90,6 +98,7 @@ const CVApp = () => {
             experiences={experiences}
             visibleExperiences={visibleExperiences}
             skills={skills}
+            visibleSkills={visibleSkills}
             photo={`http://localhost:5000${personalInfo.photo}`}
           />
         </div>
