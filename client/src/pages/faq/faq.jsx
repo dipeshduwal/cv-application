@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './faq.css';
 
 const FAQ = () => {
@@ -37,6 +38,19 @@ const FAQ = () => {
 
     return (
         <div className="faq-container">
+            <nav className="navbar">
+                <div className="navbar-logo">
+                    <h2>Resume Builder</h2>
+                </div>
+                <ul className="navbar-links">
+                    <li>
+                        <Link to="/cvapp">CV App</Link>
+                    </li>
+                    <li>
+                        <Link to="/profile">Profile</Link>
+                    </li>
+                </ul>
+            </nav>
             <h1>Frequently Asked Questions</h1>
             <div className="faq-list">
                 {faqs.map((item, index) => (
