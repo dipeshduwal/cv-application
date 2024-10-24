@@ -1,4 +1,6 @@
 const User = require('../models/user');
+const {sendOtpEmail} = require('../utils/emailHelper');
+const otpHelper = require('../utils/otpHelper');
 
 const OtpVerification = async (email, otp) => {
     const lowercasedEmail = email.toLowerCase();
@@ -23,4 +25,25 @@ const OtpVerification = async (email, otp) => {
         return { message: 'Email verified successfully.' };
 };
 
-module.exports = {OtpVerification};
+
+// Resend OTP Service
+const resendOtpService = async (email) => {
+    const lowercasedEmail = email.toLowerCase();
+    const user = await User.findOne({ where: { email: lowercasedEmail } });
+    if (!user) {
+        throw new Error('User not found.');
+    }
+
+    const otp = otpHelper.generateOtp();
+
+    // Update OTP and expiration timestamp
+    user.otp = otp;
+    user.otpExpiresAt = otpHelper.getOtpExpiration(600);
+    await user.save();
+
+    sendOtpEmail(user.email, otp);
+
+    return { message: 'OTP sent successfully to your email.' };
+};
+
+module.exports = {OtpVerification, resendOtpService};
