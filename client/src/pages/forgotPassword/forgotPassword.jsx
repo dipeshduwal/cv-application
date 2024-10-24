@@ -35,7 +35,7 @@ function ForgotPassword() {
     return (
         <div className="forgot-password-container">
             <h1>Forgot Password?</h1>
-            <p>Enter your email to receive an OTP.</p>
+            <p>If you've forgotten your password, enter your email below to receive an OTP to reset it.</p>
 
             <input
                 type="email"
@@ -52,7 +52,12 @@ function ForgotPassword() {
             {successMessage && <div className="success-message">{successMessage}</div>}
             {error && <p className="error-message">{error}</p>}
 
-            <Link to="/login">Back to Login</Link>
+            <div className="back-to-login">
+                <p>Remember your password?</p>
+                <Link to="/login" className="login-link-button">
+                    Back to Login
+                </Link>
+            </div>
         </div>
     );
 }
