@@ -4,7 +4,7 @@ import FormTemplate from "../formTemplate/formTemplate";
 import ItemTemplate from "../formTemplate/itemTemplate";
 import '../../styles/buttons.css';
 
-function Experience({experiences,setExperiences}) {
+function Experience({experiences,setExperiences, visibleExperiences, setVisibleExperiences}) {
     const [showForm, setShowForm] = useState(false);
     const [editingIndex, setEditingIndex] = useState(null);
     const [experience, setExperience] = useState({
@@ -34,6 +34,11 @@ function Experience({experiences,setExperiences}) {
                     }
                 });
                 setExperiences(response.data);
+                const initialVisibility = response.data.reduce((acc, exp) => {
+                    acc[exp.id] = true;
+                    return acc;
+                }, {});
+                setVisibleExperiences(initialVisibility);
             } catch (err) {
                 console.error("Error fetching skill entries:", error);
             }
@@ -123,6 +128,13 @@ function Experience({experiences,setExperiences}) {
         return new Date(dateString).toLocaleDateString(undefined, options);
     };
 
+    const toggleVisibility = (id) => {
+        setVisibleExperiences((prev) => ({
+            ...prev,
+            [id]: !prev[id],
+        }));
+    }
+
     return(
         <div className="experience-section">
             <div className="experience-list">
@@ -134,6 +146,8 @@ function Experience({experiences,setExperiences}) {
                         description={exp.responsibilities}
                         onEdit={() => handleEdit(index)}
                         onDelete={() => handleDelete(index)}
+                        isVisible={visibleExperiences[exp.id]}
+                        onToggleVisibility={() => toggleVisibility(exp.id)}
                     />
                 ))}
 
