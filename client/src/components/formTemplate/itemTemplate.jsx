@@ -20,10 +20,6 @@ function ItemTemplate({ title, subtitle, description, onEdit, onDelete, onToggle
         setIsModalOpen(false);
     };
 
-    const toggleVisibility = () => {  
-        onToggleVisibility(!isVisible);  // Notify parent component of visibility change
-    };
-
     return (
         <div className="item-template">
             <div className="item-content">
@@ -42,7 +38,7 @@ function ItemTemplate({ title, subtitle, description, onEdit, onDelete, onToggle
                         Remove
                     </button>
                 )}
-                <button className="visibility-toggle-button" onClick={toggleVisibility}>
+                <button className="visibility-toggle-button" onClick={onToggleVisibility}>
                     {isVisible ? <FaEye /> : <FaEyeSlash />} {/* Display correct icon */}
                 </button>
             </div>

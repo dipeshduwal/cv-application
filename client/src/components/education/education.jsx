@@ -4,7 +4,7 @@ import FormTemplate from "../formTemplate/formTemplate";
 import ItemTemplate from "../formTemplate/itemTemplate";
 import '../../styles/buttons.css';
 
-function Education({ educations, setEducations }) {
+function Education({ educations, setEducations, visibleEducations, setVisibleEducations }) {
     const [showForm, setShowForm] = useState(false);
     const [editingIndex, setEditingIndex] = useState(null);
     const [education, setEducation] = useState({
@@ -15,7 +15,6 @@ function Education({ educations, setEducations }) {
         endDate: '',
         description: ''
     });
-    const [visibleEducations, setVisibleEducations] = useState({}); 
 
     const fields = [
         { name: 'school', type: 'text', label: 'School', placeholder: 'Enter School Name', required: true },
@@ -131,10 +130,10 @@ function Education({ educations, setEducations }) {
         return new Date(dateString).toLocaleDateString(undefined, options);
     };
 
-    const toggleVisibility = (id, isVisible) => {
-        setVisibleEducations(prevState => ({
-            ...prevState,
-            [id]: isVisible
+    const toggleVisibility = (id) => {
+        setVisibleEducations((prev) => ({
+            ...prev,
+            [id]: !prev[id], // Toggle visibility state
         }));
     };
 
@@ -150,8 +149,8 @@ function Education({ educations, setEducations }) {
                         description={edu.description}
                         onEdit={() => handleEdit(index)}
                         onDelete={() => handleDelete(index)}
-                        isVisible={visibleEducations[edu.id]}  // Pass visibility state
-                        onToggleVisibility={(isVisible) => toggleVisibility(edu.id, isVisible)} 
+                        isVisible={visibleEducations[edu.id]}
+                        onToggleVisibility={() => toggleVisibility(edu.id)}
                     />
                 ))}
             </div>

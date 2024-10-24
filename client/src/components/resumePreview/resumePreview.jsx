@@ -4,13 +4,12 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import './resumePreview.css';
 
-function ResumePreview({ personalInfo, educations = [], experiences, skills, photo }) {
+function ResumePreview({ personalInfo, educations = [], experiences, skills, photo, visibleEducations }) {
     const [accentColor, setAccentColor] = useState('#166a18'); // Default accent color
     const [textColor, setTextColor] = useState('#143d15');
     const [fontFamily, setFontFamily] = useState('Merriweather');
     
-    // Directly filter educations instead of using useEffect and state
-    const visibleEducations = educations.filter(edu => edu.isVisible);
+    const filteredEducations = educations.filter(edu => visibleEducations[edu.id]);
 
     const formatDate = (dateString) => {
         if (!dateString) return '';
@@ -93,8 +92,8 @@ function ResumePreview({ personalInfo, educations = [], experiences, skills, pho
 
                     <section>
                         <h3 style={{ backgroundColor: accentColor }}>Education</h3>
-                        {visibleEducations.map((edu, index) => (
-                            <div key={index} className="entry" style={{ color: textColor }}>
+                        {filteredEducations.map((edu) => (
+                            <div key={edu.id} className="entry" style={{ color: textColor }}>
                                 <h4>{`${edu.fieldOfStudy} in ${edu.degree} at ${edu.school}`}</h4>
                                 <p>{formatDate(edu.startDate)} - {edu.endDate ? formatDate(edu.endDate) : 'Present'}</p>
                                 <p>{edu.description}</p>

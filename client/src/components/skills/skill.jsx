@@ -95,7 +95,7 @@ function Skill({skills, setSkills}){
 
     const resetForm = () => {
         setSkill({
-            skillName: '',
+            skillName: ''
         });
         setShowForm(false);
         setEditingIndex(null);
@@ -114,6 +114,7 @@ function Skill({skills, setSkills}){
                         title={skl.skillName}
                         onEdit={() => handleEdit(index)}
                         onDelete={() => handleDelete(index)}
+                    
                     />
                 
                 ))}

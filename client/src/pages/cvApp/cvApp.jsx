@@ -23,6 +23,7 @@ const CVApp = () => {
   const [experiences, setExperiences] = useState([]);
   const [skills, setSkills] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false); 
+  const [visibleEducations, setVisibleEducations] = useState({});
 
   const navigate = useNavigate();
 
@@ -31,16 +32,12 @@ const CVApp = () => {
     navigate('/HomePage'); 
   };
 
-  // Toggle visibility for a specific education item
   const toggleEducationVisibility = (id) => {
-    setEducations((prevEducations) =>
-      prevEducations.map((edu) =>
-        edu.id === id ? { ...edu, isVisible: !edu.isVisible } : edu
-      )
-    );
-  };
-
-  const visibleEducations = educations.filter(edu => edu.isVisible);
+    setVisibleEducations((prev) => ({
+        ...prev,
+        [id]: !prev[id], // Toggle visibility
+    }));
+};
 
   return (
     <div className='cvapp-container'>
@@ -66,7 +63,7 @@ const CVApp = () => {
           </div>
 
           <CollapsibleSection title="Education">
-            <Education educations={educations} setEducations={setEducations} toggleVisibility={toggleEducationVisibility}/>
+            <Education educations={educations} setEducations={setEducations} visibleEducations={visibleEducations} setVisibleEducations={setVisibleEducations}/>
           </CollapsibleSection>
 
           <CollapsibleSection title="Work Experience">
@@ -81,6 +78,7 @@ const CVApp = () => {
         <div className="preview-section">
           <ResumePreview
             personalInfo={personalInfo}
+            educations={educations}
             visibleEducations={visibleEducations}
             experiences={experiences}
             skills={skills}
