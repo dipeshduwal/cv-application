@@ -30,6 +30,7 @@ function Skill({skills, setSkills, visibleSkills, setVisibleSkills}){
                     acc[skl.id] = true;
                     return acc;
                 }, {});
+                setVisibleSkills(initialVisibility);
             } catch (error) {
                 console.error("Error fetching skill entries:", error);
             }

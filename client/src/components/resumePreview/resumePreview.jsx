@@ -5,7 +5,7 @@ import jsPDF from 'jspdf';
 import './resumePreview.css';
 
 function ResumePreview({ personalInfo, educations = [], visibleEducations, experiences = [], visibleExperiences, skills =[], visibleSkills, photo, }) {
-    const [accentColor, setAccentColor] = useState('#166a18'); // Default accent color
+    const [accentColor, setAccentColor] = useState('#125413'); // Default accent color
     const [textColor, setTextColor] = useState('#143d15');
     const [fontFamily, setFontFamily] = useState('Merriweather');
     
@@ -31,28 +31,23 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
             useCORS: true, // Enable CORS for cross-origin images
         }).then((canvas) => {
             const imgData = canvas.toDataURL('image/png', 1.0); // Set quality to 100%
-            
-            // Create PDF with A4 size and maintain better aspect ratio
+
+            // Fixed PDF width (A4 size width)
             const pdf = new jsPDF('portrait', 'mm', 'a4');
-            const pdfWidth = pdf.internal.pageSize.getWidth();
-            const pdfHeight = pdf.internal.pageSize.getHeight();
-            
-            const imgWidth = pdfWidth * zoomFactor;
+            const pdfWidth = pdf.internal.pageSize.getWidth(); // A4 width in mm
+
+            // Dynamically calculate height based on image aspect ratio
+            const imgWidth = pdfWidth * zoomFactor; // Keep width same as PDF
             const imgHeight = (canvas.height * imgWidth) / canvas.width; // Maintain aspect ratio
+
+            // Create PDF with calculated dynamic height
+            const pdfHeight = imgHeight; // Set PDF height to image height
+
+            // Change PDF page size dynamically
+            pdf.internal.pageSize.setHeight(pdfHeight);
 
             // Add the image to the PDF
             pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight, '', 'FAST');
-
-            // Handle overflow if content exceeds one page
-            let heightLeft = imgHeight - pdfHeight;
-            let position = pdfHeight;
-
-            while (heightLeft > 0) {
-                pdf.addPage();
-                pdf.addImage(imgData, 'PNG', 0, -position, imgWidth, imgHeight, '', 'FAST');
-                heightLeft -= pdfHeight;
-                position += pdfHeight;
-            }
 
             pdf.save(`${personalInfo.fullName}_Resume.pdf`);
         });
@@ -203,7 +198,7 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
                 className="reset-button"
                 onClick={() => {
                     setFontFamily("'Merriweather', sans-serif");
-                    setAccentColor('#166a18');
+                    setAccentColor('#125413');
                     setTextColor('#143d15');
                 }}>
                 Reset to Default
