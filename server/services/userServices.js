@@ -10,6 +10,21 @@ const getUserProfile = async (email) => {
         return user;
 };
 
+ const saveUserPreferences = async (email, accentColor, textColor, font) => {
+        const user = await User.findOne({ where: { email }});
+        if (!user) {
+            throw new Error('User not found');
+        }
+
+        // Update user preferences
+        user.accentColor = accentColor;
+        user.textColor = textColor;
+        user.font = font;
+        await user.save();
+
+        return { success: true, message: 'Preferences saved successfully' };
+};
+
 module.exports = {
-    getUserProfile,
+    getUserProfile, saveUserPreferences,
 };
