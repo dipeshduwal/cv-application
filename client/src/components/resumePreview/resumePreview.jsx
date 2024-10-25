@@ -61,20 +61,22 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
             style={{ fontFamily }}>
                 <div className="paper">
                     <div className="info-header" style={{ backgroundColor: accentColor }}>
-                        <div className="profile-header">
-                            {photo && (
+                    {personalInfo.photo ? (
+                            <div className="profile-header">
                                 <img
-                                src={`http://localhost:5000${personalInfo.photo}?t=${new Date().getTime()}`} // Append timestamp
+                                    src={`http://localhost:5000${personalInfo.photo}?t=${new Date().getTime()}`}
                                     alt="Profile"
-                                    crossOrigin="anonymous" // Ensure cross-origin access
+                                    crossOrigin="anonymous"
                                     className="profile-photo"
                                     onError={(e) => {
-                                        e.target.onerror = null; // Prevent looping
+                                        e.target.onerror = null;
                                     }}
                                 />
-                            )}
-                            <h2 className="heading-name">{personalInfo.fullName}</h2>
-                        </div>
+                                <h2 className="heading-name">{personalInfo.fullName}</h2>
+                            </div>
+                        ) : (
+                        <h2 className="heading-name">{personalInfo.fullName}</h2>
+                    )}
                         <div className="personal-info" style={{ color: textColor }}>
                             <p>
                                 {personalInfo.personalEmail && `E-mail: ${personalInfo.personalEmail}`} <br />

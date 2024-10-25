@@ -41,10 +41,7 @@ const deletePhoto = (photoPath) => {
         if (!err) {
             fs.unlink(fullPath, (unlinkErr) => {
                 if (unlinkErr) console.error('Failed to delete photo:', unlinkErr);
-                else console.log('Photo deleted successfully:', fullPath);
             });
-        } else {
-            console.warn('Photo not found, skipping deletion:', fullPath);
         }
     });
 };
@@ -55,8 +52,14 @@ const createOrUpdateInfo = async (userEmail, info, file) => {
     let photoPath = existingInfo ? existingInfo.photo : null; // Preserve the existing photo path if no new file
 
     if (file) {
-        // Overwrite the old image by using the same filename
+        // If a new file is uploaded, save the photo and set the new photo path
         photoPath = await savePhoto(file, userEmail); 
+    } else if (!file && existingInfo) {
+        // If no new file is provided, delete the existing photo
+        if (photoPath) {
+            deletePhoto(photoPath); // Delete the photo from the server
+        }
+        photoPath = null; // Clear the photo path for the database
     }
 
     if (existingInfo) {
