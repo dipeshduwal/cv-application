@@ -43,9 +43,11 @@ function ResetPassword() {
                 newPassword,
             });
             setSuccessMessage('✔ Password reset successfully. Please log in. Redirecting...');
+            setError('');
             setTimeout(() => navigate('/login'), 2000); // Redirect to Login page
         } catch (err) {
             setError(err.response?.data?.message || 'Invalid OTP Provided.');
+            setSuccessMessage('');
         } finally {
             setLoading(false);
         }
@@ -54,7 +56,7 @@ function ResetPassword() {
     return (
         <div className="reset-password-container">
             <h1>Reset Password</h1>
-            <p>Please enter your new password below. Make sure it’s strong and secure.</p>
+            <p>Please enter your new password below. Make sure it is strong and secure.</p>
             <form onSubmit={handleSubmit}>
                 <input
                     type="email"

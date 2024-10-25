@@ -243,22 +243,25 @@ input[type="color"]:active {
     justify-content: space-around;
 }
 
-.reset-button {
+.reset-button, .remember-choice-button, .download-button{
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 10px;
-    padding: 10px 30px;
+    padding: 10px 20px;
     font-size: 16px;
     font-weight: 600;
-    width: 250px;
-    background-color: #f44336;
+    width: auto;
     color: white;
     border: none;
-    margin-left: 30px;
+    margin-left: 20px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+}
+
+.reset-button {
+    background-color: #f44336;
 }
 
 .reset-button:hover {
@@ -266,24 +269,17 @@ input[type="color"]:active {
 }
 
 .download-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-    padding: 10px 30px;
-    font-size: 16px;
-    font-weight: 600;
-    width: 250px;
     background-color: #4caf50;
-    color: white;
-    border: none;
-    margin-left: 30px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
 }
 
 .download-button:hover {
     background-color: #45a049;
 }
 
+.remember-choice-button {
+    background-color: #f56e14;
+}
+
+.remember-choice-button:hover {
+    background-color: #cf5f13;
+}

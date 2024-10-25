@@ -206,6 +206,8 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
                 Reset to Default
             </button>
 
+            <button className="remember-choice-button">Remember My Choice</button>
+
             <button className="download-button" onClick={downloadPDF}>
                 Download as PDF
             </button>

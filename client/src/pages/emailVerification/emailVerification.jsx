@@ -22,9 +22,11 @@ function VerifyOtp() {
         try {
             await axios.post('http://localhost:5000/verification/verify-otp', { email, otp });
             setSuccessMessage('✔ Email verified successfully! You can now log in. Redirecting....');
+            setError('');
             setTimeout(() => navigate('/login'), 2000);
         } catch (err) {
             setError(err.response?.data?.message || 'The OTP does not match with send OTP.');
+            setSuccessMessage('');
         }
     };
 
@@ -32,6 +34,8 @@ function VerifyOtp() {
         try {
             await axios.post('http://localhost:5000/verification/resend-otp', { email });
             setResendMessage('✔ OTP has been resent to your email. Please check your inbox.');
+            setSuccessMessage('');
+            setError('');
             setTimeout(() => setResendMessage(''), 4000);
         } catch (err) {
             setError('❌ Unable to resend OTP. Please try again later.');

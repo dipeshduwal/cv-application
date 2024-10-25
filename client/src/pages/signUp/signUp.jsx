@@ -43,9 +43,11 @@ function Signup() {
             await axios.post('http://localhost:5000/auth/signup', { username, email, password });
             localStorage.setItem('unverifiedEmail', email);
             setSuccessMessage('✔ OTP sent to your email. Please verify before login. Redirecting...');
+            setError('');
             setTimeout(() => navigate('/verify-otp'), 2000);
         } catch (err) {
             setError(err.response?.data?.message || 'The username or email exists already.');
+            setSuccessMessage('');
         } finally {
             setLoading(false);
         }
