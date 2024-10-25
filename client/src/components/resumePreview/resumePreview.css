@@ -29,6 +29,12 @@
     color: white;
 }
 
+.heading-name-optional{
+    font-size: 38px;
+    font-weight: 600;
+    color: white;
+}
+
 .paper h3 {
     display: flex;
     align-items: center;

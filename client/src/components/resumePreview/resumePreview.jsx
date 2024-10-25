@@ -75,7 +75,7 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
                                 <h2 className="heading-name">{personalInfo.fullName}</h2>
                             </div>
                         ) : (
-                        <h2 className="heading-name">{personalInfo.fullName}</h2>
+                        <div className="heading-name-optional">{personalInfo.fullName}</div>
                     )}
                         <div className="personal-info" style={{ color: textColor }}>
                             <p>
