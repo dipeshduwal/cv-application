@@ -54,11 +54,11 @@ const CVApp = () => {
     
       <div className='resume-builder'>
         <div className='input-section'>
-          <div className='section'>
+          <div className='section1'>
             <h3>Personal Information</h3>
             <PersonalInfo personalInfo={personalInfo} setPersonalInfo={setPersonalInfo} />
           </div>
-
+          <div className='section2'>
           <CollapsibleSection title="Education">
             <Education educations={educations} setEducations={setEducations} visibleEducations={visibleEducations} setVisibleEducations={setVisibleEducations}/>
           </CollapsibleSection>
@@ -70,6 +70,7 @@ const CVApp = () => {
           <CollapsibleSection title="Skills">
             <Skills skills={skills} setSkills={setSkills} visibleSkills={visibleSkills} setVisibleSkills={setVisibleSkills}/>
           </CollapsibleSection>
+          </div>
         </div>
 
         <div className="preview-section">

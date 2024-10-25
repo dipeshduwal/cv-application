@@ -234,7 +234,7 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
                 </div>
             </div>
             </div>
-            
+            {message && <div className="message-notify">{message}</div>}
             <div className='resume-buttons'>
             <button
                 className="reset-button"
@@ -253,7 +253,7 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
                 Download as PDF
             </button>
             </div>
-            {message && <div className="message-notify">{message}</div>}
+            
         </div>
     );
 }
