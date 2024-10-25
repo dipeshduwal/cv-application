@@ -9,6 +9,7 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
     const [accentColor, setAccentColor] = useState('#125413'); // Default accent color
     const [textColor, setTextColor] = useState('#143d15');
     const [fontFamily, setFontFamily] = useState('Merriweather');
+    const [message, setMessage] = useState('');
     
     const filteredEducations = educations.filter(edu => visibleEducations[edu.id]);
     const filteredExperiences = experiences.filter(exp => visibleExperiences[exp.id]);
@@ -31,6 +32,13 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
         return new Date(dateString).toLocaleDateString(undefined, options);
     };
 
+    const showMessage = (msg) => {
+        setMessage(msg);
+        setTimeout(() => {
+            setMessage('');
+        }, 3000);
+    };
+
     const handleSavePreferences = async () => {
         try {
             const token = localStorage.getItem('token'); // Retrieve the token from localStorage
@@ -43,10 +51,9 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
                 font: fontFamily,
             });
     
-            alert(response.data.message); // Show success message
+            showMessage('** Preferences saved successfully **');
         } catch (error) {
-            alert('Failed to save preferences');
-            console.error("Error saving preferences:", error); // Log the error for debugging
+            showMessage('Failed to save preferences');
         }
     };
     
@@ -82,6 +89,7 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
             pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight, '', 'FAST');
 
             pdf.save(`${personalInfo.fullName}_Resume.pdf`);
+            showMessage('** PDF downloaded successfully! **');
         });
     };
     
@@ -234,6 +242,7 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
                     setFontFamily("'Merriweather', sans-serif");
                     setAccentColor('#125413');
                     setTextColor('#143d15');
+                    showMessage('** Preferences reset to default! **');
                 }}>
                 Reset to Default
             </button>
@@ -244,6 +253,7 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
                 Download as PDF
             </button>
             </div>
+            {message && <div className="message-notify">{message}</div>}
         </div>
     );
 }

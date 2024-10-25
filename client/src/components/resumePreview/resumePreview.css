@@ -283,3 +283,11 @@ input[type="color"]:active {
 .remember-choice-button:hover {
     background-color: #cf5f13;
 }
+
+.message-notify {
+    color: green;
+    margin-left: 30px;
+    font-size: 16px;
+    font-weight: 600;
+}
+

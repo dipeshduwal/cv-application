@@ -33,27 +33,6 @@ const CVApp = () => {
     navigate('/HomePage'); 
   };
 
-  const toggleEducationVisibility = (id) => {
-    setVisibleEducations((prev) => ({
-        ...prev,
-        [id]: !prev[id], // Toggle visibility
-    }));
-};
-
-  const toggleExperienceVisibility = (id) => {
-    setVisibleExperiences((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
-  };
-
-  const toggleSkillVisibility = (id) => {
-    setVisibleSkills((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
-  };
-
   return (
     <div className='cvapp-container'>
       <nav className="navbar">

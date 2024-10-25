@@ -69,6 +69,8 @@ const ProfileComponent = () => {
                     <h2>User Profile</h2>
                     <p><strong>Your Username:</strong> {profile.username}</p>
                     <p><strong>Your Email:</strong> {profile.email}</p>
+                    <p><strong>Color Preference:</strong> {profile.accentColor}</p>
+                    <p><strong>Font Preference:</strong> {profile.font}</p>
                     <button className="logout-button" onClick={() => setIsModalOpen(true)}>
                         Logout
                     </button>
