@@ -9,6 +9,9 @@ exports.GetProfile = async (req, res) => {
 exports.SavePreferences = async (req, res) => {
         const { email, accentColor, textColor, font} = req.body;
         const result = await saveUserPreferences(email, accentColor, textColor, font);
+        if (!result.success) {
+                return res.status(500).json({ message: 'Failed to save preferences' });
+            }
         res.status(200).json({ message: result.message });
     };
         

@@ -16,10 +16,16 @@ const getUserProfile = async (email) => {
             throw new Error('User not found');
         }
 
+        console.log("accent sent to backend:", accentColor);
+            console.log("textColor sent to backend:", textColor);
+            console.log("font sent to backend:", font);
         // Update user preferences
-        user.accentColor = accentColor;
-        user.textColor = textColor;
-        user.font = font;
+        user.set({
+            accentColor: accentColor,
+            textColor: textColor,
+            font: font,
+        });
+        
         await user.save();
 
         return { success: true, message: 'Preferences saved successfully' };

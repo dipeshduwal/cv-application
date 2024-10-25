@@ -1,5 +1,6 @@
 // src/components/ResumePreview.js
 import React, {useState} from 'react';
+import axios from 'axios';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import './resumePreview.css';
@@ -18,6 +19,31 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         return new Date(dateString).toLocaleDateString(undefined, options);
     };
+
+    const handleSavePreferences = async () => {
+        try {
+            const token = localStorage.getItem('token'); // Retrieve the token from localStorage
+            const email = localStorage.getItem('userEmail'); // Retrieve the logged-in user's email from localStorage
+
+            console.log("Email sent to backend:", email);
+            console.log("accent sent to backend:", accentColor);
+            console.log("textColor sent to backend:", textColor);
+            console.log("font sent to backend:", fontFamily);
+    
+            const response = await axios.post('http://localhost:5000/user/save-preferences', {
+                email: email, // Use the logged-in user's email
+                accentColor: accentColor,
+                textColor: textColor,
+                font: fontFamily,
+            });
+    
+            alert(response.data.message); // Show success message
+        } catch (error) {
+            alert('Failed to save preferences');
+            console.error("Error saving preferences:", error); // Log the error for debugging
+        }
+    };
+    
 
     const downloadPDF = () => {
         const resume = document.getElementById('resume-content');
@@ -206,7 +232,7 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
                 Reset to Default
             </button>
 
-            <button className="remember-choice-button">Remember My Choice</button>
+            <button className="remember-choice-button" onClick={handleSavePreferences}>Remember My Choice</button>
 
             <button className="download-button" onClick={downloadPDF}>
                 Download as PDF
