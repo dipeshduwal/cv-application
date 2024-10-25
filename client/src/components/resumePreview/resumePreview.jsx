@@ -64,7 +64,7 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
                         <div className="profile-header">
                             {photo && (
                                 <img
-                                    src={`http://localhost:5000${personalInfo.photo}`}
+                                src={`http://localhost:5000${personalInfo.photo}?t=${new Date().getTime()}`} // Append timestamp
                                     alt="Profile"
                                     crossOrigin="anonymous" // Ensure cross-origin access
                                     className="profile-photo"

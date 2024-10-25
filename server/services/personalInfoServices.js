@@ -5,23 +5,31 @@ const PersonalInfo = require('../models/personalInfo');
 // Save uploaded photo and return the relative path
 const savePhoto = async (file, userEmail) => {
 
-    // Log the userEmail for debugging purposes
-    console.log('Saving photo for user email:', userEmail);
-
     // Check if the user exists in the database
     const personalInfo = await PersonalInfo.findOne({ where: { userEmail } });
     if (!personalInfo) {
         throw new Error('User not found. Cannot save photo.');
     }
-     // Sanitize email to make it a valid file name (replace invalid characters)
-     const sanitizedEmail = userEmail.replace(/[^a-zA-Z0-9]/g, '_');
-    
+
+    // Get the user's full name and sanitize it to make it a valid file name
+    const sanitizedFullName = personalInfo.fullName.replace(/[^a-zA-Z0-9]/g, '_');
+    const uploadDir = path.join(__dirname, '../uploads/');
+    const possibleExtensions = ['.jpg', '.jpeg', '.png', '.gif'];
+
+    // Check and delete any existing file with different extensions for this user
+    for (const ext of possibleExtensions) {
+        const existingFilePath = path.join(uploadDir, `${sanitizedFullName}${ext}`);
+        if (fs.existsSync(existingFilePath)) {
+            fs.unlinkSync(existingFilePath);
+        }
+    }
+
      // Get the original file extension (e.g., '.jpg', '.png')
-     const fileExtension = path.extname(file.name);
+    const fileExtension = path.extname(file.name);
      
-     // Create new file name using the sanitized email
-     const newFileName = `${sanitizedEmail}${fileExtension}`;
-    const uploadPath = path.join(__dirname, '../uploads/', newFileName);
+     // Create new file name using the sanitized fullname
+    const newFileName = `${sanitizedFullName}${fileExtension}`;
+    const uploadPath = path.join(uploadDir, newFileName);
     await file.mv(uploadPath);
     return `/uploads/${newFileName}`;
 };
@@ -41,28 +49,32 @@ const deletePhoto = (photoPath) => {
     });
 };
 
-// Create or update personal info
 const createOrUpdateInfo = async (userEmail, info, file) => {
     const existingInfo = await PersonalInfo.findOne({ where: { userEmail } });
 
-    let photoPath = null;
-    if (file) photoPath = await savePhoto(file);
+    let photoPath = existingInfo ? existingInfo.photo : null; // Preserve the existing photo path if no new file
 
-    if (existingInfo) {
-        if (existingInfo.photo && photoPath) deletePhoto(existingInfo.photo);
-
-        await existingInfo.update({
-            ...info,
-            photo: photoPath || existingInfo.photo,
-        });
-        console.log('Personal info updated for:', userEmail);
-    } else {
-        await PersonalInfo.create({ userEmail, ...info, photo: photoPath });
-        console.log('New personal info created for:', userEmail);
+    if (file) {
+        // Overwrite the old image by using the same filename
+        photoPath = await savePhoto(file, userEmail); 
     }
 
-    return await PersonalInfo.findOne({ where: { userEmail } });
+    if (existingInfo) {
+        await existingInfo.update({
+            ...info,
+            photo: photoPath, // Update with the new or existing photo path
+        });
+    } else {
+        await PersonalInfo.create({ userEmail, ...info, photo: photoPath });
+    }
+
+    // Append a timestamp query parameter to force reload
+    const updatedInfo = await PersonalInfo.findOne({ where: { userEmail } });
+    updatedInfo.photo += `?t=${new Date().getTime()}`;
+
+    return updatedInfo;
 };
+
 
 // Retrieve personal info
 const getInfo = async (userEmail) => {
