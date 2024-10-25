@@ -19,6 +19,18 @@ const User = sequelize.define('User', {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    accentColor: {
+        type: DataTypes.STRING,
+        allowNull: true,
+    },
+    textColor: {
+        type: DataTypes.STRING,
+        allowNull: true,
+    },
+    font: {
+        type: DataTypes.STRING,
+        allowNull: true,
+    },
     otp: {
         type: DataTypes.STRING,
         allowNull: true,  // OTP can be null if not generated

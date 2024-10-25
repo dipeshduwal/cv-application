@@ -15,10 +15,7 @@ const getUserProfile = async (email) => {
         if (!user) {
             throw new Error('User not found');
         }
-
-        console.log("accent sent to backend:", accentColor);
-            console.log("textColor sent to backend:", textColor);
-            console.log("font sent to backend:", font);
+        
         // Update user preferences
         user.set({
             accentColor: accentColor,

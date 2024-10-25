@@ -1,5 +1,5 @@
 // src/components/ResumePreview.js
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
@@ -14,6 +14,17 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
     const filteredExperiences = experiences.filter(exp => visibleExperiences[exp.id]);
     const filteredSkills = skills.filter(skl => visibleSkills[skl.id]);
 
+    // Fetch user preferences from local storage on component mount
+    useEffect(() => {
+        const storedAccentColor = localStorage.getItem('accentColor');
+        const storedTextColor = localStorage.getItem('textColor');
+        const storedFont = localStorage.getItem('font');
+
+        if (storedAccentColor) setAccentColor(storedAccentColor);
+        if (storedTextColor) setTextColor(storedTextColor);
+        if (storedFont) setFontFamily(storedFont);
+    }, []);
+
     const formatDate = (dateString) => {
         if (!dateString) return '';
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -24,11 +35,6 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
         try {
             const token = localStorage.getItem('token'); // Retrieve the token from localStorage
             const email = localStorage.getItem('userEmail'); // Retrieve the logged-in user's email from localStorage
-
-            console.log("Email sent to backend:", email);
-            console.log("accent sent to backend:", accentColor);
-            console.log("textColor sent to backend:", textColor);
-            console.log("font sent to backend:", fontFamily);
     
             const response = await axios.post('http://localhost:5000/user/save-preferences', {
                 email: email, // Use the logged-in user's email

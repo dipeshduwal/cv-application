@@ -76,6 +76,9 @@ const login = async (email, password) => {
             id: user.id,
             username: user.username,
             email: user.email,
+            accentColor: user.accentColor || 'defaultAccentColor',
+            textColor: user.textColor || 'defaultTextColor',
+            font: user.font || 'defaultFont',
         },
     };
 };

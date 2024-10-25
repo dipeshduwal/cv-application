@@ -56,6 +56,9 @@ function Login() {
             // If email is verified, store the token and proceed to cvapp
             localStorage.setItem('token', res.data.token);
             localStorage.setItem('userEmail', res.data.user.email);
+            localStorage.setItem('accentColor', res.data.user.accentColor);
+        localStorage.setItem('textColor', res.data.user.textColor);
+        localStorage.setItem('font', res.data.user.font);
             navigate('/cvapp');
         } catch (err) {
             const message = err.response?.data?.message || 'Invalid Credentials.';
