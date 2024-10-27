@@ -20,7 +20,29 @@ h1 {
 }
 
 .faq-list {
+    max-height: 520px;
     margin-top: 5px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 50px;
+}
+
+.faq-list::-webkit-scrollbar {
+  width: 10px;
+}
+
+.faq-list::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.faq-list::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 77, 64, 0.4);
+  border-radius: 5px;
+}
+
+.faq-list::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 77, 64, 0.6);
 }
 
 .faq-item {
