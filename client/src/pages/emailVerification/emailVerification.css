@@ -1,6 +1,12 @@
+body{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
 .verify-otp-container {
     max-width: 450px;
-    margin-left: 580px;
     margin-top: 50px;
     padding: 20px;
     border: 1px solid #ccc;
@@ -118,5 +124,26 @@ button:hover {
 
 .help-section h3{
     color: #000000;
+}
+
+@media (max-width: 400px) {
+    .verify-otp-container {
+        max-width: 100%;
+        margin-top: 30px;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.3rem;
+    }
+
+    .verification-message, .success-message, .error-message, .resend-otp-button p {
+        font-size: 0.9rem;
+    }
+
+    .resend-otp-button button, button {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
 }
 
