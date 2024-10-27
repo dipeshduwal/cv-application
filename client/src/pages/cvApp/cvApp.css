@@ -32,12 +32,6 @@ body {
   background-color: #f4f7f6;
 }
 
-.profile-section {
-  width: 100%;
-  max-width: 600px;
-  margin-bottom: 30px;
-}
-
 .resume-builder {
   display: flex;
   flex: 1;
@@ -48,7 +42,7 @@ body {
   display: flex;
   flex-direction: column;
   flex: 1;
-  min-width: 700px;
+  width: 700px;
   margin-right: 20px;
   max-height: 100%;
   overflow-y: auto;
@@ -57,7 +51,7 @@ body {
 
 .preview-section {
   flex: 1;
-  min-width: 700px;
+  width: 700px;
   max-height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
@@ -194,48 +188,4 @@ h3 {
 .input-section::-webkit-scrollbar-thumb:hover,
 .preview-section::-webkit-scrollbar-thumb:hover {
   background-color: rgba(0, 77, 64, 0.7); 
-}
-
-@media (max-width: 390px) {
-  .cvapp-container {
-    margin-top: 100px;
-    padding: 10px;
-  }
-
-  .resume-builder {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .input-section, .preview-section {
-    width: 100%;
-    min-width: unset;
-    margin-right: 0;
-    margin-bottom: 15px;
-  }
-
-  .navbar {
-    flex-direction: column;
-    padding: 10px;
-    text-align: center;
-  }
-
-  .navbar-logo h2 {
-    font-size: 18px;
-  }
-
-  .navbar-links {
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  .navbar-links a, .logout-button2 {
-    font-size: 14px;
-    padding: 8px 10px;
-  }
-
-  .section1, .section2 {
-    width: 100%;
-    padding: 10px;
-  }
 }
