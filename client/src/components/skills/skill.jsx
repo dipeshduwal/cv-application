@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import axios from 'axios';
+import { fetchSkills, addSkill, updateSkill, deleteSkill } from "../../api/skillApi";
 import FormTemplate from "../formTemplate/formTemplate";
 import ItemTemplate from "../formTemplate/itemTemplate";
 import '../../styles/buttons.css'
@@ -16,64 +16,38 @@ function Skill({skills, setSkills, visibleSkills, setVisibleSkills}){
     ];
 
     useEffect(() => {
-        const fetchSkills = async () => {
+        const loadSkills = async () => {
             try {
-                const token = localStorage.getItem('token');
-                
-                const response = await axios.get(`http://localhost:5000/skills`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`  // Set the Authorization header
-                    }
-                });
-                setSkills(response.data);
-                const initialVisibility = response.data.reduce((acc, skl) => {
+                const data = await fetchSkills();
+                setSkills(data);
+                const initialVisibility = data.reduce((acc, skl) => {
                     acc[skl.id] = true;
                     return acc;
                 }, {});
                 setVisibleSkills(initialVisibility);
             } catch (error) {
-                console.error("Error fetching skill entries:", error);
+                console.error('Error fetching skills:', error);
             }
         };
-        fetchSkills();
-    }, [setSkills]);
+        loadSkills();
+    }, [setSkills, setVisibleSkills]);
 
     const handleSubmit = async (data) => {
-        
         try {
-            const token = localStorage.getItem('token'); 
-    
             if (editingIndex !== null) {
-            
-                data.skillId = skills[editingIndex].id;
-    
-                // Updating existing entry
-                const response = await axios.put(`http://localhost:5000/skills/${skills[editingIndex].id}`, data, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${token}`   
-                    },
-                });
-                const updatedSkill = response.data;
+                const updatedSkill = await updateSkill(skills[editingIndex].id, data);
                 const newSkills = [...skills];
-                newSkills[editingIndex] = updatedSkill; // Update the edited entry in the state
+                newSkills[editingIndex] = updatedSkill;
                 setSkills(newSkills);
-                setEditingIndex(null);  // Reset the editing state
+                setEditingIndex(null);
             } else {
-                // Adding new entry
-                const response = await axios.post(`http://localhost:5000/skills`, data, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${token}`  // Set the Authorization header
-                    },
-                });
-                const newSkill = response.data;
-                setSkills([...skills, newSkill]); // Add new entry to the state
+                const newSkill = await addSkill(data);
+                setSkills([...skills, newSkill]);
             }
+            resetForm();
         } catch (error) {
-            console.error("Error submitting skill entry:", error);
+            console.error('Error submitting skill entry:', error);
         }
-        resetForm();  // Reset the form after submission
     };
 
     const handleEdit = (index) => {
@@ -84,17 +58,11 @@ function Skill({skills, setSkills, visibleSkills, setVisibleSkills}){
 
     const handleDelete = async (index) => {
         try {
-            const token = localStorage.getItem('token'); // Get the token
-
-            await axios.delete(`http://localhost:5000/skills/${skills[index].id}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`  // Set the Authorization header
-                }
-            });
+            await deleteSkill(skills[index].id);
             const newSkills = skills.filter((_, i) => i !== index);
             setSkills(newSkills);
         } catch (error) {
-            console.error("Error deleting skill entry:", error);
+            console.error('Error deleting skill entry:', error);
         }
     };
 
@@ -113,7 +81,7 @@ function Skill({skills, setSkills, visibleSkills, setVisibleSkills}){
     const toggleVisibility = (id) => {
         setVisibleSkills((prev) => ({
             ...prev,
-            [id]: !prev[id], // Toggle visibility state
+            [id]: !prev[id],
         }));
     };
 

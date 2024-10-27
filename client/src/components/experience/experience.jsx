@@ -24,7 +24,7 @@ function Experience({experiences,setExperiences, visibleExperiences, setVisibleE
     ];
 
     useEffect(() => {
-        const laodExperiences = async () => {
+        const loadExperiences = async () => {
             try {
                 const data = await fetchExperiences();
                 setExperiences(data);
@@ -37,7 +37,7 @@ function Experience({experiences,setExperiences, visibleExperiences, setVisibleE
                 console.error('Error fetching experiences:', error);
             }
         };
-        laodExperiences();
+        loadExperiences();
     }, [setExperiences, setVisibleExperiences]);
 
     const handleSubmit = async (data) => {
