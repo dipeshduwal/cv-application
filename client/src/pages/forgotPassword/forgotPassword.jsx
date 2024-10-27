@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { requestOtp } from '../../api/passwordApi';
 import { useNavigate, Link } from 'react-router-dom';
 import './forgotPassword.css';
 
@@ -12,8 +12,8 @@ function ForgotPassword() {
 
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
-        setError('');  // Clear error when user starts typing
-        setSuccessMessage('');  // Clear success message
+        setError('');  
+        setSuccessMessage('');
     };
 
     const handleRequestOtp = async () => {
@@ -22,9 +22,9 @@ function ForgotPassword() {
         setSuccessMessage('');
 
         try {
-            await axios.post('http://localhost:5000/password/forgot-password', { email });
+            await requestOtp(email);
             setSuccessMessage('✔ OTP sent to your email. Please check your inbox. Redirecting....');
-            setTimeout(() => navigate('/reset-password'), 1000); // Redirect after 2 seconds
+            setTimeout(() => navigate('/reset-password'), 1500);
         } catch (err) {
             setError(err.response?.data?.message || 'Invalid Email Provided.');
         } finally {

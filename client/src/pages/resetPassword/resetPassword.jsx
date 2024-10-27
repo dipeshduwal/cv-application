@@ -1,6 +1,5 @@
-// src/components/ResetPassword.js
 import React, { useState } from 'react';
-import axios from 'axios';
+import { resetPassword } from '../../api/passwordApi';
 import { useNavigate, Link } from 'react-router-dom';
 import './resetPassword.css';
 import { FaEye, FaEyeSlash} from 'react-icons/fa';
@@ -37,15 +36,10 @@ function ResetPassword() {
         }
 
         try {
-            await axios.post('http://localhost:5000/password/reset-password', {
-                email,
-                otp,
-                newPassword,
-            });
+            await resetPassword(email, otp, newPassword);
             setSuccessMessage('✔ Password reset successfully. Please log in. Redirecting...');
             setError('');
-            setTimeout(() => navigate('/login'), 2000); // Redirect to Login page
-        } catch (err) {
+            setTimeout(() => navigate('/login'), 1000);
             setError(err.response?.data?.message || 'Invalid OTP Provided.');
             setSuccessMessage('');
         } finally {
