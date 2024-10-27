@@ -50,7 +50,9 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
                 textColor: textColor,
                 font: fontFamily,
             });
-    
+            localStorage.setItem('accentColor', accentColor);
+        localStorage.setItem('textColor', textColor);
+        localStorage.setItem('font', fontFamily);
             showMessage('** Preferences saved successfully **');
         } catch (error) {
             showMessage('Failed to save preferences');
