@@ -1,4 +1,8 @@
 body {
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
     background-color: #f5f5f5;
     font-family: Arial, sans-serif;
 }
@@ -6,7 +10,6 @@ body {
 .signup-container {
     max-width: 400px;
     margin: 50px auto;
-    margin-left: 600px;
     padding: 30px;
     background-color: #fff;
     border-radius: 8px;
@@ -119,3 +122,34 @@ button:hover {
     border: none;
     text-decoration: none;
   }
+
+/* Responsive Design for iPhone 12 Pro (390px wide) */
+@media (max-width: 400px) {
+    .signup-container {
+        max-width: 100%; /* Adjust container width to fit screen */
+        margin: 20px auto; /* Reduced margin */
+        padding: 20px; /* Adjusted padding */
+    }
+
+    h1, h2 {
+        font-size: 1.5rem; /* Adjusted font size for headings */
+    }
+
+    button, input {
+        font-size: 1rem; /* Adjusted font size for input and button */
+    }
+
+    .nav-link1 {
+        font-size: 1rem; /* Adjust font size for nav links */
+        padding: 8px 15px; /* Adjust padding for smaller screens */
+    }
+
+    .login {
+        margin-left: 0; /* Remove left margin */
+        text-align: center; /* Center align for smaller screens */
+    }
+
+    .login a {
+        font-size: 0.9rem; /* Adjust link font size */
+    }
+}

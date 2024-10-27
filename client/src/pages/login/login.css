@@ -124,7 +124,7 @@ button:disabled {
 
 @media (max-width: 400px) {
     .login-container {
-        max-width: 90%; /* Fit container within screen */
+        max-width: 100%; /* Fit container within screen */
         margin: 20px auto; /* Reduced margin */
         padding: 20px; /* Adjusted padding for smaller screens */
     }
