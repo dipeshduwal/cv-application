@@ -128,6 +128,7 @@ button:hover {
     .signup-container {
         max-width: 100%; /* Adjust container width to fit screen */
         margin: 20px auto; /* Reduced margin */
+        margin-top: 100px;
         padding: 20px; /* Adjusted padding */
     }
 

@@ -1,9 +1,7 @@
-
 body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 120vh;
   background-color: #f0f0f0;
   font-family: 'Arial', sans-serif;
   color: #333;
@@ -14,6 +12,7 @@ body {
 .homepage-container {
   text-align: center;
   margin: 50px auto;
+  margin-top: 200px;
   max-width: 700px;
   padding: 40px;
   background-color: white;
