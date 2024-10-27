@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import axios from 'axios';
+import { fetchExperiences, addExperience, updateExperience, deleteExperience } from "../../api/experienceApi";
 import FormTemplate from "../formTemplate/formTemplate";
 import ItemTemplate from "../formTemplate/itemTemplate";
 import '../../styles/buttons.css';
@@ -24,64 +24,38 @@ function Experience({experiences,setExperiences, visibleExperiences, setVisibleE
     ];
 
     useEffect(() => {
-        const fetchExperiences = async () => {
+        const laodExperiences = async () => {
             try {
-                const token = localStorage.getItem('token');
-                
-                const response = await axios.get(`http://localhost:5000/experiences`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`  // Set the Authorization header
-                    }
-                });
-                setExperiences(response.data);
-                const initialVisibility = response.data.reduce((acc, exp) => {
+                const data = await fetchExperiences();
+                setExperiences(data);
+                const initialVisibility = data.reduce((acc, exp) => {
                     acc[exp.id] = true;
                     return acc;
                 }, {});
                 setVisibleExperiences(initialVisibility);
-            } catch (err) {
-                console.error("Error fetching skill entries:", error);
+            } catch (error) {
+                console.error('Error fetching experiences:', error);
             }
         };
-        fetchExperiences();
-    }, [setExperiences]);
+        laodExperiences();
+    }, [setExperiences, setVisibleExperiences]);
 
     const handleSubmit = async (data) => {
-        
         try {
-            const token = localStorage.getItem('token'); 
-    
             if (editingIndex !== null) {
-            
-                data.experienceId = experiences[editingIndex].id;
-    
-                // Updating existing entry
-                const response = await axios.put(`http://localhost:5000/experiences/${experiences[editingIndex].id}`, data, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${token}`   
-                    },
-                });
-                const updatedExperience = response.data;
+                const updatedExperience = await updateExperience(experiences[editingIndex].id, data);
                 const newExperiences = [...experiences];
-                newExperiences[editingIndex] = updatedExperience; // Update the edited entry in the state
+                newExperiences[editingIndex] = updatedExperience;
                 setExperiences(newExperiences);
-                setEditingIndex(null);  // Reset the editing state
+                setEditingIndex(null);
             } else {
-                // Adding new entry
-                const response = await axios.post(`http://localhost:5000/experiences`, data, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${token}`  // Set the Authorization header
-                    },
-                });
-                const newExperience = response.data;
-                setExperiences([...experiences, newExperience]); // Add new entry to the state
+                const newExperience = await addExperience(data);
+                setExperiences([...experiences, newExperience]);
             }
+            resetForm();
         } catch (error) {
-            console.error("Error submitting experience entry:", error);
+            console.error('Error submitting experience entry:', error);
         }
-        resetForm();  // Reset the form after submission
     };
 
     const handleEdit = (index) => {
@@ -92,17 +66,11 @@ function Experience({experiences,setExperiences, visibleExperiences, setVisibleE
 
     const handleDelete = async (index) => {
         try {
-            const token = localStorage.getItem('token'); // Get the token
-
-            await axios.delete(`http://localhost:5000/experiences/${experiences[index].id}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`  // Set the Authorization header
-                }
-            });
+            await deleteExperience(experiences[index].id);
             const newExperiences = experiences.filter((_, i) => i !== index);
             setExperiences(newExperiences);
         } catch (error) {
-            console.error("Error deleting experience entry:", error);
+            console.error('Error deleting experience entry:', error);
         }
     };
 
