@@ -1,5 +1,9 @@
 
 body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 120vh;
   background-color: #f0f0f0;
   font-family: 'Arial', sans-serif;
   color: #333;
@@ -10,7 +14,6 @@ body {
 .homepage-container {
   text-align: center;
   margin: 50px auto;
-  margin-left: 430px;
   max-width: 700px;
   padding: 40px;
   background-color: white;
@@ -149,4 +152,52 @@ footer {
 .fa-github:hover,
 .fa-linkedin:hover {
   transform: rotate(360deg) scale(1.2);
+}
+
+/* Responsive Design for iPhone 12 Pro (390px wide) */
+@media (max-width: 390px) {
+  .homepage-container {
+    margin: 20px auto; /* Adjusted margin */
+    padding: 20px;     /* Adjusted padding */
+    width: 90%;        /* Set width to fit smaller screens */
+    max-width: 100%;
+  }
+
+  h1 {
+    font-size: 2rem;   /* Reduced font size for smaller screens */
+  }
+
+  h2 {
+    font-size: 1.5rem; /* Reduced font size for smaller screens */
+    margin-top: 20px;  /* Adjusted margin */
+  }
+
+  p,
+  .features ul li {
+    font-size: 1rem;   /* Adjusted font size for readability */
+  }
+
+  .nav-links {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 10px;
+    margin-top: 15px;
+  }
+
+  .nav-button {
+    font-size: 1rem;          /* Reduced font size */
+    padding: 8px 20px;        /* Reduced padding */
+    width: 100%;              /* Full-width buttons on small screens */
+  }
+
+  .footer-content,
+  .social-links,
+  .about-section {
+    text-align: center;
+    padding: 0 10px;          /* Reduced padding for smaller screens */
+  }
+
+  .social-links a {
+    font-size: 24px;          /* Adjusted icon size for smaller screens */
+    margin: 0 10px;           /* Adjusted margin for smaller screens */
+  }
 }
