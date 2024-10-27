@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import {verifyOtp, resendOtp} from '../../api/emailVerificationApi';
 import { Link, useNavigate } from 'react-router-dom';
 import './emailVerification.css';
 
@@ -20,7 +20,7 @@ function VerifyOtp() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5000/verification/verify-otp', { email, otp });
+            await verifyOtp(email, otp);
             setSuccessMessage('✔ Email verified successfully! You can now log in. Redirecting....');
             setError('');
             setTimeout(() => navigate('/login'), 2000);
@@ -32,7 +32,7 @@ function VerifyOtp() {
 
     const handleResendOtp = async () => {
         try {
-            await axios.post('http://localhost:5000/verification/resend-otp', { email });
+            await resendOtp(email);
             setResendMessage('✔ OTP has been resent to your email. Please check your inbox.');
             setSuccessMessage('');
             setError('');
