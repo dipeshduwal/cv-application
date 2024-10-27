@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import {
+    fetchEducations,
+    addEducation,
+    updateEducation,
+    deleteEducation,
+} from '../../api/educationApi';
 import FormTemplate from "../formTemplate/formTemplate";
 import ItemTemplate from "../formTemplate/itemTemplate";
 import '../../styles/buttons.css';
@@ -26,84 +31,53 @@ function Education({ educations, setEducations, visibleEducations, setVisibleEdu
     ];
 
     useEffect(() => {
-        const fetchEducations = async () => {
+        const loadEducations = async () => {
             try {
-                const token = localStorage.getItem('token');
-                const response = await axios.get('http://localhost:5000/educations', {
-                    headers: { Authorization: `Bearer ${token}` }
-                });
-                setEducations(response.data);
-                // Initialize visibility state for each education
-                const initialVisibility = response.data.reduce((acc, edu) => {
-                    acc[edu.id] = true; // Set each item to visible by default
+                const data = await fetchEducations();
+                setEducations(data);
+                const initialVisibility = data.reduce((acc, edu) => {
+                    acc[edu.id] = true;
                     return acc;
                 }, {});
                 setVisibleEducations(initialVisibility);
             } catch (error) {
-                console.error("Error fetching skill entries:", error);
+                console.error('Error fetching educations:', error);
             }
         };
-        fetchEducations();
-    }, [setEducations]);
+        loadEducations();
+    }, [setEducations, setVisibleEducations]);
 
     const handleSubmit = async (data) => {
-        
         try {
-            const token = localStorage.getItem('token'); 
-    
             if (editingIndex !== null) {
-                
-                // Ensure the educationId is part of the data object for the existing education
-                data.educationId = educations[editingIndex].id;
-    
-                // Updating existing entry
-                const response = await axios.put(`http://localhost:5000/educations/${educations[editingIndex].id}`, data, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${token}`   
-                    },
-                });
-                const updatedEducation = response.data;
+                const updatedEducation = await updateEducation(educations[editingIndex].id, data);
                 const newEducations = [...educations];
-                newEducations[editingIndex] = updatedEducation; // Update the edited entry in the state
+                newEducations[editingIndex] = updatedEducation;
                 setEducations(newEducations);
-                setEditingIndex(null);  // Reset the editing state
+                setEditingIndex(null);
             } else {
-                // Adding new entry
-                const response = await axios.post(`http://localhost:5000/educations`, data, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${token}`  // Set the Authorization header
-                    },
-                });
-                const newEducation = response.data;
-                setEducations([...educations, newEducation]); // Add new entry to the state
+                const newEducation = await addEducation(data);
+                setEducations([...educations, newEducation]);
             }
+            resetForm();
         } catch (error) {
-            console.error("Error submitting education entry:", error);
+            console.error('Error submitting education entry:', error);
         }
-        resetForm();  // Reset the form after submission
     };
 
     const handleEdit = (index) => {
         setEducation({ ...educations[index], educationId: educations[index].id }); // Load existing data into the form with educationId
-        setEditingIndex(index); // Set the current index to edit
-        setShowForm(true); // Show the form
+        setEditingIndex(index); 
+        setShowForm(true);
     };
     
     const handleDelete = async (index) => {
         try {
-            const token = localStorage.getItem('token'); // Get the token
-
-            await axios.delete(`http://localhost:5000/educations/${educations[index].id}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`  // Set the Authorization header
-                }
-            });
-            const newEducations = educations.filter((_, i) => i !== index); // Remove the education at the given index
+            await deleteEducation(educations[index].id);
+            const newEducations = educations.filter((_, i) => i !== index);
             setEducations(newEducations);
         } catch (error) {
-            console.error("Error deleting education entry:", error);
+            console.error('Error deleting education entry:', error);
         }
     };
 
@@ -137,7 +111,6 @@ function Education({ educations, setEducations, visibleEducations, setVisibleEdu
         }));
     };
 
-    // Rendering the component
     return (
         <div className="education-section">
             <div className="education-list">
