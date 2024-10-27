@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import {signup} from '../../api/authenticationApi';
 import { Link, useNavigate } from 'react-router-dom';
 import './signUp.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa'; 
@@ -40,11 +40,11 @@ function Signup() {
         setLoading(true);
         setError('');
         try {
-            await axios.post('http://localhost:5000/auth/signup', { username, email, password });
+            await signup(username, email, password );
             localStorage.setItem('unverifiedEmail', email);
             setSuccessMessage('✔ OTP sent to your email. Please verify before login. Redirecting...');
             setError('');
-            setTimeout(() => navigate('/verify-otp'), 2000);
+            setTimeout(() => navigate('/verify-otp'), 1500);
         } catch (err) {
             setError(err.response?.data?.message || 'The username or email exists already.');
             setSuccessMessage('');

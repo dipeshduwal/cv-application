@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { getProfile } from '../../api/authenticationApi';
 import { Link, useNavigate } from 'react-router-dom';
 import './profileComponent.css'; 
 import Modal from '../../components/modal/modal';  
@@ -14,21 +14,9 @@ const ProfileComponent = () => {
 
     useEffect(() => {
         const fetchProfile = async () => {
-            const token = localStorage.getItem('token');
-
-            if (!token) {
-                navigate('/login');
-                return;
-            }
-    
             try {
-                const res = await axios.get(`http://localhost:5000/user`, {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    },
-                });
-            
-                setProfile(res.data);
+                const data = await getProfile();
+                setProfile(data);
             } catch (err) {
                 setError(err.response?.data?.message || 'Failed to fetch profile');
                 localStorage.removeItem('token');
@@ -37,12 +25,11 @@ const ProfileComponent = () => {
                 setLoading(false);
             }
         };
-    
         fetchProfile();
     }, [navigate]);
 
     const handleLogout = () => {
-        localStorage.removeItem('token');  // Clear the token
+        localStorage.removeItem('token'); 
         navigate('/HomePage'); 
     };
 

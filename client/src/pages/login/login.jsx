@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import {login} from '../../api/authenticationApi';
 import { Link, useNavigate } from 'react-router-dom';
 import './login.css';
 import { FaEye, FaEyeSlash} from 'react-icons/fa';
@@ -41,10 +41,10 @@ function Login() {
         setError('');
     
         try {
-            const res = await axios.post('http://localhost:5000/auth/login', { email, password });
+            const res = await login(email, password);
     
             // Check if the email is verified
-            if (res.data.message === 'Email not verified') {
+            if (res.message === 'Email not verified') {
                 // Store the unverified email in localStorage
                 localStorage.setItem('unverifiedEmail', email);
     
@@ -52,13 +52,13 @@ function Login() {
                 navigate('/verify-otp');
                 return;  // Stop further execution
             }
-    
-            // If email is verified, store the token and proceed to cvapp
-            localStorage.setItem('token', res.data.token);
-            localStorage.setItem('userEmail', res.data.user.email);
-            localStorage.setItem('accentColor', res.data.user.accentColor);
-        localStorage.setItem('textColor', res.data.user.textColor);
-        localStorage.setItem('font', res.data.user.font);
+            // Store token and user preferences in localStorage
+            const { token, user } = res;
+            localStorage.setItem('token', token);
+            localStorage.setItem('userEmail', user.email);
+            localStorage.setItem('accentColor', user.accentColor);
+            localStorage.setItem('textColor', user.textColor);
+            localStorage.setItem('font', user.font);
             navigate('/cvapp');
         } catch (err) {
             const message = err.response?.data?.message || 'Invalid Credentials.';
