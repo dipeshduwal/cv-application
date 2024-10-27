@@ -56,6 +56,7 @@ body {
   min-width: 700px;
   max-height: 100%;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .section1, .section2{
@@ -166,4 +167,27 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Scrollbar styling for input-section and preview-section */
+.input-section::-webkit-scrollbar,
+.preview-section::-webkit-scrollbar {
+  width: 10px; /* Width of the scrollbar */
+}
+
+.input-section::-webkit-scrollbar-track,
+.preview-section::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1); /* Track with low opacity */
+  border-radius: 5px; /* Rounded corners for the track */
+}
+
+.input-section::-webkit-scrollbar-thumb,
+.preview-section::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 77, 64, 0.4); /* Thumb color with reduced opacity */
+  border-radius: 5px; /* Rounded corners for the thumb */
+}
+
+.input-section::-webkit-scrollbar-thumb:hover,
+.preview-section::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 77, 64, 0.7); /* Darker color on hover */
 }
