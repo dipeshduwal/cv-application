@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import savePreferences from '../../api/resumePreferencesApi';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import './resumeEditor.css';
@@ -13,13 +13,9 @@ function ResumeEditor({
     const handleSavePreferences = async () => {
         try {
             const email = localStorage.getItem('userEmail');
+            const preferences = { accentColor, textColor, font: fontFamily };
 
-            await axios.post('http://localhost:5000/user/save-preferences', {
-                email,
-                accentColor,
-                textColor,
-                font: fontFamily,
-            });
+            await savePreferences(email, preferences);
 
             localStorage.setItem('accentColor', accentColor);
             localStorage.setItem('textColor', textColor);
@@ -27,6 +23,7 @@ function ResumeEditor({
 
             showMessage('** Preferences saved successfully **');
         } catch (error) {
+            console.error('Error saving preferences:', error);
             showMessage('Failed to save preferences');
         }
     };

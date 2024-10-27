@@ -57,7 +57,7 @@ const ProfileComponent = () => {
                 </div>
                 <ul className="navbar-links">
                     <li>
-                        <Link to="/cvapp">CV App</Link>
+                        <Link to="/cvapp">Resume</Link>
                     </li>
                     <li>
                         <Link to="/faq">FAQ</Link>
