@@ -122,17 +122,3 @@ body{
     margin: 0;
     color: #8a959f;
   }
-
-@media (max-width: 768px) {
-    .profile-card, .profile-tips {
-        width: 90%;
-    }
-
-    .profile-card h2 {
-        font-size: 24px;
-    }
-
-    .profile-card p, .profile-tips p, .profile-tips ul li {
-        font-size: 16px;
-    }
-}

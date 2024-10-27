@@ -38,7 +38,7 @@ h2 {
 
 .password-container input {
     width: 100%;
-    padding-right: 40px; /* Space for the icon */
+    padding-right: 40px;
 }
 
 .toggle-password {
@@ -123,34 +123,33 @@ button:hover {
     text-decoration: none;
   }
 
-/* Responsive Design for iPhone 12 Pro (390px wide) */
 @media (max-width: 400px) {
     .signup-container {
-        max-width: 100%; /* Adjust container width to fit screen */
-        margin: 20px auto; /* Reduced margin */
+        max-width: 100%; 
+        margin: 20px auto; 
         margin-top: 100px;
-        padding: 20px; /* Adjusted padding */
+        padding: 20px; 
     }
 
     h1, h2 {
-        font-size: 1.5rem; /* Adjusted font size for headings */
+        font-size: 1.5rem;
     }
 
     button, input {
-        font-size: 1rem; /* Adjusted font size for input and button */
+        font-size: 1rem;
     }
 
     .nav-link1 {
-        font-size: 1rem; /* Adjust font size for nav links */
-        padding: 8px 15px; /* Adjust padding for smaller screens */
+        font-size: 1rem;
+        padding: 8px 15px;
     }
 
     .login {
-        margin-left: 0; /* Remove left margin */
-        text-align: center; /* Center align for smaller screens */
+        margin-left: 0;
+        text-align: center;
     }
 
     .login a {
-        font-size: 0.9rem; /* Adjust link font size */
+        font-size: 0.9rem;
     }
 }

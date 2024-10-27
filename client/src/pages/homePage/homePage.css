@@ -153,50 +153,49 @@ footer {
   transform: rotate(360deg) scale(1.2);
 }
 
-/* Responsive Design for iPhone 12 Pro (390px wide) */
 @media (max-width: 390px) {
   .homepage-container {
-    margin: 20px auto; /* Adjusted margin */
-    padding: 20px;     /* Adjusted padding */
-    width: 90%;        /* Set width to fit smaller screens */
+    margin: 20px auto; 
+    padding: 20px;    
+    width: 90%;        
 
   }
 
   h1 {
-    font-size: 2rem;   /* Reduced font size for smaller screens */
+    font-size: 2rem;   
   }
 
   h2 {
-    font-size: 1.5rem; /* Reduced font size for smaller screens */
-    margin-top: 20px;  /* Adjusted margin */
+    font-size: 1.5rem; 
+    margin-top: 20px; 
   }
 
   p,
   .features ul li {
-    font-size: 1rem;   /* Adjusted font size for readability */
+    font-size: 1rem;   
   }
 
   .nav-links {
-    flex-direction: column; /* Stack buttons vertically */
+    flex-direction: column;
     gap: 10px;
     margin-top: 15px;
   }
 
   .nav-button {
-    font-size: 1rem;          /* Reduced font size */
-    padding: 8px 20px;        /* Reduced padding */
-    width: 100%;              /* Full-width buttons on small screens */
+    font-size: 1rem;        
+    padding: 8px 20px;        
+    width: 100%;              
   }
 
   .footer-content,
   .social-links,
   .about-section {
     text-align: center;
-    padding: 0 10px;          /* Reduced padding for smaller screens */
+    padding: 0 10px;          
   }
 
   .social-links a {
-    font-size: 24px;          /* Adjusted icon size for smaller screens */
-    margin: 0 10px;           /* Adjusted margin for smaller screens */
+    font-size: 24px;        
+    margin: 0 10px;       
   }
 }

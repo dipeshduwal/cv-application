@@ -124,27 +124,27 @@ button:disabled {
 
 @media (max-width: 400px) {
     .login-container {
-        max-width: 100%; /* Fit container within screen */
-        margin: 20px auto; /* Reduced margin */
+        max-width: 100%; 
+        margin: 20px auto; 
         margin-top: 100px;
-        padding: 20px; /* Adjusted padding for smaller screens */
+        padding: 20px; 
     }
 
     h1, h2 {
-        font-size: 1.5rem; /* Reduced font size for headers */
+        font-size: 1.5rem;
     }
 
     button, input {
-        font-size: 1rem; /* Adjusted button and input text size */
+        font-size: 1rem;
     }
 
     .nav-link {
-        font-size: 1rem; /* Adjust link font size */
-        padding: 8px 15px; /* Adjust padding for smaller screens */
+        font-size: 1rem;
+        padding: 8px 15px; 
     }
 
     .signup a, .forgot-password a {
-        font-size: 0.9rem; /* Adjust font size for smaller text */
+        font-size: 0.9rem;
     }
 }
 

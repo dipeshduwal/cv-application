@@ -92,7 +92,6 @@ const ProfileComponent = () => {
             <div className="footer-copy">
                 <p>
                    Resume Builder {currentYear} &copy; Dipesh Duwal
-
                 </p>
             </div>
             <Modal 

@@ -1,11 +1,10 @@
-/* Reset default margins and paddings */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Set the root and body to full height */
 html, body {
   height: 100%;
   width: 100%;
