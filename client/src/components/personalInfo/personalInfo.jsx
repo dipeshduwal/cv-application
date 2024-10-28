@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchPersonalInfos, createOrUpdate } from "../../api/personalInfoApi";
+import { fetchPersonalInfos, savePersonalInfo } from "../../api/personalInfoApi";
 import FormTemplate from "../formTemplate/formTemplate";
 
 function PersonalInfo({ personalInfo, setPersonalInfo }) {
@@ -29,49 +29,35 @@ function PersonalInfo({ personalInfo, setPersonalInfo }) {
     }, [setPersonalInfo]);
 
     const handleSubmit = async (data) => {
-        const formData = new FormData();
-
-        // Append fields to formData
-        for (const key in data) {
-            if (data.hasOwnProperty(key)) {
-                formData.append(key, data[key]);
-            }
-        }
-
-        // Append selected photo if available
-        if (selectedPhoto) {
-            formData.append('profileImage', selectedPhoto);
-        }
-
         try {
-            const updatedInfo = await createOrUpdate(formData);
-            setPersonalInfo(updatedInfo);
-            setSelectedPhoto(null);  // Reset photo after successful upload
+            const updatedData = await savePersonalInfo(data, selectedPhoto);
+            setPersonalInfo(updatedData);
+            setSelectedPhoto(null);
             setPhotoError('');
         } catch (error) {
-            console.error("Error submitting personal info:", error.response?.data || error.message);
+            console.error("Error submitting personal info:", error);
         }
     };
-
+    
     const handlePhotoChange = (e) => {
         const file = e.target.files[0];
     
-        // Check file size (e.g., limit to 2MB)
-        const MAX_SIZE = 2 * 1024 * 1024; // 2MB
+        // Check file size
+        const MAX_SIZE = 2 * 1024 * 1024;
         if (file.size > MAX_SIZE) {
             setPhotoError("File size exceeds 2MB.");
             return;
         }
     
-        // Check file type (e.g., allow only JPEG and PNG)
+        // Check file type
         const ALLOWED_TYPES = ['image/jpeg', 'image/png'];
         if (!ALLOWED_TYPES.includes(file.type)) {
             setPhotoError("Only JPEG and PNG files are allowed.");
             return;
         }
 
-        setSelectedPhoto(file); // Update the selected photo file
-        setPhotoError(''); // Clear any previous error message
+        setSelectedPhoto(file); 
+        setPhotoError('');
     };
 
     return (

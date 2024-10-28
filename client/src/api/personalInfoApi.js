@@ -5,9 +5,19 @@ export const fetchPersonalInfos = async () => {
     return response.data;
 };
 
-export const createOrUpdate = async (formData) => {
-    const response = await axiosInstance.post('/infos', formData,{
-        headers: { 'Content-Type': 'multipart/form-data' }
+export const savePersonalInfo = async (data, photo = null) => {
+    const formData = new FormData();
+    Object.entries(data).forEach(([key, value]) => formData.append(key, value));
+
+    if (photo) {
+        formData.append('profileImage', photo);
+    }
+
+    const response = await axiosInstance.post('/infos', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
     });
+
     return response.data;
 };
+
+
