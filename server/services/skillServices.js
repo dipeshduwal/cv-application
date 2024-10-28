@@ -13,7 +13,7 @@ const createSkill = async (email, skillDetails) => {
 
 const updateSkill = async (email, skillId, skillDetails) => {
     const existingSkill = await Skill.findOne({
-        where: { id: skillId, userEmail: email }  // Use the email to verify ownership
+        where: { id: skillId, userEmail: email }
     });
 
     if (!existingSkill) {

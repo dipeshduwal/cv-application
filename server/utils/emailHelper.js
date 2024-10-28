@@ -1,19 +1,15 @@
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 
-// Function to send OTP via email
-exports.sendOtpEmail = async (email, otp) => {
-    // Create a transporter object
-    
+exports.sendOtpEmail = async (email, otp) => { 
     const transporter = nodemailer.createTransport({
-        service: 'gmail', // Use your preferred email service
+        service: 'gmail',
         auth: {
             user: process.env.SMTP_USER,     
             pass: process.env.SMTP_PASSWORD,  
         },
     });
 
-    // Email options
     const mailOptions = {
         from: process.env.SMTP_USER,         
         to: email,                        
@@ -42,7 +38,6 @@ exports.sendOtpEmail = async (email, otp) => {
         
     };
 
-    // Send the email
     try {
         await transporter.sendMail(mailOptions);
     } catch (error) {

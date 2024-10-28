@@ -33,11 +33,11 @@ const User = sequelize.define('User', {
     },
     otp: {
         type: DataTypes.STRING,
-        allowNull: true,  // OTP can be null if not generated
+        allowNull: true, 
     },
     otpExpiresAt: {
         type: DataTypes.DATE,
-        allowNull: true,  // Expiration date for OTP
+        allowNull: true, 
     },
     isEmailVerified: {
         type: DataTypes.BOOLEAN,

@@ -2,7 +2,7 @@ const User = require('../models/user');
 
 const getUserProfile = async (email) => {
     const user = await User.findOne({
-        where: { email }, // Use email for lookup
+        where: { email },
         attributes: ['id', 'username', 'email', 'accentColor', 'font'] 
     });
     
@@ -16,7 +16,6 @@ const getUserProfile = async (email) => {
             throw new Error('User not found');
         }
         
-        // Update user preferences
         user.set({
             accentColor: accentColor,
             textColor: textColor,

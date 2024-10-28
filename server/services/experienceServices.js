@@ -4,7 +4,7 @@ const createExperience = async(email, experienceDetails) => {
     const { company, position, startDate, endDate, responsibilities } = experienceDetails;
 
     const newExperience = await Experience.create({
-        userEmail: email,  // Store email instead of userId
+        userEmail: email,
             company,
             position,
             startDate,
@@ -17,7 +17,7 @@ const createExperience = async(email, experienceDetails) => {
 
 const updateExperience = async(email, experienceId, experienceDetails) => {
     const existingExperience = await Experience.findOne({
-        where: { id: experienceId, userEmail: email }  // Use the email to verify ownership
+        where: { id: experienceId, userEmail: email } 
     });
 
     if (!existingExperience) {

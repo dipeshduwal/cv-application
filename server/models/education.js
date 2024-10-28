@@ -27,10 +27,10 @@ const Education = sequelize.define('Education', {
         allowNull: true, 
     },
     userEmail: {
-        type: DataTypes.STRING,  // Store the email of the user
+        type: DataTypes.STRING, 
         allowNull: false,
         references: {
-            model: 'Users',  // Ensure this references the User model's email
+            model: 'Users',
             key: 'email',
         },
     },

@@ -2,16 +2,12 @@ const fs = require('fs');
 const path = require('path');
 const PersonalInfo = require('../models/personalInfo');
 
-// Save uploaded photo and return the relative path
 const savePhoto = async (file, userEmail) => {
-
-    // Check if the user exists in the database
     const personalInfo = await PersonalInfo.findOne({ where: { userEmail } });
     if (!personalInfo) {
         throw new Error('User not found. Cannot save photo.');
     }
 
-    // Get the user's full name and sanitize it to make it a valid file name
     const sanitizedFullName = personalInfo.fullName.replace(/[^a-zA-Z0-9]/g, '_');
     const uploadDir = path.join(__dirname, '../uploads/');
     const possibleExtensions = ['.jpg', '.jpeg', '.png', '.gif'];
@@ -27,14 +23,12 @@ const savePhoto = async (file, userEmail) => {
      // Get the original file extension (e.g., '.jpg', '.png')
     const fileExtension = path.extname(file.name);
      
-     // Create new file name using the sanitized fullname
     const newFileName = `${sanitizedFullName}${fileExtension}`;
     const uploadPath = path.join(uploadDir, newFileName);
     await file.mv(uploadPath);
     return `/uploads/${newFileName}`;
 };
 
-// Delete a photo if it exists on the server
 const deletePhoto = (photoPath) => {
     const fullPath = path.join(__dirname, '../uploads/', path.basename(photoPath));
     fs.access(fullPath, fs.constants.F_OK, (err) => {

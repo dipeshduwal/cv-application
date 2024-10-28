@@ -1,7 +1,6 @@
 require('dotenv').config({ path: '../.env' });
 
 const express = require('express');
-const bodyParser = require('body-parser');
 const cors = require('cors');
 const sequelize = require('./config/database');
 const fileUpload = require('express-fileupload');

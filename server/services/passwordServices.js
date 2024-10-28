@@ -5,7 +5,6 @@ const { generateOtp, getOtpExpiration, isOtpValid } = require('../utils/otpHelpe
 
 const OTP_EXPIRATION_MINUTES = 600;
 
-// Request Password Reset Service
 const requestPasswordReset = async (email) => {
     const lowercasedEmail = email.toLowerCase();
 
@@ -24,7 +23,6 @@ const requestPasswordReset = async (email) => {
     sendOtpEmail(user.email, otp);
 };
 
-// Reset Password Service
 const resetPassword = async (email, otp, newPassword) => {
     const lowercasedEmail = email.toLowerCase();
 
