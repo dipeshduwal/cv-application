@@ -68,7 +68,7 @@ function ResetPassword() {
                 />
                 <div className="password-container">
                     <input
-                        type={passwordVisible ? "text" : "password"} // Toggle between text and password
+                        type={passwordVisible ? "text" : "password"} 
                         id="password"
                         placeholder="Create a new password"
                         value={newPassword}
@@ -78,7 +78,7 @@ function ResetPassword() {
                         required
                     />
                     <div type="button" className="toggle-password" onClick={togglePasswordVisibility}>
-                        {passwordVisible ? <FaEyeSlash /> : <FaEye />} {/* Icon for password visibility */}
+                        {passwordVisible ? <FaEyeSlash /> : <FaEye />}
                     </div>
                 </div>
                 <button type="submit" disabled={loading}>

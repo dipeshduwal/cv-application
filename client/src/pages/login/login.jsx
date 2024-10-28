@@ -42,17 +42,13 @@ function Login() {
     
         try {
             const res = await login(email, password);
-    
-            // Check if the email is verified
+
             if (res.message === 'Email not verified') {
-                // Store the unverified email in localStorage
                 localStorage.setItem('unverifiedEmail', email);
-    
-                // Redirect to verify-otp page
                 navigate('/verify-otp');
-                return;  // Stop further execution
+                return;
             }
-            // Store token and user preferences in localStorage
+    
             const { token, user } = res;
             localStorage.setItem('token', token);
             localStorage.setItem('userEmail', user.email);
@@ -91,7 +87,7 @@ function Login() {
                     <label htmlFor="password">Password</label>
                     <div className="password-container">
                         <input
-                            type={passwordVisible ? "password" : "text"} // Toggle between text and password
+                            type={passwordVisible ? "password" : "text"}
                             id="password"
                             placeholder="Create a password"
                             value={password}
@@ -99,7 +95,7 @@ function Login() {
                             required
                         />
                         <div type="button" className="toggle-password" onClick={togglePasswordVisibility}>
-                            {passwordVisible ? <FaEyeSlash /> : <FaEye />} {/* Icon for password visibility */}
+                            {passwordVisible ? <FaEyeSlash /> : <FaEye />}
                         </div>
                     </div>
                 </div>

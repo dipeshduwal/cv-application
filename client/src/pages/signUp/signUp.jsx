@@ -87,7 +87,7 @@ function Signup() {
                     <label htmlFor="password">Password</label>
                     <div className="password-container">
                         <input
-                            type={passwordVisible ? "password" : "text"} // Toggle between text and password
+                            type={passwordVisible ? "password" : "text"} 
                             id="password"
                             placeholder="Create a password"
                             value={password}
@@ -97,7 +97,7 @@ function Signup() {
                             required
                         />
                         <div type="button" className="toggle-password" onClick={togglePasswordVisibility}>
-                            {passwordVisible ? <FaEyeSlash /> : <FaEye />} {/* Icon for password visibility */}
+                            {passwordVisible ? <FaEyeSlash /> : <FaEye />} 
                         </div>
                     </div>
                 </div>

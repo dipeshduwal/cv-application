@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './homePage.css';
 
 function HomePage() {
-  const currentYear = new Date().getFullYear(); // Get current year dynamically
+  const currentYear = new Date().getFullYear();
 
   return (
     <div className="homepage-container">

@@ -20,7 +20,6 @@ const savePhoto = async (file, userEmail) => {
         }
     }
 
-     // Get the original file extension (e.g., '.jpg', '.png')
     const fileExtension = path.extname(file.name);
      
     const newFileName = `${sanitizedFullName}${fileExtension}`;
@@ -43,37 +42,32 @@ const deletePhoto = (photoPath) => {
 const createOrUpdateInfo = async (userEmail, info, file) => {
     const existingInfo = await PersonalInfo.findOne({ where: { userEmail } });
 
-    let photoPath = existingInfo ? existingInfo.photo : null; // Preserve the existing photo path if no new file
+    let photoPath = existingInfo ? existingInfo.photo : null;
 
     if (file) {
-        // If a new file is uploaded, save the photo and set the new photo path
         photoPath = await savePhoto(file, userEmail); 
     } else if (!file && existingInfo) {
-        // If no new file is provided, delete the existing photo
         if (photoPath) {
-            deletePhoto(photoPath); // Delete the photo from the server
+            deletePhoto(photoPath);
         }
-        photoPath = null; // Clear the photo path for the database
+        photoPath = null;
     }
 
     if (existingInfo) {
         await existingInfo.update({
             ...info,
-            photo: photoPath, // Update with the new or existing photo path
+            photo: photoPath, 
         });
     } else {
         await PersonalInfo.create({ userEmail, ...info, photo: photoPath });
     }
 
-    // Append a timestamp query parameter to force reload
     const updatedInfo = await PersonalInfo.findOne({ where: { userEmail } });
     updatedInfo.photo += `?t=${new Date().getTime()}`;
 
     return updatedInfo;
 };
 
-
-// Retrieve personal info
 const getInfo = async (userEmail) => {
     const personalInfo = await PersonalInfo.findOne({ where: { userEmail } });
     if (!personalInfo) {
@@ -82,7 +76,7 @@ const getInfo = async (userEmail) => {
     return personalInfo;
 };
 
-// Delete personal info
+
 const deleteInfo = async (userEmail) => {
     const result = await PersonalInfo.destroy({ where: { userEmail } });
     if (!result) throw new Error('Personal info not found');

@@ -2,21 +2,19 @@ import React, { useState } from "react";
 import './formTemplate.css';
 
 function FormTemplate({ title, fields, data, setData, onSubmit, handlePhotoChange, photoError }) {
-    const [validationErrors, setValidationErrors] = useState({}); // Track validation errors
+    const [validationErrors, setValidationErrors] = useState({});
 
     const handleChange = (e) => {
         const { name, value } = e.target;
 
-        // Phone number validation to allow only numbers
         if (name === 'phone' && !/^\d*$/.test(value)) {
-            return;  // If non-numeric input is entered, ignore it
+            return;
         }
 
         setData(prevData => ({
             ...prevData, [name]: value
         }));
 
-        // Clear validation error when user starts typing
         setValidationErrors(prevErrors => ({
             ...prevErrors, [name]: ""
         }));
@@ -24,14 +22,13 @@ function FormTemplate({ title, fields, data, setData, onSubmit, handlePhotoChang
 
     const handleFileChange = (e) => {
         if (handlePhotoChange) {
-            handlePhotoChange(e); // Call the photo change handler
+            handlePhotoChange(e);
         }
     };
 
     const handleSubmit = (e) => {
-        e.preventDefault(); // Prevent default form submission
+        e.preventDefault();
 
-        // Validate required fields
         let newValidationErrors = {};
         fields.forEach(field => {
             if (field.required && !data[field.name]) {
@@ -40,12 +37,11 @@ function FormTemplate({ title, fields, data, setData, onSubmit, handlePhotoChang
         });
 
         if (Object.keys(newValidationErrors).length > 0) {
-            setValidationErrors(newValidationErrors); // Set validation errors
-            return; // Prevent form submission
+            setValidationErrors(newValidationErrors);
+            return;
         }
 
-        onSubmit(data); // Submit the data if validation passes
-    };
+        onSubmit(data); 
 
     return (
         <div className="form-container">
@@ -76,7 +72,6 @@ function FormTemplate({ title, fields, data, setData, onSubmit, handlePhotoChang
                             />
                         )}
 
-                        {/* Show validation error message if there's an error */}
                         {validationErrors[field.name] && (
                             <div className="error-message1">{validationErrors[field.name]}</div>
                         )}

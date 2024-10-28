@@ -20,4 +20,3 @@ export const savePersonalInfo = async (data, photo = null) => {
     return response.data;
 };
 
-

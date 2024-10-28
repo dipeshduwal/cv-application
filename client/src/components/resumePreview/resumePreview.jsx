@@ -12,7 +12,6 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
     const filteredExperiences = experiences.filter(exp => visibleExperiences[exp.id]);
     const filteredSkills = skills.filter(skl => visibleSkills[skl.id]);
 
-    // Fetch user preferences from local storage on component mount
     useEffect(() => {
         const storedAccentColor = localStorage.getItem('accentColor');
         const storedTextColor = localStorage.getItem('textColor');
@@ -51,6 +50,7 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
                                     className="profile-photo"
                                     onError={(e) => {
                                         e.target.onerror = null;
+                                        e.target.src = '';
                                     }}
                                 />
                                 <h2 className="heading-name">{personalInfo.fullName}</h2>

@@ -42,21 +42,26 @@ function PersonalInfo({ personalInfo, setPersonalInfo }) {
     const handlePhotoChange = (e) => {
         const file = e.target.files[0];
     
-        // Check file size
+        if (!file) {
+            setPersonalInfo((prevInfo) => ({ ...prevInfo, photo: null }));
+            setSelectedPhoto(null);
+            setPhotoError('');  
+            return;
+        }
+    
         const MAX_SIZE = 2 * 1024 * 1024;
         if (file.size > MAX_SIZE) {
             setPhotoError("File size exceeds 2MB.");
             return;
         }
     
-        // Check file type
         const ALLOWED_TYPES = ['image/jpeg', 'image/png'];
         if (!ALLOWED_TYPES.includes(file.type)) {
             setPhotoError("Only JPEG and PNG files are allowed.");
             return;
         }
-
-        setSelectedPhoto(file); 
+    
+        setSelectedPhoto(file);
         setPhotoError('');
     };
 

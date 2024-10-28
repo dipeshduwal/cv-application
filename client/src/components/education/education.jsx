@@ -107,7 +107,7 @@ function Education({ educations, setEducations, visibleEducations, setVisibleEdu
     const toggleVisibility = (id) => {
         setVisibleEducations((prev) => ({
             ...prev,
-            [id]: !prev[id], // Toggle visibility state
+            [id]: !prev[id],
         }));
     };
 

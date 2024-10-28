@@ -31,31 +31,25 @@ function ResumeEditor({
     const downloadPDF = () => {
         const resume = document.getElementById('resume-content');
 
-        // Use high scale factor for better resolution
-        const scale = 3; // Adjust scale factor to 2x or 3x for higher quality
+        const scale = 3;
         const zoomFactor = 1.1;
 
         html2canvas(resume, {
-            scale: scale, // Increases canvas resolution
-            useCORS: true, // Enable CORS for cross-origin images
+            scale: scale, 
+            useCORS: true,
         }).then((canvas) => {
-            const imgData = canvas.toDataURL('image/png', 1.0); // Set quality to 100%
+            const imgData = canvas.toDataURL('image/png', 1.0);
 
-            // Fixed PDF width (A4 size width)
             const pdf = new jsPDF('portrait', 'mm', 'a4');
-            const pdfWidth = pdf.internal.pageSize.getWidth(); // A4 width in mm
+            const pdfWidth = pdf.internal.pageSize.getWidth(); 
 
-            // Dynamically calculate height based on image aspect ratio
-            const imgWidth = pdfWidth * zoomFactor; // Keep width same as PDF
+            const imgWidth = pdfWidth * zoomFactor;
             const imgHeight = (canvas.height * imgWidth) / canvas.width; // Maintain aspect ratio
 
-            // Create PDF with calculated dynamic height
-            const pdfHeight = imgHeight; // Set PDF height to image height
+            const pdfHeight = imgHeight;
 
-            // Change PDF page size dynamically
             pdf.internal.pageSize.setHeight(pdfHeight);
 
-            // Add the image to the PDF
             pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight, '', 'FAST');
 
             pdf.save(`${personalInfo.fullName}_Resume.pdf`);

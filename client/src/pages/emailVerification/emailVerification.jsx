@@ -11,7 +11,6 @@ function VerifyOtp() {
     const [resendMessage, setResendMessage] = useState('');
     const navigate = useNavigate();
 
-    // Load the email from localStorage
     useEffect(() => {
         const storedEmail = localStorage.getItem('unverifiedEmail');
         if (storedEmail) setEmail(storedEmail);
