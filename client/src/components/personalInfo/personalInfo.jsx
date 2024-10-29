@@ -55,9 +55,6 @@ function PersonalInfo({ personalInfo, setPersonalInfo }) {
         const file = e.target.files[0];
     
         if (!file) {
-            setPersonalInfo((prevInfo) => ({ ...prevInfo, photo: '' }));
-            setSelectedPhoto(null);
-            setPhotoError('');  
             return;
         }
     

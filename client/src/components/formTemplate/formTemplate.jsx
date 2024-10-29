@@ -21,7 +21,8 @@ function FormTemplate({ title, fields, data, setData, onSubmit, handlePhotoChang
     };
 
     const handleFileChange = (e) => {
-        if (handlePhotoChange) {
+        const file = e.target.files[0];
+        if (file) {
             handlePhotoChange(e);
         }
     };
