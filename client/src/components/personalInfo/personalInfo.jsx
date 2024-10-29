@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { fetchPersonalInfos, savePersonalInfo } from "../../api/personalInfoApi";
+import { fetchPersonalInfos, savePersonalInfo, deletePersonalInfo } from "../../api/personalInfoApi";
 import FormTemplate from "../formTemplate/formTemplate";
+import Modal from "../modal/modal";
 
 function PersonalInfo({ personalInfo, setPersonalInfo }) {
     const fields = [
@@ -14,23 +15,34 @@ function PersonalInfo({ personalInfo, setPersonalInfo }) {
     ];
 
     const [selectedPhoto, setSelectedPhoto] = useState(null);
-    const [photoError, setPhotoError] = useState(''); 
+    const [photoError, setPhotoError] = useState('');
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const userEmail = localStorage.getItem('userEmail');
 
     useEffect(() => {
         const loadPersonalInfos = async () => {
             try {
-                const data = await fetchPersonalInfos();
-                setPersonalInfo(data);
+                const data = await fetchPersonalInfos(userEmail);
+                setPersonalInfo(data || {});
             } catch (error) {
                 console.error("Error fetching personal info:", error.response?.data || error.message);
             }
         };
         loadPersonalInfos();
-    }, [setPersonalInfo]);
+    }, [userEmail, setPersonalInfo]);
 
     const handleSubmit = async (data) => {
+        const personalInfoData = {
+            fullName: data.fullName,
+            personalEmail: data.personalEmail,
+            phone: data.phone,
+            address: data.address,
+            birthDate: data.birthDate,
+            linkedIn: data.linkedIn,
+        };
+    
         try {
-            const updatedData = await savePersonalInfo(data, selectedPhoto);
+            const updatedData = await savePersonalInfo({ ...personalInfoData, userEmail }, selectedPhoto);
             setPersonalInfo(updatedData);
             setSelectedPhoto(null);
             setPhotoError('');
@@ -38,12 +50,12 @@ function PersonalInfo({ personalInfo, setPersonalInfo }) {
             console.error("Error submitting personal info:", error);
         }
     };
-    
+
     const handlePhotoChange = (e) => {
         const file = e.target.files[0];
     
         if (!file) {
-            setPersonalInfo((prevInfo) => ({ ...prevInfo, photo: null }));
+            setPersonalInfo((prevInfo) => ({ ...prevInfo, photo: '' }));
             setSelectedPhoto(null);
             setPhotoError('');  
             return;
@@ -65,6 +77,25 @@ function PersonalInfo({ personalInfo, setPersonalInfo }) {
         setPhotoError('');
     };
 
+    const handleDeleteClick = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleConfirmDelete = async () => {
+        try {
+            await deletePersonalInfo(personalInfo.id);
+            setIsModalOpen(false); 
+            window.location.reload();
+        } catch (error) {
+            console.error("Error deleting personal info:", error);
+            alert("Failed to delete personal information.");
+        }
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
+    
     return (
         <div className="personal-info">
             <FormTemplate
@@ -74,9 +105,22 @@ function PersonalInfo({ personalInfo, setPersonalInfo }) {
                 setData={setPersonalInfo}
                 onSubmit={handleSubmit}
                 handlePhotoChange={handlePhotoChange}
-                photoError={photoError}
-            />
-        
+                photoError={photoError}>
+                <button
+                className="delete-button"
+                onClick={handleDeleteClick}
+                style={{ backgroundColor: 'red', color: 'white', padding: '10px', fontSize: '16px', cursor: 'pointer' }}
+            >
+                Delete Personal Data
+            </button>
+            <Modal
+                    isOpen={isModalOpen}
+                    onClose={handleCloseModal}
+                    onConfirm={handleConfirmDelete}
+                    title="Are you sure you want to delete?"
+                />
+            </FormTemplate>
+
         </div>
     );
 }

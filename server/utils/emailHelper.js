@@ -13,7 +13,7 @@ exports.sendOtpEmail = async (email, otp) => {
     const mailOptions = {
         from: process.env.SMTP_USER,         
         to: email,                        
-        subject: 'Your Password Reset OTP', 
+        subject: 'Your Resume Builder OTP', 
         text: `Your OTP for password reset is: ${otp}`, 
         html: `
             <div style="font-family: Verdana, sans-serif; max-width: 600px; margin: auto; padding: 20px; background-color: #f4f4f4; border-radius: 10px;">

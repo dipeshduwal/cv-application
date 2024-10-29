@@ -20,3 +20,7 @@ export const savePersonalInfo = async (data, photo = null) => {
     return response.data;
 };
 
+export const deletePersonalInfo = async (id) => {
+    await axiosInstance.delete(`/infos/${id}`);
+};
+

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './formTemplate.css';
 
-function FormTemplate({ title, fields, data, setData, onSubmit, handlePhotoChange, photoError }) {
+function FormTemplate({ title, fields, data, setData, onSubmit, handlePhotoChange, photoError, children }) {
     const [validationErrors, setValidationErrors] = useState({});
 
     const handleChange = (e) => {
@@ -41,7 +41,8 @@ function FormTemplate({ title, fields, data, setData, onSubmit, handlePhotoChang
             return;
         }
 
-        onSubmit(data); 
+        onSubmit(data);
+    };
 
     return (
         <div className="form-container">
@@ -78,10 +79,15 @@ function FormTemplate({ title, fields, data, setData, onSubmit, handlePhotoChang
                     </div>
                 ))}
                 {photoError && <p className="error-message1">{photoError}</p>}
-                <button className="save-button1" type="submit">Save</button>
+                <div className="button-group">
+                    <button className="save-button1" type="submit">
+                        Save
+                    </button>
+                    {children}
+                </div>
             </form>
         </div>
     );
-}
+};
 
 export default FormTemplate;

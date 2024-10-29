@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-    fetchEducations,
-    addEducation,
-    updateEducation,
-    deleteEducation,
-} from '../../api/educationApi';
+import { fetchEducations,addEducation,updateEducation,deleteEducation} from '../../api/educationApi';
 import FormTemplate from "../formTemplate/formTemplate";
 import ItemTemplate from "../formTemplate/itemTemplate";
 import '../../styles/buttons.css';

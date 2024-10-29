@@ -2,13 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const PersonalInfo = require('../models/personalInfo');
 
-const savePhoto = async (file, userEmail) => {
-    const personalInfo = await PersonalInfo.findOne({ where: { userEmail } });
-    if (!personalInfo) {
-        throw new Error('User not found. Cannot save photo.');
-    }
-
-    const sanitizedFullName = personalInfo.fullName.replace(/[^a-zA-Z0-9]/g, '_');
+const savePhoto = async (file, sanitizedFullName) => {
     const uploadDir = path.join(__dirname, '../uploads/');
     const possibleExtensions = ['.jpg', '.jpeg', '.png', '.gif'];
 
@@ -21,7 +15,6 @@ const savePhoto = async (file, userEmail) => {
     }
 
     const fileExtension = path.extname(file.name);
-     
     const newFileName = `${sanitizedFullName}${fileExtension}`;
     const uploadPath = path.join(uploadDir, newFileName);
     await file.mv(uploadPath);
@@ -42,10 +35,11 @@ const deletePhoto = (photoPath) => {
 const createOrUpdateInfo = async (userEmail, info, file) => {
     const existingInfo = await PersonalInfo.findOne({ where: { userEmail } });
 
+    const sanitizedFullName = info.fullName ? info.fullName.replace(/[^a-zA-Z0-9]/g, '_') : 'Unknown_User';
     let photoPath = existingInfo ? existingInfo.photo : null;
 
     if (file) {
-        photoPath = await savePhoto(file, userEmail); 
+        photoPath = await savePhoto(file, sanitizedFullName);
     } else if (!file && existingInfo) {
         if (photoPath) {
             deletePhoto(photoPath);
@@ -53,17 +47,23 @@ const createOrUpdateInfo = async (userEmail, info, file) => {
         photoPath = null;
     }
 
+    if (!info.personalEmail || !info.phone || !info.address || !info.birthDate) {
+        throw new Error('All required fields must be filled.');
+    }
+
     if (existingInfo) {
         await existingInfo.update({
             ...info,
-            photo: photoPath, 
+            photo: photoPath,
         });
     } else {
         await PersonalInfo.create({ userEmail, ...info, photo: photoPath });
     }
 
     const updatedInfo = await PersonalInfo.findOne({ where: { userEmail } });
-    updatedInfo.photo += `?t=${new Date().getTime()}`;
+    if (updatedInfo && updatedInfo.photo) {
+        updatedInfo.photo += `?t=${new Date().getTime()}`; // Prevent caching issues
+    }
 
     return updatedInfo;
 };

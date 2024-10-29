@@ -56,7 +56,7 @@ const CVApp = () => {
         <div className='input-section'>
           <div className='section1'>
             <h3>Personal Information</h3>
-            <PersonalInfo personalInfo={personalInfo} setPersonalInfo={setPersonalInfo} />
+            <PersonalInfo personalInfo={personalInfo} setPersonalInfo={setPersonalInfo}/>
           </div>
           <div className='section2'>
           <CollapsibleSection title="Education">
@@ -82,7 +82,7 @@ const CVApp = () => {
             visibleExperiences={visibleExperiences}
             skills={skills}
             visibleSkills={visibleSkills}
-            photo={`http://localhost:5000${personalInfo.photo}`}
+            photo={personalInfo.photo ? `http://localhost:5000${personalInfo.photo}` : ''}
           />
         </div>
       </div>

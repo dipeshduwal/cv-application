@@ -17,7 +17,6 @@ exports.PutExperience = async (req, res) => {
 };
 
 exports.GetExperience = async (req, res) => {
-        // Extract the user's unique identifier (email) from the verified token
         const { email } = req.user;
         const experienceList = await getExperience(email);
         
@@ -27,7 +26,6 @@ exports.GetExperience = async (req, res) => {
 exports.DeleteExperience = async (req, res) => {
         const experienceId = req.params.id;  
 
-        // Extract the user's unique identifier (email) from the token
         const { email } = req.user;
 
         const result = await deleteExperience(email, experienceId);

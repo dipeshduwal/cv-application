@@ -84,3 +84,24 @@
     
     margin-top: 0.25rem;
 }
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    
+}
+
+.save-button1 {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button.save-button1:hover {
+    background-color: darkgreen;
+}
+
