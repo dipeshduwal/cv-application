@@ -3,7 +3,6 @@ import './itemTemplate.css';
 import Modal from '../modal/modal';
 import {FaEye, FaEyeSlash} from 'react-icons/fa';
 
-// Displays a specific item (such as an educational entry, job experience, or any other list item) with an option to perform actions on that item
 function ItemTemplate({ title, subtitle, description, onEdit, onDelete, onToggleVisibility, isVisible }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
 

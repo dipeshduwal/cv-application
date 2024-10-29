@@ -1,7 +1,5 @@
 import React, {useState} from "react";
 
-//function to make a section collapsible
-
 function CollapsibleSection({title, children}){
     const [isOpen, setIsOpen] = useState(true);
 

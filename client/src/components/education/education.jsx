@@ -111,7 +111,7 @@ function Education({ educations, setEducations, visibleEducations, setVisibleEdu
             <div className="education-list">
                 {educations.map((edu, index) => (
                     <ItemTemplate
-                        key={edu.id} // Use unique id from database
+                        key={edu.id} 
                         title={`${edu.fieldOfStudy} in ${edu.degree}`}
                         subtitle={`${edu.school} (${formatDate(edu.startDate)} - ${formatDate(edu.endDate) || 'Present'})`}
                         description={edu.description}
