@@ -8,11 +8,13 @@ function Skill({skills, setSkills, visibleSkills, setVisibleSkills}){
     const [showForm, setShowForm] = useState(false);
     const [editingIndex, setEditingIndex] = useState(null);
     const [skill, setSkill] = useState({
-        skillName: ''
+        skillName: '',
+        rating: 5,
     });
 
     const fields = [
-        {name:'skillName', type:'text', label:'Skill', placeholder:'Enter Skill', required: true}
+        {name:'skillName', type:'text', label:'Skill', placeholder:'Enter Skill', required: true},
+        { name: 'rating', type: 'number', label: 'Rating (1-5)', min: 1, max: 5, required: true }
     ];
 
     useEffect(() => {
@@ -92,6 +94,8 @@ function Skill({skills, setSkills, visibleSkills, setVisibleSkills}){
                     <ItemTemplate 
                         key={skl.id}
                         title={skl.skillName}
+                        rating={skl.rating}
+                        type="skill"
                         onEdit={() => handleEdit(index)}
                         onDelete={() => handleDelete(index)}
                         isVisible={visibleSkills[skl.id]}
