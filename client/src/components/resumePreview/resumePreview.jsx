@@ -3,10 +3,11 @@ import ResumeEditor from '../resumeEditor/resumeEditor';
 import './resumePreview.css';
 
 function ResumePreview({ personalInfo, educations = [], visibleEducations, experiences = [], visibleExperiences, skills =[], visibleSkills, photo, }) {
-    const [accentColor, setAccentColor] = useState('#125413'); // Default accent color
+    const [accentColor, setAccentColor] = useState('#125413');
     const [textColor, setTextColor] = useState('#143d15');
     const [fontFamily, setFontFamily] = useState('Merriweather');
     const [message, setMessage] = useState('');
+    const [isVertical, setIsVertical] = useState(false);
     
     const filteredEducations = educations.filter(edu => visibleEducations[edu.id]);
     const filteredExperiences = experiences.filter(exp => visibleExperiences[exp.id]);
@@ -35,12 +36,15 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
     
     return (
         <div className="resume-preview-container">
+            <button onClick={() => setIsVertical(!isVertical)}>
+                Toggle Layout
+            </button>
             <div 
             id="resume-content" 
-            className="resume-preview" 
+            className={`resume-preview ${isVertical ? 'vertical' : ''}`}
             style={{ fontFamily }}>
                 <div className="paper">
-                    <div className="info-header" style={{ backgroundColor: accentColor }}>
+                    <div className={`info-header ${isVertical ? 'vertical' : 'horizontal'}`} style={{ backgroundColor: accentColor }}>
                     {personalInfo.photo ? (
                             <div className="profile-header">
                                 <img

@@ -112,5 +112,81 @@ li.entry{
     margin-bottom: 70px;
 }
 
+.vertical .resume-preview {
+    display: flex;
+    flex-direction: column; /* Stack sections vertically */
+    align-items: center; /* Center align the sections */
+}
 
+.vertical .paper {
+    display: flex;
+    flex-direction: column; /* Stack paper sections vertically */
+    align-items: stretch; /* Stretch sections to fit the paper */
+}
 
+.vertical .info-header {
+    display: flex;
+    flex-direction: column; /* Stack items in the header vertically */
+    align-items: flex-start; /* Align items to the left */
+    padding: 20px; /* Increased padding for aesthetics */
+    background-color: #125413; /* Keep a similar background */
+}
+
+.vertical .profile-header {
+    display: flex;
+    flex-direction: row; /* Align photo and name horizontally */
+    align-items: center; /* Center items vertically */
+    margin-bottom: 15px; /* Space below the profile header */
+}
+
+.vertical .profile-photo {
+    width: 120px; /* Increase size for vertical layout */
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px; /* Space between photo and name */
+}
+
+.vertical .personal-info {
+    display: flex;
+    flex-direction: column; /* Keep info stacked vertically */
+    margin-top: 10px; /* Space above personal info */
+}
+
+.vertical .entry {
+    font-size: 18px; /* Maintain font size for entries */
+    margin-bottom: 20px; /* Space below each entry */
+    padding: 10px; /* Add padding for better spacing */
+    border: 1px solid #ccc; /* Add a border for distinction */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light background for entries */
+}
+
+.vertical .entry h4 {
+    margin-bottom: 5px;
+    color: #333; /* Darker color for headings */
+}
+
+.vertical .entry p {
+    margin: 5px 0; /* Margin around paragraphs */
+    color: rgb(79, 77, 77); /* Keep existing color */
+}
+
+.vertical h3 {
+    width: 100%; /* Full width for section headers */
+    padding: 10px; /* Add padding for headers */
+    margin: 15px 0; /* Space around section headers */
+    background-color: #07715f; /* Consistent header background */
+    color: white; /* White text for contrast */
+    text-align: left; /* Align text to the left */
+    border-radius: 5px; /* Rounded corners */
+}
+
+/* Notification message styles */
+.vertical .message-notify {
+    color: green;
+    margin: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center; /* Center the message */
+}
