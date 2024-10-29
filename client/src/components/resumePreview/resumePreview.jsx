@@ -36,9 +36,6 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
     
     return (
         <div className="resume-preview-container">
-            <button onClick={() => setIsVertical(!isVertical)}>
-                Toggle Layout
-            </button>
             <div 
             id="resume-content" 
             className={`resume-preview ${isVertical ? 'vertical' : ''}`}
@@ -107,6 +104,9 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
                     </section>
                 </div>
             </div>
+            <button className='toggle-button' onClick={() => setIsVertical(!isVertical)}>
+                Change Template Design
+            </button>
 
             <ResumeEditor
                 accentColor={accentColor}

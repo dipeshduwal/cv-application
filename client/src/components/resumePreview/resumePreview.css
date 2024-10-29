@@ -111,82 +111,117 @@ li.entry{
     font-weight: 600;
     margin-bottom: 70px;
 }
+/* For vertical class*/
 
 .vertical .resume-preview {
     display: flex;
-    flex-direction: column; /* Stack sections vertically */
-    align-items: center; /* Center align the sections */
+    flex-direction: column; 
+    align-items: center;
 }
 
 .vertical .paper {
     display: flex;
-    flex-direction: column; /* Stack paper sections vertically */
-    align-items: stretch; /* Stretch sections to fit the paper */
+    flex-direction: column;
+   
 }
 
 .vertical .info-header {
     display: flex;
-    flex-direction: column; /* Stack items in the header vertically */
-    align-items: flex-start; /* Align items to the left */
-    padding: 20px; /* Increased padding for aesthetics */
-    background-color: #125413; /* Keep a similar background */
+    justify-content: center; 
+    align-items: center; 
+    border-radius: 20px; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    color: white; 
 }
 
 .vertical .profile-header {
     display: flex;
-    flex-direction: row; /* Align photo and name horizontally */
-    align-items: center; /* Center items vertically */
-    margin-bottom: 15px; /* Space below the profile header */
+    flex-direction: column; 
+    align-items: flex-start; 
+   
 }
 
-.vertical .profile-photo {
-    width: 120px; /* Increase size for vertical layout */
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 15px; /* Space between photo and name */
+.vertical .heading-name {
+    font-size: 32px; 
+    font-weight: bold; 
+    margin-top: 15px;
+    padding: 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
 }
 
 .vertical .personal-info {
     display: flex;
-    flex-direction: column; /* Keep info stacked vertically */
-    margin-top: 10px; /* Space above personal info */
+    flex-direction: column; 
+    margin-top: 5px; 
+    font-size: 16px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    
+}
+
+.vertical .profile-photo {
+    display: flex;
+    justify-content: center;
+    width: 120px; 
+    height: 120px; 
+    border-radius: 50%; 
+    object-fit: cover;
+    border: 4px solid white; 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); 
 }
 
 .vertical .entry {
-    font-size: 18px; /* Maintain font size for entries */
-    margin-bottom: 20px; /* Space below each entry */
-    padding: 10px; /* Add padding for better spacing */
-    border: 1px solid #ccc; /* Add a border for distinction */
-    border-radius: 5px; /* Rounded corners */
-    background-color: #f9f9f9; /* Light background for entries */
+    font-size: 18px; 
+    margin-bottom: 10px; 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    background-color: #f9f9f9;
 }
 
 .vertical .entry h4 {
     margin-bottom: 5px;
-    color: #333; /* Darker color for headings */
+    color: #333; 
 }
 
 .vertical .entry p {
-    margin: 5px 0; /* Margin around paragraphs */
-    color: rgb(79, 77, 77); /* Keep existing color */
+    margin: 5px 0; 
+    color: rgb(79, 77, 77);
 }
 
 .vertical h3 {
-    width: 100%; /* Full width for section headers */
-    padding: 10px; /* Add padding for headers */
-    margin: 15px 0; /* Space around section headers */
-    background-color: #07715f; /* Consistent header background */
-    color: white; /* White text for contrast */
-    text-align: left; /* Align text to the left */
-    border-radius: 5px; /* Rounded corners */
+    display: flex;
+    justify-content: center;
+    color: white;
+    padding: 10px; 
+    border-radius: 50px; 
+    font-size: 20px;
+    font-weight: bold; 
+    text-align: center; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Notification message styles */
 .vertical .message-notify {
     color: green;
     margin: 10px;
     font-size: 16px;
     font-weight: 600;
-    text-align: center; /* Center the message */
+    text-align: center; 
+}
+
+.toggle-button {
+    background-color: #125413;
+    color: white;
+    width: 400px;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-left: 17%;
+}
+
+.toggle-button:hover {
+    background-color: #0a4b3d;
+    transform: scale(1.05);
 }
