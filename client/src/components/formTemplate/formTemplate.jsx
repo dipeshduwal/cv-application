@@ -14,7 +14,7 @@ function FormTemplate({ title, fields, data, setData, onSubmit, handlePhotoChang
         const formattedValue = name === 'rating' ? Math.min(Math.max(Number(value), 1), 5) : value;
 
         setData(prevData => ({
-            ...prevData, [name]: value
+            ...prevData, [name]: formattedValue
         }));
 
         setValidationErrors(prevErrors => ({

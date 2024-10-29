@@ -6,6 +6,14 @@ const Skill = sequelize.define('Skill', {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    rating: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+            min: 1,
+            max: 5,
+        },
+    },
     userEmail: {
         type: DataTypes.STRING,
         allowNull: false,

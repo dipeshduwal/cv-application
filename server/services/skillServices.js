@@ -1,11 +1,12 @@
 const Skill = require('../models/skill');
 
 const createSkill = async (email, skillDetails) => {
-    const { skillName } = skillDetails;
+    const { skillName, rating } = skillDetails;
 
     const newSkill = await Skill.create({
         userEmail: email,
         skillName,
+        rating
     });
 
     return newSkill;

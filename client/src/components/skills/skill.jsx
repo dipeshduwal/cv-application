@@ -53,10 +53,14 @@ function Skill({skills, setSkills, visibleSkills, setVisibleSkills}){
     };
 
     const handleEdit = (index) => {
-        setSkill({...skills[index], skillId: skills[index].id});
+        setSkill({ 
+            skillName: skills[index].skillName, 
+            rating: skills[index].rating,
+            skillId: skills[index].id 
+        });
         setEditingIndex(index);
         setShowForm(true);
-    }
+    };
 
     const handleDelete = async (index) => {
         try {
@@ -70,7 +74,8 @@ function Skill({skills, setSkills, visibleSkills, setVisibleSkills}){
 
     const resetForm = () => {
         setSkill({
-            skillName: ''
+            skillName: '',
+            rating: 5
         });
         setShowForm(false);
         setEditingIndex(null);
