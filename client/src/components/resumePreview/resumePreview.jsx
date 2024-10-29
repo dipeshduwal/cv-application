@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import ResumeEditor from '../resumeEditor/resumeEditor';
+import { FaStar } from 'react-icons/fa';
 import './resumePreview.css';
 
 function ResumePreview({ personalInfo, educations = [], visibleEducations, experiences = [], visibleExperiences, skills =[], visibleSkills, photo, }) {
@@ -32,6 +33,12 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
     const showMessage = (msg) => {
         setMessage(msg);
         setTimeout(() => setMessage(''), 3000);
+    };
+
+    const renderStars = (numStars) => {
+        return [...Array(5)].map((_, i) => (
+            <FaStar key={i} style={{ color: i < numStars ? 'textColor' : '#e0e0e0' }} />
+        ));
     };
     
     return (
@@ -97,9 +104,19 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
                     <section>
                         <h3 style={{ backgroundColor: accentColor }}>Skills</h3>
                         {filteredSkills.map((skl) => (
-                            <li key={skl.id} className="entry" style={{ color: textColor }}>
-                                {skl.skillName}
-                            </li>
+                            <div key={skl.id} className="entry skill-item" style={{ color: textColor }}>
+                                <li className='skill-name'>{skl.skillName}</li>
+                                {isVertical ? (
+                                    <div className="progress-bar-container">
+                                        <div
+                                            className="progress-bar"
+                                            style={{ backgroundColor: accentColor, width: `${(skl.rating / 5) * 100}%` }}
+                                        ></div>
+                                    </div>
+                                ) : (
+                                    <div className='stars-container'>{renderStars(skl.rating)}</div>
+                                )}
+                            </div>
                         ))}
                     </section>
                 </div>
