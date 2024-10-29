@@ -141,7 +141,7 @@ li.entry{
 }
 
 .vertical .heading-name {
-    font-size: 32px; 
+    font-size: 30px; 
     font-weight: bold; 
     margin-top: 15px;
     padding: 0;
@@ -171,7 +171,7 @@ li.entry{
 .vertical .entry {
     font-size: 18px; 
     margin-bottom: 10px; 
-    padding: 10px; 
+    padding: 5px; 
     border: 1px solid #ccc; 
     border-radius: 5px; 
     text-align: center;
@@ -192,7 +192,7 @@ li.entry{
     justify-content: center;
     opacity: 80%;
     color: white;
-    padding: 10px; 
+    padding: 5px; 
     border-radius: 50px; 
     font-size: 20px;
     font-weight: bold; 
@@ -235,7 +235,7 @@ li.entry{
 
 .skill-name {
     text-align: left;
-    font-weight: 500;
+    font-size: 19px;
     margin-right: 12px;
     flex: 1; 
 }
@@ -243,7 +243,7 @@ li.entry{
 .stars-container {
     display: flex;
     gap: 4px;
-    margin-right: 200px;
+    margin-right: 150px;
 }
 
 .progress-bar-container {
