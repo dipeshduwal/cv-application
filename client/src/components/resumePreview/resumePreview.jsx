@@ -37,7 +37,7 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
 
     const renderStars = (numStars) => {
         return [...Array(5)].map((_, i) => (
-            <FaStar key={i} style={{ color: i < numStars ? 'textColor' : '#e0e0e0' }} />
+            <FaStar key={i} style={{ color: i < numStars ? textColor : '#e0e0e0' }} />
         ));
     };
     
@@ -104,7 +104,7 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
                     <section>
                         <h3 style={{ backgroundColor: accentColor }}>Skills</h3>
                         {filteredSkills.map((skl) => (
-                            <div key={skl.id} className="entry skill-item" style={{ color: textColor }}>
+                            <div key={`${skl.id}-${skl.rating}`} className="entry skill-item" style={{ color: textColor }}>
                                 <li className='skill-name'>{skl.skillName}</li>
                                 {isVertical ? (
                                     <div className="progress-bar-container">
