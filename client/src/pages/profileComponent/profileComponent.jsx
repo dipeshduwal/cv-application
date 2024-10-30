@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { getProfile } from '../../api/authenticationApi';
 import { useNavigate } from 'react-router-dom';
+import { useLogout } from '../../utils/logout';
+import Modal from '../../components/modal/modal';
 import './profileComponent.css'; 
 import Navbar from '../../components/navigationBar/navigationBar';
 
@@ -8,8 +10,10 @@ const ProfileComponent = () => {
     const [profile, setProfile] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const navigate = useNavigate();
     const currentYear = new Date().getFullYear();
+    const logout = useLogout();
 
     useEffect(() => {
         const fetchProfile = async () => {
@@ -63,6 +67,12 @@ const ProfileComponent = () => {
                    Resume Builder {currentYear} &copy; Dipesh Duwal
                 </p>
             </div>
+            <Modal 
+                isOpen={isModalOpen} 
+                onClose={() => setIsModalOpen(false)} 
+                onConfirm={logout} 
+                title="Are you sure you want to logout?"
+            />
         </div>
     );
 };

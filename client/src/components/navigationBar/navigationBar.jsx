@@ -1,16 +1,13 @@
 import React, {useState} from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useLogout } from '../../utils/logout';
 import Modal from '../modal/modal';
 import './navigationBar.css';
 
 const Navbar = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const navigate = useNavigate();
+    const logout = useLogout();
 
-    const handleLogout = () => {
-        localStorage.removeItem('token');
-        navigate('/HomePage'); 
-    };
     return (
         <nav className="navbar">
             <div className="navbar-logo">
@@ -35,7 +32,7 @@ const Navbar = () => {
             <Modal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
-                onConfirm={handleLogout}
+                onConfirm={logout}
                 title="Are you sure you want to logout?"
             />
         </nav>
