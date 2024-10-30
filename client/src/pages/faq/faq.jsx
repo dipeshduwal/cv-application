@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Navbar from '../../components/navigationBar/navigationBar';
+import Modal from '../../components/modal/modal';  
 import './faq.css';
 
 const FAQ = () => {
@@ -43,26 +44,20 @@ const FAQ = () => {
     ];
 
     const [activeIndex, setActiveIndex] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const toggleAnswer = (index) => {
         setActiveIndex(activeIndex === index ? null : index);
     };
 
+    const handleLogout = () => {
+        localStorage.removeItem('token'); 
+        navigate('/HomePage'); 
+    };
+
     return (
         <div className="faq-container">
-            <nav className="navbar">
-                <div className="navbar-logo">
-                    <h2>Resume Builder</h2>
-                </div>
-                <ul className="navbar-links">
-                    <li>
-                        <Link to="/cvapp">Resume</Link>
-                    </li>
-                    <li>
-                        <Link to="/profile">Profile</Link>
-                    </li>
-                </ul>
-            </nav>
+            <Navbar onLogout={() => setIsModalOpen(true)} />
             <h1>Frequently Asked Questions</h1>
             <div className="faq-list">
                 {faqs.map((item, index) => (
@@ -76,6 +71,12 @@ const FAQ = () => {
                     </div>
                 ))}
             </div>
+            <Modal 
+                isOpen={isModalOpen} 
+                onClose={() => setIsModalOpen(false)} 
+                onConfirm={handleLogout}
+                title="Are you sure you want to logout?"
+            />
         </div>
     );
 };

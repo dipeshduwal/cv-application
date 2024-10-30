@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getProfile } from '../../api/authenticationApi';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './profileComponent.css'; 
 import Modal from '../../components/modal/modal';  
 import Navbar from '../../components/navigationBar/navigationBar';
