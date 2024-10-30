@@ -3,6 +3,7 @@ import { getProfile } from '../../api/authenticationApi';
 import { Link, useNavigate } from 'react-router-dom';
 import './profileComponent.css'; 
 import Modal from '../../components/modal/modal';  
+import Navbar from '../../components/navigationBar/navigationBar';
 
 const ProfileComponent = () => {
     const [profile, setProfile] = useState(null);
@@ -38,19 +39,7 @@ const ProfileComponent = () => {
 
     return (
         <div className="profile-container">
-             <nav className="navbar">
-                <div className="navbar-logo">
-                    <h2>Resume Builder</h2>
-                </div>
-                <ul className="navbar-links">
-                    <li>
-                        <Link to="/cvapp">Resume</Link>
-                    </li>
-                    <li>
-                        <Link to="/faq">FAQ</Link>
-                    </li>
-                </ul>
-            </nav>
+            <Navbar onLogout={() => setIsModalOpen(true)} />
             {profile && (
                 <div className="profile-card">
                     <h2>User Profile</h2>
