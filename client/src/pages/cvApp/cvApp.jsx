@@ -5,8 +5,9 @@ import Experience from '../../components/experience/experience';
 import Skills from '../../components/skills/skill';
 import ResumePreview from '../../components/resumePreview/resumePreview';
 import CollapsibleSection from '../../components/collapsibleSection/collapsibleSection';
-import { Link, useNavigate } from 'react-router-dom';
-import Modal from '../../components/modal/modal'; 
+import { useNavigate } from 'react-router-dom';
+import Modal from '../../components/modal/modal';
+import Navbar from '../../components/navigationBar/navigationBar';
 import './cvApp.css'; 
 
 const CVApp = () => {
@@ -35,22 +36,7 @@ const CVApp = () => {
 
   return (
     <div className='cvapp-container'>
-      <nav className="navbar">
-        <div className="navbar-logo">
-          <h2>Resume Builder</h2>
-        </div>
-        <ul className="navbar-links">
-          <li>
-            <Link to="/profile">Profile</Link>
-          </li>
-          <li>
-            <Link to="/faq">FAQ</Link>
-          </li>
-          <li>
-            <button className="logout-button2" onClick={() => setIsModalOpen(true)}>Logout</button>
-          </li>
-        </ul>
-      </nav>
+      <Navbar onLogout={() => setIsModalOpen(true)} />
     
       <div className='resume-builder'>
         <div className='input-section'>
