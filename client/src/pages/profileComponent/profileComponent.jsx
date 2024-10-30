@@ -2,14 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { getProfile } from '../../api/authenticationApi';
 import { useNavigate } from 'react-router-dom';
 import './profileComponent.css'; 
-import Modal from '../../components/modal/modal';  
 import Navbar from '../../components/navigationBar/navigationBar';
 
 const ProfileComponent = () => {
     const [profile, setProfile] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
-    const [isModalOpen, setIsModalOpen] = useState(false);
     const navigate = useNavigate();
     const currentYear = new Date().getFullYear();
 
@@ -29,17 +27,12 @@ const ProfileComponent = () => {
         fetchProfile();
     }, [navigate]);
 
-    const handleLogout = () => {
-        localStorage.removeItem('token'); 
-        navigate('/HomePage'); 
-    };
-
     if (loading) return <p>Loading profile...</p>;
     if (error) return <p className="error">{error}</p>;
 
     return (
         <div className="profile-container">
-            <Navbar onLogout={() => setIsModalOpen(true)} />
+            <Navbar/>
             {profile && (
                 <div className="profile-card">
                     <h2>User Profile</h2>
@@ -70,12 +63,6 @@ const ProfileComponent = () => {
                    Resume Builder {currentYear} &copy; Dipesh Duwal
                 </p>
             </div>
-            <Modal 
-                isOpen={isModalOpen} 
-                onClose={() => setIsModalOpen(false)} 
-                onConfirm={handleLogout}
-                title="Are you sure you want to logout?"
-            />
         </div>
     );
 };

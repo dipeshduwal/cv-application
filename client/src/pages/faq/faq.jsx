@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Navbar from '../../components/navigationBar/navigationBar';
-import Modal from '../../components/modal/modal';  
 import './faq.css';
 
 const FAQ = () => {
@@ -44,20 +43,14 @@ const FAQ = () => {
     ];
 
     const [activeIndex, setActiveIndex] = useState(null);
-    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const toggleAnswer = (index) => {
         setActiveIndex(activeIndex === index ? null : index);
     };
 
-    const handleLogout = () => {
-        localStorage.removeItem('token'); 
-        navigate('/HomePage'); 
-    };
-
     return (
         <div className="faq-container">
-            <Navbar onLogout={() => setIsModalOpen(true)} />
+            <Navbar />
             <h1>Frequently Asked Questions</h1>
             <div className="faq-list">
                 {faqs.map((item, index) => (
@@ -71,12 +64,6 @@ const FAQ = () => {
                     </div>
                 ))}
             </div>
-            <Modal 
-                isOpen={isModalOpen} 
-                onClose={() => setIsModalOpen(false)} 
-                onConfirm={handleLogout}
-                title="Are you sure you want to logout?"
-            />
         </div>
     );
 };

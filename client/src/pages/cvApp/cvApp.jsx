@@ -5,8 +5,6 @@ import Experience from '../../components/experience/experience';
 import Skills from '../../components/skills/skill';
 import ResumePreview from '../../components/resumePreview/resumePreview';
 import CollapsibleSection from '../../components/collapsibleSection/collapsibleSection';
-import { useNavigate } from 'react-router-dom';
-import Modal from '../../components/modal/modal';
 import Navbar from '../../components/navigationBar/navigationBar';
 import './cvApp.css'; 
 
@@ -23,20 +21,13 @@ const CVApp = () => {
   const [educations, setEducations] = useState([]);
   const [experiences, setExperiences] = useState([]);
   const [skills, setSkills] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false); 
   const [visibleEducations, setVisibleEducations] = useState({});
   const [visibleExperiences, setVisibleExperiences] = useState({});
   const [visibleSkills, setVisibleSkills] = useState({});
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    navigate('/HomePage'); 
-  };
 
   return (
     <div className='cvapp-container'>
-      <Navbar onLogout={() => setIsModalOpen(true)} />
+      <Navbar />
     
       <div className='resume-builder'>
         <div className='input-section'>
@@ -72,14 +63,6 @@ const CVApp = () => {
           />
         </div>
       </div>
-
-      {/* Modal for logout confirmation */}
-      <Modal 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
-        onConfirm={handleLogout}
-        title="Are you sure you want to logout?"
-      />
     </div>
   );
 }
