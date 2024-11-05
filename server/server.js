@@ -13,6 +13,7 @@ const skillRoutes = require('./routes/skillRoute');
 const infoRoutes = require('./routes/personalInfoRoute');
 const passwordRoutes = require('./routes/passwordRoute');
 const verificationRoutes = require('./routes/verificationRoute');
+const contactRoutes = require('./routes/contactRoute');
 
 const app = express();
 app.use(cors());
@@ -29,6 +30,7 @@ app.use('/educations', educationRoutes);
 app.use('/experiences', experienceRoutes);
 app.use('/skills', skillRoutes);
 app.use('/infos', infoRoutes);
+app.use('/contact', contactRoutes);
 
 const PORT = process.env.PORT || 5000;
 
