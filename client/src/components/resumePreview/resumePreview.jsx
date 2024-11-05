@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ResumeEditor from '../resumeEditor/resumeEditor';
 import { FaStar } from 'react-icons/fa';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 import './resumePreview.css';
 
 function ResumePreview({ personalInfo, educations = [], visibleEducations, experiences = [], visibleExperiences, skills = [], visibleSkills, photo }) {
