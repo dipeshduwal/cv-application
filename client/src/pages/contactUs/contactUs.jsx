@@ -28,15 +28,14 @@ const Contact = () => {
         const response = await axios.post('http://localhost:5000/contact', formData); 
   
         if (response.status === 200) {
-          // Clear the form and set success message
           setSuccessMessage('Thank you for reaching out! We will get back to you soon.');
           setFormData({ name: '', email: '', message: '' });
-          setErrorMessage(''); // Clear any previous error message
+          setErrorMessage(''); 
         }
       } catch (error) {
         console.error(error);
         setErrorMessage('There was an error sending your message. Please try again later.');
-        setSuccessMessage(''); // Clear any previous success message
+        setSuccessMessage('');
       }
   };
 
@@ -102,10 +101,11 @@ const Contact = () => {
           />
         </label>
         <button type="submit">Submit</button>
+        {successMessage && <p className="success-message">{successMessage}</p>}
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
       </form>
 
-      {successMessage && <p className="success-message">{successMessage}</p>}
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
+      
     </div>
     </div>
   );

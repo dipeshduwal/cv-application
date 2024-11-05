@@ -109,8 +109,15 @@
     background-color: #388E3C;
   }
   
-  .success-message {
+  .contact-form .success-message {
     color: #4CAF50;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .contact-form .error-message {
+    color: #db2525;
     font-weight: bold;
     margin-top: 20px;
     text-align: center;
