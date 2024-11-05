@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import { useLogout } from '../../utils/logout';
 import Modal from '../modal/modal';
+import logoutIcon from '../../assets/logout-button.png';
 import './navigationBar.css';
 
 const Navbar = () => {
@@ -24,8 +25,11 @@ const Navbar = () => {
                     <Link to="/faq">FAQ</Link>
                 </li>
                 <li>
+                    <Link to="/contact">Contact</Link>
+                </li>
+                <li>
                     <button className="logout-button2" onClick={() => setIsModalOpen(true)}>
-                        Logout
+                    <img src={logoutIcon} alt="Logout" className="logout-icon" />
                     </button>
                 </li>
             </ul>

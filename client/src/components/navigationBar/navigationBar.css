@@ -33,7 +33,7 @@
     display: inline;
   }
   
-  .navbar-links a, .logout-button2 {
+  .navbar-links a {
     align-items: center;
     justify-content: center;
     color: #fff;
@@ -51,14 +51,28 @@
     line-height: 1.5;
   }
   
-  .navbar-links a:hover, .logout-button2:hover {
-    background-color: #175d26;
-    transform: scale(1.05);
+  .navbar-links a:hover {
+    background-color: #3bb054;
+    transform: scale(1.08);
   }
   
-  .logout-button2{
+  .navbar .logout-button2{
     display: flex;
     align-items: center;
     justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    height: 10px;
   }
+
+.navbar .logout-button2 .logout-icon {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.navbar .logout-button2:hover .logout-icon {
+  transform: scale(1.08);
+}
   
