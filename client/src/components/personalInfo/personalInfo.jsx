@@ -23,6 +23,11 @@ function PersonalInfo({ personalInfo, setPersonalInfo }) {
         const loadPersonalInfos = async () => {
             try {
                 const data = await fetchPersonalInfos(userEmail);
+                if (data){
+                    if (data.birthDate){
+                        data.birthDate = new Date(data.birthDate).toISOString().split('T')[0];
+                    }
+                }
                 setPersonalInfo(data || {});
             } catch (error) {
                 console.error("Error fetching personal info:", error.response?.data || error.message);
@@ -37,7 +42,7 @@ function PersonalInfo({ personalInfo, setPersonalInfo }) {
             personalEmail: data.personalEmail,
             phone: data.phone,
             address: data.address,
-            birthDate: data.birthDate,
+            birthDate: new Date(data.birthDate).toISOString().split('T')[0],
             linkedIn: data.linkedIn,
         };
     
