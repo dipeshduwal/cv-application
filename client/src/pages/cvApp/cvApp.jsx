@@ -24,6 +24,7 @@ const CVApp = () => {
   const [visibleEducations, setVisibleEducations] = useState({});
   const [visibleExperiences, setVisibleExperiences] = useState({});
   const [visibleSkills, setVisibleSkills] = useState({});
+  const [sectionOrder, setSectionOrder] = useState(['Education', 'Experience', 'Skills']);
 
   return (
     <div className='cvapp-container'>
@@ -60,6 +61,8 @@ const CVApp = () => {
             skills={skills}
             visibleSkills={visibleSkills}
             photo={personalInfo.photo ? `http://localhost:5000${personalInfo.photo}` : ''}
+            sectionOrder={sectionOrder}               // Pass the section order
+            setSectionOrder={setSectionOrder}
           />
         </div>
       </div>
