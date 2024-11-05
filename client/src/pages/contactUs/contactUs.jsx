@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaFacebook, FaGithub, FaLinkedin } from 'react-icons/fa';
 import './contactUs.css';
-import axios from 'axios';
+import { sendEmail } from '../../api/contactApi';
 import Navbar from '../../components/navigationBar/navigationBar';
 
 const Contact = () => {
@@ -18,23 +18,46 @@ const Contact = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const validateEmail = (email) => {
+    const re = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+    return re.test(String(email).toLowerCase());
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) {
-        setErrorMessage('All fields are required.');
-        return;
-      }
+    if (!formData.name) {
+      setErrorMessage('Name is required.');
+      setTimeout(() => setErrorMessage(''), 5000);
+      return;
+    }
+
+    if (!formData.email) {
+      setErrorMessage('Email is required.');
+      setTimeout(() => setErrorMessage(''), 5000);
+      return;
+    }
+
+    if (!formData.message) {
+      setErrorMessage('Message is required.');
+      setTimeout(() => setErrorMessage(''), 5000);
+      return;
+    }
+
+    if (!validateEmail(formData.email)) {
+      setErrorMessage('Please enter a valid Gmail address (ending with gmail.com).');
+      setTimeout(() => setErrorMessage(''), 6000);
+      return;
+    }
+
       try {
-        const response = await axios.post('http://localhost:5000/contact', formData); 
-  
-        if (response.status === 200) {
-          setSuccessMessage('Thank you for reaching out! We will get back to you soon.');
-          setFormData({ name: '', email: '', message: '' });
-          setErrorMessage(''); 
-        }
+        await sendEmail(formData); 
+        setSuccessMessage('Thank you for reaching out! We will get back to you soon.');
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => setSuccessMessage(''), 5000);
+        setErrorMessage(''); 
       } catch (error) {
-        console.error(error);
         setErrorMessage('There was an error sending your message. Please try again later.');
+        setTimeout(() => setErrorMessage(''), 5000);
         setSuccessMessage('');
       }
   };
