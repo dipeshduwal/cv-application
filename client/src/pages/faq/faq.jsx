@@ -13,8 +13,8 @@ const FAQ = () => {
             answer: "Yes, Resume Builder offers free access to all of its features."
         },
         {   
-            question: "Can I customize the color and font of my resume?",
-            answer: "Yes, Resume Builder allows you to change the color scheme and fonts to match your style or industry requirements."
+            question: "Can I customize the color, font and design of my resume?",
+            answer: "Yes, Resume Builder allows you to change the color scheme, fonts and designs to match your style or industry requirements."
         },
         {
             question: "Can I download my resume in different formats?",
@@ -38,7 +38,7 @@ const FAQ = () => {
         },
         {
             question: "How can I contact support?",
-            answer: "You can contact our support team through our email or LinkedIn."
+            answer: "You can contact our support team by leaving us a message through contact page. Alternatively, use our linkedin or social medias."
         },
     ];
 
