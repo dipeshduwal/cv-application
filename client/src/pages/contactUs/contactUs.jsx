@@ -19,7 +19,7 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSuccessMessage('Thank you for reaching out! We will get back to you soon.');
-    setFormData({ name: '', email: '', message: '' }); // Reset form after submission
+    setFormData({ name: '', email: '', message: '' }); 
   };
 
   return (
@@ -39,13 +39,13 @@ const Contact = () => {
         </div>
 
         <div className="social-media">
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/dipeshduwal" target="_blank" rel="noopener noreferrer">
             <FaGithub className="social-icon" />
           </a>
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://facebook.com/dipeshduwal" target="_blank" rel="noopener noreferrer">
             <FaFacebook className="social-icon" />
           </a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://linkedin.com/in/dipeshduwal" target="_blank" rel="noopener noreferrer">
             <FaLinkedin className="social-icon" />
           </a>
         </div>
