@@ -61,20 +61,24 @@ exports.sendContactEmail = async (name, email, message) => {
         subject: `New message from ${name}`,
         text: `You have received a new message from ${name} (${email}):\n\n${message}`,
         html: `
-            <div style="font-family: Verdana, sans-serif; max-width: 600px; margin: auto; padding: 20px; background-color: #f4f4f4; border-radius: 10px;">
-                <h1 style="color: green;">New Message from Contact Form</h1>
-                <p><strong>Name:</strong> ${name}</p>
-                <p><strong>Email:</strong> ${email}</p>
-                <p><strong>Message:</strong></p>
-                <p style="white-space: pre-line;">${message}</p>
-                <footer style="margin-top: 30px;">
+            <div style="font-family: Verdana, sans-serif; max-width: 600px; margin: auto; padding: 20px; background-color: #f4f4f4; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                <h1 style="color: green; text-align: center;">New Message from Resume Builder</h1>
+                <div style="margin-bottom: 20px;">
+                    <p style="font-size: 16px; margin: 0;"><strong>Name:</strong> ${name}</p>
+                    <p style="font-size: 16px; margin: 0;"><strong>Email:</strong> ${email}</p>
+                </div>
+                <div style="border: 1px solid #ddd; border-radius: 5px; padding: 15px; background-color: #fff; box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);">
+                    <p style="font-size: 16px; margin: 0;"><strong>Message:</strong></p>
+                    <p style="white-space: pre-line; font-size: 16px; margin: 0;">${message}</p>
+                </div>
+                <footer style="margin-top: 30px; text-align: center;">
                     <p style="font-size: 14px; color: #999;">
                         © 2024 Resume Builder Inc. All rights reserved.
                         <span style="font-size: 12px; color: #aaa;">Timestamp: ${new Date().toLocaleString()}</span>
                     </p>
                 </footer>
             </div>`
-    };
+    };    
 
     try {
         await transporter.sendMail(mailOptions);

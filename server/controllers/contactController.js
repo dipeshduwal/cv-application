@@ -1,4 +1,4 @@
-const { sendMessageService } = require('../services/contactService');
+const { sendMessageService } = require('../services/contactServices');
 
 const sendMessage = async (req, res) => {
     const { name, email, message } = req.body;

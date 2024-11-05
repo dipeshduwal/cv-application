@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaFacebook, FaGithub, FaLinkedin } from 'react-icons/fa';
 import './contactUs.css';
+import axios from 'axios';
 import Navbar from '../../components/navigationBar/navigationBar';
 
 const Contact = () => {
@@ -17,14 +18,26 @@ const Contact = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) {
         setErrorMessage('All fields are required.');
         return;
       }
-    setSuccessMessage('Thank you for reaching out! We will get back to you soon.');
-    setFormData({ name: '', email: '', message: '' }); 
+      try {
+        const response = await axios.post('http://localhost:5000/contact', formData); 
+  
+        if (response.status === 200) {
+          // Clear the form and set success message
+          setSuccessMessage('Thank you for reaching out! We will get back to you soon.');
+          setFormData({ name: '', email: '', message: '' });
+          setErrorMessage(''); // Clear any previous error message
+        }
+      } catch (error) {
+        console.error(error);
+        setErrorMessage('There was an error sending your message. Please try again later.');
+        setSuccessMessage(''); // Clear any previous success message
+      }
   };
 
   return (
@@ -56,7 +69,6 @@ const Contact = () => {
         </div>
       </div>
 
-      {/* Right side: Contact Form */}
       <form className="contact-form" onSubmit={handleSubmit}>
         <h3>Send Us a Message</h3>
         <p>Have questions, feedback, or suggestions? We'd love to hear from you! Just fill out the form below, and we’ll get back to you as soon as possible.</p>
@@ -93,6 +105,7 @@ const Contact = () => {
       </form>
 
       {successMessage && <p className="success-message">{successMessage}</p>}
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
     </div>
     </div>
   );
