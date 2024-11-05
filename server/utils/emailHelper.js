@@ -45,3 +45,41 @@ exports.sendOtpEmail = async (email, otp) => {
         throw new Error('Could not send OTP email.');
     }
 };
+
+exports.sendContactEmail = async (name, email, message) => {
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: process.env.SMTP_USER,
+            pass: process.env.SMTP_PASSWORD,
+        },
+    });
+
+    const mailOptions = {
+        from: email,
+        to: process.env.SMTP_USER,
+        subject: `New message from ${name}`,
+        text: `You have received a new message from ${name} (${email}):\n\n${message}`,
+        html: `
+            <div style="font-family: Verdana, sans-serif; max-width: 600px; margin: auto; padding: 20px; background-color: #f4f4f4; border-radius: 10px;">
+                <h1 style="color: green;">New Message from Contact Form</h1>
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Message:</strong></p>
+                <p style="white-space: pre-line;">${message}</p>
+                <footer style="margin-top: 30px;">
+                    <p style="font-size: 14px; color: #999;">
+                        © 2024 Resume Builder Inc. All rights reserved.
+                        <span style="font-size: 12px; color: #aaa;">Timestamp: ${new Date().toLocaleString()}</span>
+                    </p>
+                </footer>
+            </div>`
+    };
+
+    try {
+        await transporter.sendMail(mailOptions);
+    } catch (error) {
+        console.error('Error sending contact email:', error);
+        throw new Error('Could not send contact email.');
+    }
+};

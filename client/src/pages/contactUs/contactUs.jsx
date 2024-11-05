@@ -10,6 +10,7 @@ const Contact = () => {
     message: ''
   });
   const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,6 +19,10 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!formData.name || !formData.email || !formData.message) {
+        setErrorMessage('All fields are required.');
+        return;
+      }
     setSuccessMessage('Thank you for reaching out! We will get back to you soon.');
     setFormData({ name: '', email: '', message: '' }); 
   };
