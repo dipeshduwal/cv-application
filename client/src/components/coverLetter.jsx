@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './coverLetterGenerator.css';
 
-function CoverLetterGenerator({ resumeData, jobDetails }) {
+function CoverLetterGenerator({ resumeData }) {
+    const [jobTitle, setJobTitle] = useState('');
+    const [companyName, setCompanyName] = useState('');
     const [coverLetter, setCoverLetter] = useState('');
     const [message, setMessage] = useState('');
 
     const generateCoverLetter = async () => {
-        setMessage('');
-        
+        if (!jobTitle || !companyName) {
+            setMessage('Please enter both job title and company name.');
+            return;
+        }
+
         try {
             const response = await axios.post('http://localhost:5000/cover-letter/generate', {
                 resumeData,
-                jobDetails,
+                jobDetails: { jobTitle, companyName },
             });
 
             setCoverLetter(response.data.coverLetter);
@@ -24,11 +30,23 @@ function CoverLetterGenerator({ resumeData, jobDetails }) {
 
     return (
         <div className="cover-letter-generator">
+            <input
+                type="text"
+                placeholder="Job Title"
+                value={jobTitle}
+                onChange={(e) => setJobTitle(e.target.value)}
+            />
+            <input
+                type="text"
+                placeholder="Company Name"
+                value={companyName}
+                onChange={(e) => setCompanyName(e.target.value)}
+            />
             <button onClick={generateCoverLetter}>Generate Cover Letter</button>
-            {message && <p>{message}</p>}
+            {message && <p className="message">{message}</p>}
             {coverLetter && (
                 <div className="cover-letter-output">
-                    <h2>Generated Cover Letter</h2>
+                    <h3>Generated Cover Letter</h3>
                     <p>{coverLetter}</p>
                 </div>
             )}
