@@ -11,9 +11,6 @@ const generateCoverLetter = async (resumeData, jobDetails) => {
         Work Experience: ${resumeData.experiences.map(exp => `${exp.position} at ${exp.company}`).join(', ')}
         Skills: ${resumeData.skills.map(skill => skill.skillName).join(', ')}
         Education: ${resumeData.educations.map(edu => `${edu.degree} in ${edu.fieldOfStudy} at ${edu.school}`).join(', ')}
-        
-        Job Description:
-        ${jobDetails.jobDescription || "No job description provided"}
     `;
 
     try {
