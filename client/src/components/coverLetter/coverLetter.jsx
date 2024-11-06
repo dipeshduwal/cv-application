@@ -14,10 +14,19 @@ function CoverLetterGenerator({ resumeData }) {
             return;
         }
 
+        const jobDetails = {
+            jobTitle,
+            companyName,
+        };
+
         try {
-            const response = await axios.post('http://localhost:5000/cover-letter/generate', {
-                resumeData,
-                jobDetails: { jobTitle, companyName },
+            const response = await axios.post('http://localhost:5000/coverletter', {
+                resumeData: JSON.stringify(resumeData),
+                jobDetails: JSON.stringify(jobDetails),
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
             });
 
             setCoverLetter(response.data.coverLetter);

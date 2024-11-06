@@ -1,4 +1,4 @@
-const coverLetterService = require('../services/coverLetterServices');
+const {generateCoverLetter} = require('../services/coverLetterServices');
 
 const generateCoverLetterController = async (req, res) => {
     const { resumeData, jobDetails } = req.body;
@@ -8,7 +8,7 @@ const generateCoverLetterController = async (req, res) => {
     }
 
     try {
-        const coverLetter = await coverLetterService.generateCoverLetter(resumeData, jobDetails);
+        const coverLetter = await generateCoverLetter(resumeData, jobDetails);
         res.status(200).json({ coverLetter });
     } catch (error) {
         console.error('Controller error:', error.message);

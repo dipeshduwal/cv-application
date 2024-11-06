@@ -32,7 +32,7 @@ app.use('/experiences', experienceRoutes);
 app.use('/skills', skillRoutes);
 app.use('/infos', infoRoutes);
 app.use('/contact', contactRoutes);
-app.use('/cover-letter', coverLetterRoutes);
+app.use('/coverletter', coverLetterRoutes);
 
 const PORT = process.env.PORT || 5000;
 
