@@ -1,4 +1,4 @@
-const coverLetterService = require('./coverLetterService');
+const coverLetterService = require('../services/coverLetterServices');
 
 const generateCoverLetterController = async (req, res) => {
     const { resumeData, jobDetails } = req.body;

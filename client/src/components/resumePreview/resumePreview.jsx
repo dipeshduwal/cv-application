@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ResumeEditor from '../resumeEditor/resumeEditor';
-import CoverLetterGenerator from '../coverLetter';
+import CoverLetterGenerator from '../coverLetter/coverLetter';
 import { FaStar } from 'react-icons/fa';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 import './resumePreview.css';

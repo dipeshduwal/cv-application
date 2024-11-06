@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { generateCoverLetterController } = require('./coverLetterController');
+const { generateCoverLetterController } = require('../controllers/coverLetterController');
 
 router.post('/generate-letter', generateCoverLetterController);
 
