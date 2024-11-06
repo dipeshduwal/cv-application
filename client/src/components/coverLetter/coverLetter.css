@@ -1,0 +1,70 @@
+.cover-letter-generator {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.cover-letter-generator h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.cover-letter-generator input[type="text"] {
+    width: calc(100% - 2rem);
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.cover-letter-generator input[type="text"]:focus {
+    border-color: #007acc;
+}
+
+.cover-letter-generator button {
+    background-color: #007acc;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.3s;
+}
+
+.cover-letter-generator button:hover {
+    background-color: #005fa3;
+}
+
+.message {
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: #333;
+    background-color: #fff5b1;
+    padding: 0.75rem;
+    border-radius: 5px;
+}
+
+.cover-letter-output {
+    margin-top: 2rem;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: #eef6ff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cover-letter-output p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+}
