@@ -37,7 +37,7 @@ const generateCoverLetter = (resumeData, jobDetails) => {
 
     I possess a strong skill set, including expertise in ${skills}, which I believe aligns well with the qualifications you are seeking for this position. Additionally, my educational background in ${education} has provided me with the foundational knowledge to excel in this role.
 
-    I am excited about the opportunity to contribute to ${companyName} and would be thrilled to further discuss how my skills and experiences can benefit your organization. Thank you for considering my application.
+    I am excited about the opportunity to contribute to ${companyName} and would be thrilled to further discuss how my skills and experiences can benefit your organization. Thank you for considering my application. 
 
     Sincerely,
     ${fullName}

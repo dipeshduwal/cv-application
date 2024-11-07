@@ -55,8 +55,8 @@ function CoverLetterGenerator({ resumeData }) {
             {message && <p className="message">{message}</p>}
             {coverLetter && (
                 <div className="cover-letter-output">
-                    <h3>Generated Cover Letter</h3>
-                    <p>{coverLetter}</p>
+                    <h3>Sample Cover Letter</h3>
+                    <div className='cover-letter-generated'>{coverLetter}</div>
                 </div>
             )}
         </div>
