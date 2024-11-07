@@ -1,13 +1,13 @@
-body{
+body {
     display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
 .verify-otp-container {
     max-width: 450px;
-    margin-top: 50px;
+    margin-top: 20px;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -22,13 +22,13 @@ body{
     margin-bottom: 30px;
     border-radius: 5px;
     color: white;
-    text-decoration: none; 
-    transition: background-color 0.3s ease, transform 0.3s ease; 
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .nav-link:hover {
-    background-color: #2a5c21;  
-    transform: scale(1.05); 
+    background-color: #2a5c21;
+    transform: scale(1.05);
 }
 
 h1 {
@@ -43,7 +43,7 @@ h1 {
     color: #555;
 }
 
-.email-text{
+.email-text {
     font-weight: 600;
 }
 
@@ -64,7 +64,7 @@ input {
     border-radius: 4px;
 }
 
-.resend-otp-button{
+.resend-otp-button {
     margin-top: 10px;
     display: flex;
     flex-direction: row;
@@ -73,7 +73,7 @@ input {
 
 }
 
-.resend-otp-button p{
+.resend-otp-button p {
     display: flex;
     margin-top: 15px;
     justify-content: center;
@@ -81,14 +81,14 @@ input {
     font-size: larger;
 }
 
-.resend-otp-button button{
+.resend-otp-button button {
     margin-left: 10px;
     color: rgb(254, 254, 254);
     width: auto;
     background-color: grey;
 }
 
-.resend-otp-button button:hover{
+.resend-otp-button button:hover {
     background-color: rgb(75, 74, 74);
 }
 
@@ -106,7 +106,8 @@ button:hover {
     background-color: #218838;
 }
 
-.success-message, .resend-message {
+.success-message,
+.resend-message {
     margin-top: 10px;
     color: green;
     font-weight: bold;
@@ -122,7 +123,7 @@ button:hover {
     background-color: #f9f9f9;
 }
 
-.help-section h3{
+.help-section h3 {
     color: #000000;
 }
 
@@ -137,13 +138,16 @@ button:hover {
         font-size: 1.3rem;
     }
 
-    .verification-message, .success-message, .error-message, .resend-otp-button p {
+    .verification-message,
+    .success-message,
+    .error-message,
+    .resend-otp-button p {
         font-size: 0.9rem;
     }
 
-    .resend-otp-button button, button {
+    .resend-otp-button button,
+    button {
         font-size: 0.9rem;
         padding: 8px;
     }
 }
-
