@@ -10,7 +10,7 @@ html, body {
 }
 
 body {
-  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background and text color */
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #root {
@@ -31,22 +31,22 @@ body {
 }
 
 body.light {
-  --background-color: #ffffff;
+  --background-color: #f4f7f6;
   --text-color: #000000;
 }
 
 body.dark {
   --background-color: #333333;
-  --text-color: #ffffff;
+  --text-color: #f4f7f6;
 }
 
 .theme-toggle-btn {
-  position: fixed; /* Keeps the button fixed in the corner */
+  position: fixed; 
   top: 20px;
   right: 20px;
   background: none;
   border: none;
-  font-size: 2em; /* Larger font for sun/moon icon */
+  font-size: 2em;
   cursor: pointer;
   color: var(--text-color);
   transition: color 0.3s ease;
@@ -57,5 +57,5 @@ body.light .theme-toggle-btn {
 }
 
 body.dark .theme-toggle-btn {
-  color: #ffd700; /* Light yellow for contrast in dark mode */
+  color: #ffd700;
 }
