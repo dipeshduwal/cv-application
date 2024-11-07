@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ResumeEditor from '../resumeEditor/resumeEditor';
+import CoverLetterGenerator from '../coverLetter/coverLetter';
 import { FaStar } from 'react-icons/fa';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 import './resumePreview.css';
@@ -25,6 +26,13 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
         if (storedTextColor) setTextColor(storedTextColor);
         if (storedFont) setFontFamily(storedFont);
     }, []);
+
+    const resumeData = {
+        personalInfo,
+        educations: filteredEducations,
+        experiences: filteredExperiences,
+        skills: filteredSkills,
+    };
 
     const formatDate = (dateString) => {
         if (!dateString) return '';
@@ -188,6 +196,7 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
             />
         
             {message && <div className="message-notify">{message}</div>}
+            <CoverLetterGenerator resumeData={resumeData} />
         </div>
     );
 }

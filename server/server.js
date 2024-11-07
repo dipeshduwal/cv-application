@@ -14,6 +14,7 @@ const infoRoutes = require('./routes/personalInfoRoute');
 const passwordRoutes = require('./routes/passwordRoute');
 const verificationRoutes = require('./routes/verificationRoute');
 const contactRoutes = require('./routes/contactRoute');
+const coverLetterRoutes = require('./routes/coverLetterRoute');
 
 const app = express();
 app.use(cors());
@@ -31,6 +32,7 @@ app.use('/experiences', experienceRoutes);
 app.use('/skills', skillRoutes);
 app.use('/infos', infoRoutes);
 app.use('/contact', contactRoutes);
+app.use('/coverletter', coverLetterRoutes);
 
 const PORT = process.env.PORT || 5000;
 
