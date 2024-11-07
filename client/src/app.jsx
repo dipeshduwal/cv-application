@@ -10,9 +10,11 @@ import CVApp from './pages/cvApp/cvApp';
 import ForgotPassword from './pages/forgotPassword/forgotPassword';
 import ResetPassword from './pages/resetPassword/resetPassword';
 import VerifyOtp from './pages/emailVerification/emailVerification';
+import { ThemeProvider } from './contexts/themeContext/themeContext';
 
 function App() {
   return (
+    <ThemeProvider>
     <Router>
       <div className='App'>
         <Routes>
@@ -32,6 +34,7 @@ function App() {
         </Routes>
       </div>
     </Router>
+    </ThemeProvider>
   );
 }
 
