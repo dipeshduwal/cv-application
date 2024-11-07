@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { generateCoverLetterApi } from '../../api/coverLetterApi'
 import './coverLetter.css';
 
 function CoverLetterGenerator({ resumeData }) {
@@ -20,15 +20,7 @@ function CoverLetterGenerator({ resumeData }) {
         };
 
         try {
-            const response = await axios.post('http://localhost:5000/coverletter', {
-                resumeData: JSON.stringify(resumeData),
-                jobDetails: JSON.stringify(jobDetails),
-            }, {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-
+            const response = await generateCoverLetterApi(resumeData, jobDetails);
             setCoverLetter(response.data.coverLetter);
             setMessage('Cover letter generated successfully!');
         } catch (error) {
@@ -61,6 +53,6 @@ function CoverLetterGenerator({ resumeData }) {
             )}
         </div>
     );
-}
+};
 
 export default CoverLetterGenerator;
