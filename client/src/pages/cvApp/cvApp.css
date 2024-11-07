@@ -10,10 +10,12 @@ html, body {
 }
 
 body {
-  background-color: #f0f0f0;
+  background-color: var(--background-color); 
+  color: var(--text-color); 
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 0.3s ease, color 0.3s ease; 
 }
 
 #root {
@@ -29,7 +31,8 @@ body {
   margin-top: 152px;
   height: 120vh;
   padding: 20px;
-  background-color: #f4f7f6;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
 .resume-builder {
@@ -57,9 +60,9 @@ body {
   overflow-x: hidden;
 }
 
-.section1, .section2{
+.section1, .section2 {
   margin-bottom: 15px;
-  background-color: white;
+  background-color: var(--background-color); /* Uses theme's background color */
   border-radius: 8px;
   width: 90%;
 }
@@ -73,7 +76,8 @@ body {
   user-select: none;
   padding: 15px;
   margin: 0;
-  background-color: white;
+  background-color: var(--background-color);
+  color: var(--text-color);
   font-size: 20px;
   display: flex;
   justify-content: space-between;
@@ -106,22 +110,22 @@ h3 {
 /* Scrollbar styling for input-section and preview-section */
 .input-section::-webkit-scrollbar,
 .preview-section::-webkit-scrollbar {
-  width: 10px; 
+  width: 10px;
 }
 
 .input-section::-webkit-scrollbar-track,
 .preview-section::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.2);
   border-radius: 5px;
 }
 
 .input-section::-webkit-scrollbar-thumb,
 .preview-section::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 77, 64, 0.4);
+  background-color: rgba(17, 140, 56, 0.4);
   border-radius: 5px;
 }
 
 .input-section::-webkit-scrollbar-thumb:hover,
 .preview-section::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(0, 77, 64, 0.7); 
+  background-color: rgba(17, 140, 56, 0.7);
 }

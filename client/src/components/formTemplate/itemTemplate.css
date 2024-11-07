@@ -1,22 +1,24 @@
 .item-template {
-    background-color: #f8f9fa;
+    background-color: var(--background-color);
     border-radius: 8px;
     padding: 15px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    color: var(--text-color);
+    margin-bottom: 10px;
 }
 
 .item-template h3 {
     margin: 0 0 10px 0;
-    color: #333;
+    color: var(--text-color);
     padding: 0;
-    background-color: #f8f9fa;
+    background-color: var(--background-color);
 }
 
 .item-template p {
-    color: #3d3c3c;
+    color: var(--text-color);
     margin-top: 10px;
 }
 
@@ -36,7 +38,7 @@
 }
 
 .edit-button {
-    background-color: #9a7814;
+    background-color: #9a7814; /* Golden-yellow */
     color: white;
     font-weight: 600;
 }
@@ -47,13 +49,13 @@
 }
 
 .delete-button {
-    background-color: #dc3545;
+    background-color: #dc3545; /* Red */
     color: white;
     font-weight: 600;
 }
 
 .delete-button:hover {
-    background-color: #c82333;
+    background-color: #c82333; /* Darker red on hover */
     font-weight: 600;
 }
 
@@ -67,11 +69,10 @@
     border-radius: 4px;
     cursor: pointer;
     font-size: 18px;
-    background-color: #7f7f7a;
+    background-color: #7f7f7a; /* Gray */
     color: white;
 }
 
 .visibility-toggle-button:hover {
-    background-color: #626261;;
-    
+    background-color: #626261; /* Darker gray on hover */
 }

@@ -8,7 +8,6 @@ import Navbar from '../../components/navigationBar/navigationBar';
 
 const ProfileComponent = () => {
     const [profile, setProfile] = useState(null);
-    const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const navigate = useNavigate();
@@ -24,14 +23,11 @@ const ProfileComponent = () => {
                 setError(err.response?.data?.message || 'Failed to fetch profile');
                 localStorage.removeItem('token');
                 navigate('/login');
-            } finally {
-                setLoading(false);
             }
         };
         fetchProfile();
     }, [navigate]);
 
-    if (loading) return <p>Loading profile...</p>;
     if (error) return <p className="error">{error}</p>;
 
     return (

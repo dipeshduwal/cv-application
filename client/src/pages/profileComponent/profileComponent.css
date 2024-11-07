@@ -1,27 +1,18 @@
-html,body{
-    display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-}
-
 .profile-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 48px;
-    width: 1520px;
-    height: 100%;
+    margin-top: 97px;
+    width: 100%;
     padding: 40px;
-    background-color: #f8f9fa;
     font-family: 'Arial', sans-serif;
     text-align: center;
 }
 
 .profile-card {
-    background-color: #ffffff;
+    background-color: var(--background-color);
+    color: var(--text-color);
     width: 100%;
     max-width: 600px;
     padding: 25px;
@@ -38,14 +29,15 @@ html,body{
 
 .profile-card h2 {
     font-size: 28px;
-    color: #343a40;
+    color: var(--text-color);
     margin-bottom: 20px;
     margin-top: 0;
 }
 
 .profile-card p {
     font-size: 18px;
-    color: #495057;
+    color: var(--text-color);
+    opacity: 0.8;
     margin: 10px 0;
 }
 
@@ -67,7 +59,8 @@ html,body{
 }
 
 .profile-tips {
-    background-color: #ffffff;
+    background-color: var(--background-color);
+    color: var(--text-color);
     width: 100%;
     max-width: 600px;
     padding: 20px;
@@ -83,14 +76,15 @@ html,body{
 
 .profile-tips h3 {
     font-size: 24px;
-    color: #343a40;
+    color: var(--text-color);
     margin-bottom: 10px;
     margin-top: 0;
 }
 
 .profile-tips p {
     font-size: 18px;
-    color: #495057;
+    color: var(--text-color);
+    opacity: 0.8;
     margin-bottom: 15px;
 }
 
@@ -102,18 +96,20 @@ html,body{
 .profile-tips ul li {
     font-size: 16px;
     margin-bottom: 10px;
-    color: #6c757d;
+    color: var(--text-color);
+    opacity: 0.7;
 }
 
 .profile-footer {
     font-size: 16px;
-    color: #6c757d;
     text-align: center;
     margin-top: 40px;
 }
 
 .profile-footer p {
     margin: 0;
+    color: var(--text-color);
+    opacity: 0.5;
 }
 
 .footer-copy {
@@ -124,5 +120,6 @@ html,body{
   
   .footer-copy p {
     margin: 0;
-    color: #8a959f;
+    color: var(--text-color);
+    opacity: 0.5;
   }
