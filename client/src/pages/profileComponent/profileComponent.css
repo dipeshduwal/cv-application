@@ -15,7 +15,8 @@ html,body{
     width: 1520px;
     height: 100%;
     padding: 40px;
-    background-color: #f8f9fa;
+    background-color: var(--background-color);
+    color: var(--text-color);
     font-family: 'Arial', sans-serif;
     text-align: center;
 }
@@ -107,13 +108,13 @@ html,body{
 
 .profile-footer {
     font-size: 16px;
-    color: #6c757d;
     text-align: center;
     margin-top: 40px;
 }
 
 .profile-footer p {
     margin: 0;
+    color: #8a959f;
 }
 
 .footer-copy {
