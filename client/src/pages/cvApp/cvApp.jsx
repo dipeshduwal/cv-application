@@ -6,7 +6,7 @@ import Skills from '../../components/skills/skill';
 import ResumePreview from '../../components/resumePreview/resumePreview';
 import CollapsibleSection from '../../components/collapsibleSection/collapsibleSection';
 import Navbar from '../../components/navigationBar/navigationBar';
-import './cvApp.css'; 
+import './cvApp.css';
 
 const CVApp = () => {
   const [personalInfo, setPersonalInfo] = useState({ 
