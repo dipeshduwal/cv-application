@@ -1,6 +1,5 @@
 const User = require('../models/user');
 
-// Function to get user profile and preferences by email
 const getUserProfile = async (email) => {
     const user = await User.findOne({
         where: { email },
@@ -13,7 +12,6 @@ const getUserProfile = async (email) => {
     return user;
 };
 
-// Function to save user preferences
 const saveUserPreferences = async (email, preferences) => {
     const { accentColor, textColor, font, isVertical } = preferences;
 

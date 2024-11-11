@@ -5,7 +5,6 @@ const errorHandlerWrapper = require('../middleware/errorHandlerWrapper');
 
 const router = express.Router();
 
-// Get User Profile
 router.get('/', authMiddleware, errorHandlerWrapper(getUserProfile));
 router.post('/save-preferences', errorHandlerWrapper(saveUserPreferences));
 
