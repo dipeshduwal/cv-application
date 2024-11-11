@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getProfile } from '../../api/authenticationApi';
+import { getUserPreferences } from '../../api/resumePreferencesApi'; 
 import { useNavigate } from 'react-router-dom';
 import { useLogout } from '../../utils/logout';
 import Modal from '../../components/modal/modal';
@@ -17,7 +17,7 @@ const ProfileComponent = () => {
     useEffect(() => {
         const fetchProfile = async () => {
             try {
-                const data = await getProfile();
+                const data = await getUserPreferences();
                 setProfile(data);
             } catch (err) {
                 setError(err.response?.data?.message || 'Failed to fetch profile');
@@ -30,6 +30,8 @@ const ProfileComponent = () => {
 
     if (error) return <p className="error">{error}</p>;
 
+    const templateDesign = profile?.isVertical ? '#2 Design' : '#1 Design';
+
     return (
         <div className="profile-container">
             <Navbar/>
@@ -40,6 +42,7 @@ const ProfileComponent = () => {
                     <p><strong>Your Email:</strong> {profile.email}</p>
                     <p><strong>Color Preference:</strong> {profile.accentColor}</p>
                     <p><strong>Font Preference:</strong> {profile.font}</p>
+                    <p><strong>Template Preference:</strong> {templateDesign}</p>
                     <button className="logout-button" onClick={() => setIsModalOpen(true)}>
                         Logout
                     </button>

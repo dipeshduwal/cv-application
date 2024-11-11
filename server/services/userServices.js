@@ -3,30 +3,36 @@ const User = require('../models/user');
 const getUserProfile = async (email) => {
     const user = await User.findOne({
         where: { email },
-        attributes: ['id', 'username', 'email', 'accentColor', 'font'] 
+        attributes: ['id', 'username', 'email', 'accentColor', 'textColor', 'font', 'isVertical'],
     });
-    
-    if (!user) throw new Error('Invalid Credentials');
-        return user;
+
+    if (!user) {
+        throw new Error('Invalid Credentials');
+    }
+    return user;
 };
 
- const saveUserPreferences = async (email, accentColor, textColor, font) => {
-        const user = await User.findOne({ where: { email }});
-        if (!user) {
-            throw new Error('User not found');
-        }
-        
-        user.set({
-            accentColor: accentColor,
-            textColor: textColor,
-            font: font,
-        });
-        
-        await user.save();
+const saveUserPreferences = async (email, preferences) => {
+    const { accentColor, textColor, font, isVertical } = preferences;
 
-        return { success: true, message: 'Preferences saved successfully' };
+    const user = await User.findOne({ where: { email } });
+    if (!user) {
+        throw new Error('User not found');
+    }
+
+    user.set({
+        accentColor,
+        textColor,
+        font,
+        isVertical,
+    });
+
+    await user.save();
+
+    return { success: true, message: 'Preferences saved successfully' };
 };
 
 module.exports = {
-    getUserProfile, saveUserPreferences,
+    getUserProfile,
+    saveUserPreferences,
 };

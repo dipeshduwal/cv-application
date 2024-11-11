@@ -64,6 +64,10 @@ button {
     transition: background 0.3s; 
 }
 
+.toggle-password{
+    color: #333;
+}
+
 button:hover {
     background-color: #0056b3; 
 }

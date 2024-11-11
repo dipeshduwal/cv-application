@@ -10,8 +10,4 @@ export const signup = async (username, email, password) => {
     return response.data;
 };
 
-export const getProfile = async () => {
-    const response = await axiosInstance.get('/user');
-    return response.data;
-};
 

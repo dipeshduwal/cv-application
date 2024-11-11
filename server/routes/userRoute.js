@@ -1,12 +1,11 @@
 const express = require('express');
-const {GetProfile, SavePreferences} = require('../controllers/userController');
+const {getUserProfile, saveUserPreferences} = require('../controllers/userController');
 const authMiddleware = require('../middleware/authMiddleware'); 
 const errorHandlerWrapper = require('../middleware/errorHandlerWrapper');
 
 const router = express.Router();
 
-// Get User Profile
-router.get('/', authMiddleware, errorHandlerWrapper(GetProfile));
-router.post('/save-preferences', errorHandlerWrapper(SavePreferences));
+router.get('/', authMiddleware, errorHandlerWrapper(getUserProfile));
+router.post('/save-preferences', errorHandlerWrapper(saveUserPreferences));
 
 module.exports = router;
