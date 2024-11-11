@@ -30,7 +30,7 @@ const ProfileComponent = () => {
 
     if (error) return <p className="error">{error}</p>;
 
-    const templateDesign = profile?.isVertical ? '#2 Template Design' : '#1 Template Design';
+    const templateDesign = profile?.isVertical ? '#2 Design' : '#1 Design';
 
     return (
         <div className="profile-container">
