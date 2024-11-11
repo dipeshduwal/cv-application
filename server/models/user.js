@@ -31,6 +31,10 @@ const User = sequelize.define('User', {
         type: DataTypes.STRING,
         allowNull: true,
     },
+    isVertical: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true, 
+    },
     otp: {
         type: DataTypes.STRING,
         allowNull: true, 

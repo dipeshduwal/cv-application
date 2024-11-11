@@ -10,7 +10,7 @@ const getUserProfile = async (email) => {
         return user;
 };
 
- const saveUserPreferences = async (email, accentColor, textColor, font) => {
+ const saveUserPreferences = async (email, accentColor, textColor, font, isVertical) => {
         const user = await User.findOne({ where: { email }});
         if (!user) {
             throw new Error('User not found');
@@ -20,6 +20,7 @@ const getUserProfile = async (email) => {
             accentColor: accentColor,
             textColor: textColor,
             font: font,
+            isVertical: isVertical,
         });
         
         await user.save();
