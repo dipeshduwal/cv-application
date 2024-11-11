@@ -8,18 +8,20 @@ function ResumeEditor({
   accentColor, setAccentColor, 
   textColor, setTextColor, 
   fontFamily, setFontFamily, 
-  personalInfo, showMessage 
+  personalInfo, showMessage,
+  isVertical, setIsVertical
 }) {
     const handleSavePreferences = async () => {
         try {
             const email = localStorage.getItem('userEmail');
-            const preferences = { accentColor, textColor, font: fontFamily };
+            const preferences = { accentColor, textColor, font: fontFamily, isVertical };
 
             await savePreferences(email, preferences);
 
             localStorage.setItem('accentColor', accentColor);
             localStorage.setItem('textColor', textColor);
             localStorage.setItem('font', fontFamily);
+            localStorage.setItem('isVertical', isVertical);
 
             showMessage('** Preferences saved successfully **');
         } catch (error) {

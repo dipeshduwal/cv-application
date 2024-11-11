@@ -21,11 +21,15 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
         const storedAccentColor = localStorage.getItem('accentColor');
         const storedTextColor = localStorage.getItem('textColor');
         const storedFont = localStorage.getItem('font');
+        const storedIsVertical = localStorage.getItem('isVertical');
 
         if (storedAccentColor) setAccentColor(storedAccentColor);
         if (storedTextColor) setTextColor(storedTextColor);
         if (storedFont) setFontFamily(storedFont);
+        setIsVertical(storedIsVertical);
     }, []);
+
+    const toggleVertical = () => setIsVertical(prev => !prev);
 
     const resumeData = {
         personalInfo,
@@ -180,7 +184,7 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
                 </Droppable>
             </DragDropContext>
 
-            <button className='toggle-button' onClick={() => setIsVertical(!isVertical)}>
+            <button className='toggle-button' onClick={toggleVertical}>
                 Change Template Design
             </button>
 
@@ -193,6 +197,8 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
                 setFontFamily={setFontFamily}
                 personalInfo={personalInfo}
                 showMessage={showMessage}
+                isVertical={isVertical}
+                setIsVertical={setIsVertical}
             />
         
             {message && <div className="message-notify">{message}</div>}
