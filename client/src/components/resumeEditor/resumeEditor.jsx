@@ -1,5 +1,5 @@
-import React from 'react';
-import savePreferences from '../../api/resumePreferencesApi';
+import React, {useEffect} from 'react';
+import {savePreferences, getUserPreferences} from '../../api/resumePreferencesApi';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import './resumeEditor.css';
@@ -8,9 +8,29 @@ function ResumeEditor({
   accentColor, setAccentColor, 
   textColor, setTextColor, 
   fontFamily, setFontFamily, 
+  isVertical, setIsVertical,
   personalInfo, showMessage,
-  isVertical, setIsVertical
+ 
 }) {
+    useEffect(() => {
+        const fetchPreferences = async () => {
+            const email = localStorage.getItem('userEmail');
+            try {
+                const preferences = await getUserPreferences(email);
+                if (preferences) {
+                    setAccentColor(preferences.accentColor);
+                    setTextColor(preferences.textColor);
+                    setFontFamily(preferences.font);
+                    setIsVertical(preferences.isVertical);
+                }
+            } catch (error) {
+                console.error('Error fetching preferences:', error);
+            }
+        };
+
+        fetchPreferences();
+    }, []);
+
     const handleSavePreferences = async () => {
         try {
             const email = localStorage.getItem('userEmail');
@@ -134,6 +154,7 @@ function ResumeEditor({
                     setFontFamily("'Merriweather', sans-serif");
                     setAccentColor('#125413');
                     setTextColor('#143d15');
+                    setIsVertical(false);
                     showMessage('** Preferences reset to default! **');
                 }}>
                 Reset to Default

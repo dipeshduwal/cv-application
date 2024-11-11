@@ -4,6 +4,7 @@ import CoverLetterGenerator from '../coverLetter/coverLetter';
 import { FaStar } from 'react-icons/fa';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 import './resumePreview.css';
+import { getUserPreferences } from '../../api/resumePreferencesApi';
 
 function ResumePreview({ personalInfo, educations = [], visibleEducations, experiences = [], visibleExperiences, skills = [], visibleSkills, photo }) {
     const [accentColor, setAccentColor] = useState('#125413');
@@ -18,18 +19,23 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
     const filteredSkills = skills.filter(skl => visibleSkills[skl.id]);
 
     useEffect(() => {
-        const storedAccentColor = localStorage.getItem('accentColor');
-        const storedTextColor = localStorage.getItem('textColor');
-        const storedFont = localStorage.getItem('font');
-        const storedIsVertical = localStorage.getItem('isVertical');
+        const fetchPreferences = async () => {
+            const email = localStorage.getItem('userEmail');
+            try {
+                const preferences = await getUserPreferences(email);
+                if (preferences) {
+                    setAccentColor(preferences.accentColor);
+                    setTextColor(preferences.textColor);
+                    setFontFamily(preferences.font);
+                    setIsVertical(preferences.isVertical);
+                }
+            } catch (error) {
+                console.error('Error fetching preferences:', error);
+            }
+        };
 
-        if (storedAccentColor) setAccentColor(storedAccentColor);
-        if (storedTextColor) setTextColor(storedTextColor);
-        if (storedFont) setFontFamily(storedFont);
-        setIsVertical(storedIsVertical);
+        fetchPreferences();
     }, []);
-
-    const toggleVertical = () => setIsVertical(prev => !prev);
 
     const resumeData = {
         personalInfo,
@@ -184,7 +190,7 @@ function ResumePreview({ personalInfo, educations = [], visibleEducations, exper
                 </Droppable>
             </DragDropContext>
 
-            <button className='toggle-button' onClick={toggleVertical}>
+            <button className='toggle-button' onClick={() => setIsVertical(!isVertical)}>
                 Change Template Design
             </button>
 
