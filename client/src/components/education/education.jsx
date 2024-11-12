@@ -61,7 +61,7 @@ function Education({ educations, setEducations, visibleEducations, setVisibleEdu
     };
 
     const handleEdit = (index) => {
-        setEducation({ ...educations[index], educationId: educations[index].id }); // Load existing data into the form with educationId
+        setEducation({ ...educations[index], educationId: educations[index].id });
         setEditingIndex(index); 
         setShowForm(true);
     };

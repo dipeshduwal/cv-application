@@ -16,8 +16,8 @@ import './styles/app.css';
 
 function App() {
   return (
-    <ThemeProvider> {/* ThemeProvider should wrap the whole app */}
-      <AppContent /> {/* AppContent will now use the context */}
+    <ThemeProvider> 
+      <AppContent />
     </ThemeProvider>
   );
 }
@@ -27,12 +27,11 @@ function AppContent() {
 
   return (
     <div className='App'>
-      {/* Theme toggle button */}
+  
       <div onClick={toggleTheme} className="theme-toggle-btn">
         {isDarkMode ? <FaSun /> : <FaMoon />}
       </div>
 
-      {/* Routing setup */}
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -46,7 +45,6 @@ function AppContent() {
           <Route path="/verify-otp" element={<VerifyOtp />} />
           <Route path="/contact" element={<Contact />} />
 
-          {/* Redirect to homepage for any unmatched routes */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>
