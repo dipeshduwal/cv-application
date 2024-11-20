@@ -5,8 +5,7 @@ const PersonalInfo = require('../models/personalInfo');
 const savePhoto = async (file, sanitizedFullName) => {
     const uploadDir = path.join(__dirname, '../uploads/');
     const possibleExtensions = ['.jpg', '.jpeg', '.png'];
-
-    // Check and delete any existing file with different extensions for this user
+    
     for (const ext of possibleExtensions) {
         const existingFilePath = path.join(uploadDir, `${sanitizedFullName}${ext}`);
         if (fs.existsSync(existingFilePath)) {

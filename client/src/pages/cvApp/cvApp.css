@@ -62,7 +62,7 @@ body {
 
 .section1, .section2 {
   margin-bottom: 15px;
-  background-color: var(--background-color); /* Uses theme's background color */
+  background-color: var(--background-color);
   border-radius: 8px;
   width: 90%;
 }

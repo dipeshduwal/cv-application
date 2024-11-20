@@ -1,6 +1,5 @@
 const { createOrUpdateInfo, getInfo, deleteInfo} = require('../services/personalInfoServices');
 
-// Create or update personal info
 exports.PostInfo = async (req, res) => {
         const { email: userEmail } = req.user;
         const info = req.body;
@@ -10,7 +9,6 @@ exports.PostInfo = async (req, res) => {
         res.status(201).json(updatedInfo);
 };
 
-// Get personal info
 exports.GetInfo = async (req, res) => {
         const { email: userEmail } = req.user;
         const personalInfo = await getInfo(userEmail);
@@ -18,7 +16,6 @@ exports.GetInfo = async (req, res) => {
         res.status(200).json(personalInfo || []);
 };
 
-// Delete personal info
 exports.DeleteInfo = async (req, res) => {
         const { email: userEmail } = req.user;
         const result = await deleteInfo(userEmail);

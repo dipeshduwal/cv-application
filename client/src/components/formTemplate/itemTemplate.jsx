@@ -44,7 +44,7 @@ function ItemTemplate({ title, rating, type, subtitle, description, onEdit, onDe
                     </button>
                 )}
                 <button className="visibility-toggle-button" onClick={onToggleVisibility}>
-                    {isVisible ? <FaEye /> : <FaEyeSlash />} {/* Display correct icon */}
+                    {isVisible ? <FaEye /> : <FaEyeSlash />}
                 </button>
             </div>
 
