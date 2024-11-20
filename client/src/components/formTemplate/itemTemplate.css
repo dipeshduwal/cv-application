@@ -38,7 +38,7 @@
 }
 
 .edit-button {
-    background-color: #9a7814; /* Golden-yellow */
+    background-color: #9a7814; 
     color: white;
     font-weight: 600;
 }
@@ -49,13 +49,13 @@
 }
 
 .delete-button {
-    background-color: #dc3545; /* Red */
+    background-color: #dc3545; 
     color: white;
     font-weight: 600;
 }
 
 .delete-button:hover {
-    background-color: #c82333; /* Darker red on hover */
+    background-color: #c82333;
     font-weight: 600;
 }
 
@@ -69,10 +69,10 @@
     border-radius: 4px;
     cursor: pointer;
     font-size: 18px;
-    background-color: #7f7f7a; /* Gray */
+    background-color: #7f7f7a; 
     color: white;
 }
 
 .visibility-toggle-button:hover {
-    background-color: #626261; /* Darker gray on hover */
+    background-color: #626261;
 }
